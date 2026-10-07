@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MigrantID.Views.DocumentosPage"
+    Title="Mis documentos">
+
+    <ScrollView>
+
+        <VerticalStackLayout Padding="25" Spacing="18">
+
+            <Label
+                Text="Mis documentos"
+                Style="{StaticResource HeaderLabel}" />
+
+            <Label
+                Text="Consulta los documentos registrados en MigrantID RD."
+                Style="{StaticResource SubheaderLabel}" />
+
+            
+            <Border Style="{StaticResource Card}">
+
+                <VerticalStackLayout Spacing="7">
+
+                    <Label
+                        Text="Residencia temporal"
+                        FontSize="19"
+                        FontAttributes="Bold"
+                        TextColor="#123B5D" />
+
+                    <Label Text="Número: RT-2026-00125" />
+
+                    <Label Text="Vencimiento: 15/12/2026" />
+
+                    <Label
+                        Text="VIGENTE"
+                        FontAttributes="Bold"
+                        TextColor="Green" />
+
+                    <Button
+                        Text="VER / EDITAR"
+                        Style="{StaticResource PrimaryButton}" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            
+            <Border Style="{StaticResource Card}">
+
+                <VerticalStackLayout Spacing="7">
+
+                    <Label
+                        Text="Pasaporte"
+                        FontSize="19"
+                        FontAttributes="Bold"
+                        TextColor="#123B5D" />
+
+                    <Label Text="Número: PA-458721" />
+
+                    <Label Text="Vencimiento: 20/08/2028" />
+
+                    <Label
+                        Text="VIGENTE"
+                        FontAttributes="Bold"
+                        TextColor="Green" />
+
+                    <Button
+                        Text="VER / EDITAR"
+                        Style="{StaticResource PrimaryButton}" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+           
+            <Border Style="{StaticResource Card}">
+
+                <VerticalStackLayout Spacing="7">
+
+                    <Label
+                        Text="Permiso de permanencia"
+                        FontSize="19"
+                        FontAttributes="Bold"
+                        TextColor="#123B5D" />
+
+                    <Label Text="Número: PP-2026-0087" />
+
+                    <Label Text="Estado del documento" />
+
+                    <Label
+                        Text="EN REVISIÓN"
+                        FontAttributes="Bold"
+                        TextColor="#C27C0E" />
+
+                    <Button
+                        Text="VER / EDITAR"
+                        Style="{StaticResource PrimaryButton}" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <Button
+                x:Name="AgregarDocumentoButton"
+                Text="+ AGREGAR DOCUMENTO"
+                Style="{StaticResource PrimaryButton}" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

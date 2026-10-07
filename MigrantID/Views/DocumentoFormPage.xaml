@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MigrantID.Views.DocumentoFormPage"
+    Title="Documento">
+
+    <ScrollView>
+
+        <VerticalStackLayout Padding="25" Spacing="15">
+
+            <Label
+                Text="Registrar documento"
+                Style="{StaticResource HeaderLabel}" />
+
+            <Label
+                Text="Completa la información del documento."
+                Style="{StaticResource SubheaderLabel}" />
+
+            <Border Style="{StaticResource Card}">
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label
+                        Text="Tipo de documento"
+                        Style="{StaticResource FormLabel}" />
+
+                    <Picker Title="Seleccione el tipo de documento">
+                        <Picker.Items>
+                            <x:String>Pasaporte</x:String>
+                            <x:String>Residencia temporal</x:String>
+                            <x:String>Residencia permanente</x:String>
+                            <x:String>Permiso de permanencia</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <Label
+                        Text="Número de documento"
+                        Style="{StaticResource FormLabel}" />
+
+                    <Entry Placeholder="Ej.: RT-2026-00125" />
+
+                    <Label
+                        Text="País de emisión"
+                        Style="{StaticResource FormLabel}" />
+
+                    <Entry Placeholder="Ingrese el país" />
+
+                    <Label
+                        Text="Fecha de emisión"
+                        Style="{StaticResource FormLabel}" />
+
+                    <DatePicker />
+
+                    <Label
+                        Text="Fecha de vencimiento"
+                        Style="{StaticResource FormLabel}" />
+
+                    <DatePicker />
+
+                    <Label
+                        Text="Estado"
+                        Style="{StaticResource FormLabel}" />
+
+                    <Picker Title="Seleccione el estado">
+                        <Picker.Items>
+                            <x:String>Vigente</x:String>
+                            <x:String>En revisión</x:String>
+                            <x:String>Vencido</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <Button
+                x:Name="GuardarButton"
+                Text="GUARDAR"
+                Style="{StaticResource PrimaryButton}" />
+
+            <Button
+                x:Name="CancelarButton"
+                Text="CANCELAR"
+                Style="{StaticResource SecondaryButton}" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

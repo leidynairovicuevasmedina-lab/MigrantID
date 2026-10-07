@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MigrantID.Views.PrincipalPage"
+    Title="Inicio">
+
+    <ScrollView>
+
+        <VerticalStackLayout Padding="25" Spacing="20">
+
+            <Label
+                Text="MigrantID RD"
+                Style="{StaticResource HeaderLabel}" />
+
+            <Label
+                Text="Bienvenido al sistema"
+                Style="{StaticResource SubheaderLabel}" />
+
+            <Border
+                BackgroundColor="#176B87"
+                StrokeThickness="0"
+                Padding="20">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="15" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="8">
+
+                    <Label
+                        Text="Gestión de documentos"
+                        FontSize="21"
+                        FontAttributes="Bold"
+                        TextColor="White" />
+
+                    <Label
+                        Text="Consulta y administra la información registrada en MigrantID RD."
+                        TextColor="White" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <Label
+                Text="Menú principal"
+                FontSize="19"
+                FontAttributes="Bold"
+                TextColor="#123B5D" />
+
+            <Button
+                x:Name="DocumentosButton"
+                Text="MIS DOCUMENTOS"
+                Style="{StaticResource SecondaryButton}" />
+
+            <Button
+                x:Name="AgregarDocumentoButton"
+                Text="AGREGAR DOCUMENTO"
+                Style="{StaticResource SecondaryButton}" />
+
+            <Button
+                x:Name="VerificacionesButton"
+                Text="MIS VERIFICACIONES"
+                Style="{StaticResource SecondaryButton}" />
+
+            <Button
+                x:Name="QrButton"
+                Text="GENERAR QR"
+                Style="{StaticResource SecondaryButton}" />
+
+            <Button
+                x:Name="CerrarSesionButton"
+                Text="CERRAR SESIÓN"
+                Style="{StaticResource DangerButton}" />
+
+            <Label
+                Text="Verifica, Orienta y Protege la información."
+                FontSize="12"
+                TextColor="#89949E"
+                HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>
