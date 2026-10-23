@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MigrantID.Views.LoginPage"
-             Title="Iniciar sesión"
-             BackgroundColor="#F4F7FA">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MigrantID.Views.LoginPage"
+    Title="Iniciar sesión"
+    BackgroundColor="#F4F7FA">
 
     <ScrollView>
         <VerticalStackLayout
@@ -49,14 +50,23 @@
                         TextColor="#687783" />
 
                     <Entry
+                        x:Name="CorreoEntry"
                         Placeholder="Correo electrónico"
                         Keyboard="Email"
                         HeightRequest="50" />
 
                     <Entry
+                        x:Name="ContrasenaEntry"
                         Placeholder="Contraseña"
                         IsPassword="True"
                         HeightRequest="50" />
+
+                    <Label
+                        x:Name="MensajeErrorLabel"
+                        Text=""
+                        FontSize="13"
+                        TextColor="#B42318"
+                        IsVisible="False" />
 
                     <Button
                         Text="INICIAR SESIÓN"
@@ -65,14 +75,14 @@
                         FontAttributes="Bold"
                         HeightRequest="50"
                         CornerRadius="10"
-                        Margin="0,10,0,0" />
+                        Margin="0,10,0,0"
+                        Clicked="OnLoginClicked" />
 
                 </VerticalStackLayout>
-
             </Border>
 
             <Label
-                Text="Trabajo de Rachelly Matias - Leidy Cuevas • Equipo #6"
+                Text=""
                 FontSize="12"
                 TextColor="#89949E"
                 HorizontalOptions="Center"
@@ -80,5 +90,4 @@
 
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

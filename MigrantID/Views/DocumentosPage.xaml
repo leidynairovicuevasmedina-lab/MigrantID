@@ -4,111 +4,149 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MigrantID.Views.DocumentosPage"
-    Title="Mis documentos">
+    Title="Mis documentos"
+    BackgroundColor="#F4F7FA">
 
-    <ScrollView>
+    <Grid
+        Padding="20"
+        RowDefinitions="Auto,Auto,*,Auto"
+        RowSpacing="15">
 
-        <VerticalStackLayout Padding="25" Spacing="18">
+      
+        <VerticalStackLayout
+            Grid.Row="0"
+            Spacing="6">
 
             <Label
                 Text="Mis documentos"
-                Style="{StaticResource HeaderLabel}" />
+                FontSize="26"
+                FontAttributes="Bold"
+                TextColor="#123B5D" />
 
             <Label
-                Text="Consulta los documentos registrados en MigrantID RD."
-                Style="{StaticResource SubheaderLabel}" />
-
-            
-            <Border Style="{StaticResource Card}">
-
-                <VerticalStackLayout Spacing="7">
-
-                    <Label
-                        Text="Residencia temporal"
-                        FontSize="19"
-                        FontAttributes="Bold"
-                        TextColor="#123B5D" />
-
-                    <Label Text="Número: RT-2026-00125" />
-
-                    <Label Text="Vencimiento: 15/12/2026" />
-
-                    <Label
-                        Text="VIGENTE"
-                        FontAttributes="Bold"
-                        TextColor="Green" />
-
-                    <Button
-                        Text="VER / EDITAR"
-                        Style="{StaticResource PrimaryButton}" />
-
-                </VerticalStackLayout>
-
-            </Border>
-
-            
-            <Border Style="{StaticResource Card}">
-
-                <VerticalStackLayout Spacing="7">
-
-                    <Label
-                        Text="Pasaporte"
-                        FontSize="19"
-                        FontAttributes="Bold"
-                        TextColor="#123B5D" />
-
-                    <Label Text="Número: PA-458721" />
-
-                    <Label Text="Vencimiento: 20/08/2028" />
-
-                    <Label
-                        Text="VIGENTE"
-                        FontAttributes="Bold"
-                        TextColor="Green" />
-
-                    <Button
-                        Text="VER / EDITAR"
-                        Style="{StaticResource PrimaryButton}" />
-
-                </VerticalStackLayout>
-
-            </Border>
-
-           
-            <Border Style="{StaticResource Card}">
-
-                <VerticalStackLayout Spacing="7">
-
-                    <Label
-                        Text="Permiso de permanencia"
-                        FontSize="19"
-                        FontAttributes="Bold"
-                        TextColor="#123B5D" />
-
-                    <Label Text="Número: PP-2026-0087" />
-
-                    <Label Text="Estado del documento" />
-
-                    <Label
-                        Text="EN REVISIÓN"
-                        FontAttributes="Bold"
-                        TextColor="#C27C0E" />
-
-                    <Button
-                        Text="VER / EDITAR"
-                        Style="{StaticResource PrimaryButton}" />
-
-                </VerticalStackLayout>
-
-            </Border>
-
-            <Button
-                x:Name="AgregarDocumentoButton"
-                Text="+ AGREGAR DOCUMENTO"
-                Style="{StaticResource PrimaryButton}" />
+                Text="Consulta y administra los documentos registrados."
+                FontSize="14"
+                TextColor="#687783" />
 
         </VerticalStackLayout>
 
-    </ScrollView>
+        
+        <Label
+            x:Name="MensajeVacioLabel"
+            Grid.Row="1"
+            Text="Todavía no hay documentos registrados."
+            TextColor="#687783"
+            IsVisible="False" />
+
+        
+        <CollectionView
+            x:Name="DocumentosCollection"
+            Grid.Row="2"
+            SelectionMode="None">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border
+                        BackgroundColor="White"
+                        Stroke="#DDE5EB"
+                        StrokeThickness="1"
+                        Padding="15"
+                        Margin="0,0,0,12">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="12" />
+                        </Border.StrokeShape>
+
+                        <VerticalStackLayout Spacing="8">
+
+                            <Label
+                                Text="{Binding TipoDocumento}"
+                                FontSize="19"
+                                FontAttributes="Bold"
+                                TextColor="#123B5D" />
+
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Número: " />
+                                        <Span Text="{Binding NumeroDocumento}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="País: " />
+                                        <Span Text="{Binding PaisEmision}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Vencimiento: " />
+                                        <Span Text="{Binding FechaVencimiento, StringFormat='{0:dd/MM/yyyy}'}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Estado: " />
+                                        <Span Text="{Binding Estado}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                        
+                   <Grid
+                   ColumnDefinitions="*,*"
+                   ColumnSpacing="10">
+
+                                <Button
+                                    Grid.Column="0"
+                                    Text="EDITAR"
+                                    BackgroundColor="#176B87"
+                                    TextColor="White"
+                                    CornerRadius="10"
+                                    Clicked="OnEditarClicked"
+                                    CommandParameter="{Binding .}" />
+
+                                <Button
+                                    Grid.Column="1"
+                                    Text="ELIMINAR"
+                                    BackgroundColor="#F1F4F6"
+                                    TextColor="#B42318"
+                                    CornerRadius="10"
+                                    Clicked="OnEliminarClicked"
+                                    CommandParameter="{Binding .}" />
+
+                            </Grid>
+
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        
+        <Button
+            Grid.Row="3"
+            Text="+ AGREGAR DOCUMENTO"
+            BackgroundColor="#176B87"
+            TextColor="White"
+            FontAttributes="Bold"
+            CornerRadius="12"
+            HeightRequest="52"
+            Clicked="OnAgregarClicked" />
+
+    </Grid>
 
 </ContentPage>

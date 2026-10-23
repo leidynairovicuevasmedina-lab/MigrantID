@@ -1,26 +1,109 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+
 <Shell
     x:Class="MigrantID.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:MigrantID.Views"
     Title="MigrantID RD"
-    FlyoutBehavior="Flyout">
+    FlyoutBehavior="Disabled"
+    FlyoutBackgroundColor="#F4F7FA"
+    Shell.BackgroundColor="#176B87"
+    Shell.ForegroundColor="White"
+    Shell.TitleColor="White">
 
-    <ShellContent Title="Login"
-                  ContentTemplate="{DataTemplate views:LoginPage}"
-                  Route="login" />
+    <ShellContent
+        Title="Iniciar sesión"
+        Route="login"
+        ContentTemplate="{DataTemplate views:LoginPage}"
+        Shell.FlyoutItemIsVisible="False"
+        Shell.FlyoutBehavior="Disabled"
+        Shell.NavBarIsVisible="False"
+        Shell.TabBarIsVisible="False" />
 
-    <ShellContent Title="Inicio"
-                  ContentTemplate="{DataTemplate views:PrincipalPage}"
-                  Route="principal" />
+    <FlyoutItem
+        Title="Inicio"
+        Route="app">
 
-    <ShellContent Title="Documentos"
-                  ContentTemplate="{DataTemplate views:DocumentosPage}"
-                  Route="documentos" />
+        <ShellContent
+            Title="Inicio"
+            Route="principal"
+            ContentTemplate="{DataTemplate views:PrincipalPage}" />
 
-    <ShellContent Title="Formulario"
-                  ContentTemplate="{DataTemplate views:DocumentoFormPage}"
-                  Route="documento-form" />
+    </FlyoutItem>
+
+    <FlyoutItem
+        Title="Mis documentos"
+        Route="documentos">
+
+        <ShellContent
+            Title="Mis documentos"
+            Route="lista-documentos"
+            ContentTemplate="{DataTemplate views:DocumentosPage}" />
+
+    </FlyoutItem>
+
+    <FlyoutItem
+        Title="Usuarios"
+        Route="usuarios">
+
+        <ShellContent
+            Title="Usuarios"
+            Route="lista-usuarios"
+            ContentTemplate="{DataTemplate views:UsuariosPage}" />
+
+    </FlyoutItem>
+
+    <FlyoutItem
+        Title="Verificaciones"
+        Route="verificaciones">
+
+        <ShellContent
+            Title="Verificaciones"
+            Route="lista-verificaciones"
+            ContentTemplate="{DataTemplate views:VerificacionesPage}" />
+
+    </FlyoutItem>
+
+    <FlyoutItem
+        Title="Solicitudes"
+        Route="solicitudes">
+
+        <ShellContent
+            Title="Solicitudes"
+            Route="lista-solicitudes"
+            ContentTemplate="{DataTemplate views:SolicitudesPage}" />
+
+    </FlyoutItem>
+
+    <ShellContent
+        Title="Registrar documento"
+        Route="documento-form"
+        ContentTemplate="{DataTemplate views:DocumentoFormPage}"
+        Shell.FlyoutItemIsVisible="False" />
+
+    <ShellContent
+        Title="Registrar usuario"
+        Route="usuario-form"
+        ContentTemplate="{DataTemplate views:UsuarioFormPage}"
+        Shell.FlyoutItemIsVisible="False" />
+   
+    <ShellContent
+        Title="Registrar verificación"
+        Route="verificacion-form"
+        ContentTemplate="{DataTemplate views:VerificacionFormPage}"
+        Shell.FlyoutItemIsVisible="False" />
+    
+    <ShellContent
+        Title="Registrar solicitud"
+        Route="solicitud-form"
+        ContentTemplate="{DataTemplate views:SolicitudFormPage}"
+        Shell.FlyoutItemIsVisible="False" />
+
+        <MenuItem
+        Text="Cerrar sesión"
+        Clicked="OnLogoutClicked" />
 
 </Shell>
+
+    

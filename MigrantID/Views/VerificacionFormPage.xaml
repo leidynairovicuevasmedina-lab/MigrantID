@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MigrantID.Views.VerificacionFormPage"
+    Title="Registrar verificación">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label
+                Text="Registrar verificación"
+                FontSize="24"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="Documento a verificar" />
+
+            <Picker
+                x:Name="DocumentoPicker"
+                Title="Seleccione un documento"
+                ItemDisplayBinding="{Binding NumeroDocumento}" />
+
+            <Label
+                Text="Fecha de verificación" />
+
+            <DatePicker
+                x:Name="FechaVerificacionPicker"
+                Format="dd/MM/yyyy" />
+
+            <Label
+                Text="Resultado" />
+
+            <Picker
+                x:Name="ResultadoPicker"
+                Title="Seleccione un resultado">
+
+                <Picker.Items>
+                    <x:String>Pendiente</x:String>
+                    <x:String>Verificado</x:String>
+                    <x:String>Requiere revisión</x:String>
+                </Picker.Items>
+
+            </Picker>
+
+            <Label
+                Text="Observación" />
+
+            <Editor
+                x:Name="ObservacionEditor"
+                Placeholder="Escriba una observación"
+                HeightRequest="100" />
+
+            <Label
+                x:Name="MensajeErrorLabel"
+                TextColor="Red"
+                IsVisible="False" />
+
+            <Button
+                Text="Guardar"
+                Clicked="OnGuardarClicked" />
+
+            <Button
+                Text="Cancelar"
+                Clicked="OnCancelarClicked"
+                BackgroundColor="Gray"
+                TextColor="White" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

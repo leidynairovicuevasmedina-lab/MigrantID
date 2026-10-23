@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MigrantID.Views.UsuarioFormPage"
+    Title="Usuario"
+    BackgroundColor="#F4F7FA">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="15">
+
+          
+            <Label
+                x:Name="TituloLabel"
+                Text="Registrar usuario"
+                FontSize="26"
+                FontAttributes="Bold"
+                TextColor="#123B5D" />
+
+            <Label
+                Text="Completa los datos del usuario."
+                FontSize="14"
+                TextColor="#687783" />
+
+           
+            <Border
+                BackgroundColor="White"
+                Stroke="#DDE5EB"
+                StrokeThickness="1"
+                Padding="20">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label Text="Nombre completo" />
+
+                    <Entry
+                        x:Name="NombreEntry"
+                        Placeholder="Ingrese el nombre" />
+
+                    <Label Text="Correo electrónico" />
+
+                    <Entry
+                        x:Name="CorreoEntry"
+                        Placeholder="Ingrese el correo"
+                        Keyboard="Email" />
+
+                    <Label Text="Rol" />
+
+                    <Picker
+                        x:Name="RolPicker"
+                        Title="Seleccione un rol">
+
+                        <Picker.Items>
+                            <x:String>Usuario</x:String>
+                            <x:String>Agente</x:String>
+                            <x:String>Administrador</x:String>
+                        </Picker.Items>
+
+                    </Picker>
+
+                    
+                    <Label
+                        x:Name="MensajeErrorLabel"
+                        TextColor="#B42318"
+                        IsVisible="False" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+           
+            <Button
+                x:Name="GuardarButton"
+                Text="GUARDAR"
+                BackgroundColor="#176B87"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="12"
+                HeightRequest="52"
+                Clicked="OnGuardarClicked" />
+
+           
+            <Button
+                Text="CANCELAR"
+                BackgroundColor="#E8EDF1"
+                TextColor="#123B5D"
+                CornerRadius="12"
+                HeightRequest="50"
+                Clicked="OnCancelarClicked" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

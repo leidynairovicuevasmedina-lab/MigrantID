@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MigrantID.Views.SolicitudesPage"
+    Title="Solicitudes de orientación">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Label
+            Text="Solicitudes de orientación"
+            FontSize="24"
+            FontAttributes="Bold"
+            HorizontalOptions="Center" />
+
+        <Button
+            Text="Agregar solicitud"
+            Clicked="OnAgregarClicked" />
+
+        <Label
+            x:Name="MensajeVacioLabel"
+            Text="No hay solicitudes registradas."
+            HorizontalOptions="Center"
+            IsVisible="False" />
+
+        <CollectionView
+            x:Name="SolicitudesCollection"
+            VerticalOptions="Fill">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border
+                        Padding="15"
+                        Margin="0,5"
+                        Stroke="LightGray"
+                        StrokeThickness="1">
+
+                        <VerticalStackLayout Spacing="8">
+
+                            <Label
+                                Text="{Binding Tema}"
+                                FontAttributes="Bold"
+                                FontSize="18" />
+
+                            <Label
+                                Text="{Binding Descripcion}" />
+
+                            <Label
+                                Text="{Binding FechaSolicitud,
+                                    StringFormat='Fecha: {0:dd/MM/yyyy}'}" />
+
+                            <Label
+                                Text="{Binding Estado,
+                                    StringFormat='Estado: {0}'}" />
+
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </VerticalStackLayout>
+
+</ContentPage>

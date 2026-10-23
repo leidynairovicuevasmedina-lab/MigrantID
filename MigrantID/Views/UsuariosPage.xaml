@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MigrantID.Views.UsuariosPage"
+    Title="Usuarios"
+    BackgroundColor="#F4F7FA">
+
+    <Grid
+        Padding="20"
+        RowDefinitions="Auto,Auto,*,Auto"
+        RowSpacing="15">
+
+        
+        <VerticalStackLayout
+            Grid.Row="0"
+            Spacing="6">
+
+            <Label
+                Text="Usuarios registrados"
+                FontSize="26"
+                FontAttributes="Bold"
+                TextColor="#123B5D" />
+
+            <Label
+                Text="Consulta y administra los usuarios registrados."
+                FontSize="14"
+                TextColor="#687783" />
+
+        </VerticalStackLayout>
+
+        
+        <Label
+            x:Name="MensajeVacioLabel"
+            Grid.Row="1"
+            Text="Todavía no hay usuarios registrados."
+            TextColor="#687783"
+            IsVisible="False" />
+
+        
+        <CollectionView
+            x:Name="UsuariosCollection"
+            Grid.Row="2"
+            SelectionMode="None">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border
+                        BackgroundColor="White"
+                        Stroke="#DDE5EB"
+                        StrokeThickness="1"
+                        Padding="15"
+                        Margin="0,0,0,12">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="12" />
+                        </Border.StrokeShape>
+
+                        <VerticalStackLayout Spacing="8">
+
+                            <Label
+                                Text="{Binding Nombre}"
+                                FontSize="19"
+                                FontAttributes="Bold"
+                                TextColor="#123B5D" />
+
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Correo: " />
+                                        <Span Text="{Binding Correo}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Rol: " />
+                                        <Span Text="{Binding Rol}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            
+                            <Grid
+                                ColumnDefinitions="*,*"
+                                ColumnSpacing="10">
+
+                                <Button
+                                    Grid.Column="0"
+                                    Text="EDITAR"
+                                    BackgroundColor="#176B87"
+                                    TextColor="White"
+                                    CornerRadius="10"
+                                    CommandParameter="{Binding .}"
+                                    Clicked="OnEditarClicked" />
+
+                                <Button
+                                    Grid.Column="1"
+                                    Text="ELIMINAR"
+                                    BackgroundColor="#F1F4F6"
+                                    TextColor="#B42318"
+                                    CornerRadius="10"
+                                    CommandParameter="{Binding .}"
+                                    Clicked="OnEliminarClicked" />
+
+                            </Grid>
+
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        
+        <Button
+            Grid.Row="3"
+            Text="+ AGREGAR USUARIO"
+            BackgroundColor="#176B87"
+            TextColor="White"
+            FontAttributes="Bold"
+            CornerRadius="12"
+            HeightRequest="52"
+            Clicked="OnAgregarClicked" />
+
+    </Grid>
+
+</ContentPage>
