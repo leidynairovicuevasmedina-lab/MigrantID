@@ -4,159 +4,71 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MigrantID.Views.VerificacionFormPage"
-    Title="Registrar verificación"
-    BackgroundColor="#F4F7FA">
+    Title="Registrar verificación">
 
     <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
 
-        <VerticalStackLayout
-            Padding="20,20,20,28"
-            Spacing="12">
-
-            
             <Label
                 Text="Registrar verificación"
-                Style="{StaticResource HeaderLabel}" />
+                FontSize="24"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" />
 
             <Label
-                Text="Completa los datos de la verificación."
-                Style="{StaticResource SubheaderLabel}" />
+                Text="Documento a verificar" />
 
-           
-            <Border Style="{StaticResource Card}">
+            <Picker
+                x:Name="DocumentoPicker"
+                Title="Seleccione un documento"
+                ItemDisplayBinding="{Binding NumeroDocumento}" />
 
-                <VerticalStackLayout Spacing="8">
+            <Label
+                Text="Fecha de verificación" />
 
-                   
-                    <Label
-                        Text="Documento a verificar"
-                        Style="{StaticResource FormLabel}" />
+            <DatePicker
+                x:Name="FechaVerificacionPicker"
+                Format="dd/MM/yyyy" />
 
-                    <Picker
-                        Title="Seleccione un documento"
-                        ItemsSource="{Binding DocumentosDisponibles}"
-                        ItemDisplayBinding="{Binding NumeroDocumento}"
-                        SelectedItem="{Binding DocumentoSeleccionado, Mode=TwoWay}" />
+            <Label
+                Text="Resultado" />
 
-                    <Label
-                        Text="{Binding DocumentoError}"
-                        Style="{StaticResource ErrorLabel}"
-                        IsVisible="True">
+            <Picker
+                x:Name="ResultadoPicker"
+                Title="Seleccione un resultado">
 
-                        <Label.Triggers>
-                            <DataTrigger
-                                TargetType="Label"
-                                Binding="{Binding DocumentoError}"
-                                Value="">
-                                <Setter
-                                    Property="IsVisible"
-                                    Value="False" />
-                            </DataTrigger>
-                        </Label.Triggers>
+                <Picker.Items>
+                    <x:String>Pendiente</x:String>
+                    <x:String>Verificado</x:String>
+                    <x:String>Requiere revisión</x:String>
+                </Picker.Items>
 
-                    </Label>
+            </Picker>
 
-               
-                    <Label
-                        Text="Fecha de verificación"
-                        Style="{StaticResource FormLabel}" />
+            <Label
+                Text="Observación" />
 
-                    <DatePicker
-                        Format="dd/MM/yyyy"
-                        Date="{Binding FechaVerificacion, Mode=TwoWay}" />
+            <Editor
+                x:Name="ObservacionEditor"
+                Placeholder="Escriba una observación"
+                HeightRequest="100" />
 
-                    <Label
-                        Text="{Binding FechaVerificacionError}"
-                        Style="{StaticResource ErrorLabel}"
-                        IsVisible="True">
-
-                        <Label.Triggers>
-                            <DataTrigger
-                                TargetType="Label"
-                                Binding="{Binding FechaVerificacionError}"
-                                Value="">
-                                <Setter
-                                    Property="IsVisible"
-                                    Value="False" />
-                            </DataTrigger>
-                        </Label.Triggers>
-
-                    </Label>
-
-                  
-                    <Label
-                        Text="Resultado"
-                        Style="{StaticResource FormLabel}" />
-
-                    <Picker
-                        Title="Seleccione un resultado"
-                        ItemsSource="{Binding ResultadosDisponibles}"
-                        SelectedItem="{Binding ResultadoSeleccionado, Mode=TwoWay}" />
-
-                    <Label
-                        Text="{Binding ResultadoError}"
-                        Style="{StaticResource ErrorLabel}"
-                        IsVisible="True">
-
-                        <Label.Triggers>
-                            <DataTrigger
-                                TargetType="Label"
-                                Binding="{Binding ResultadoError}"
-                                Value="">
-                                <Setter
-                                    Property="IsVisible"
-                                    Value="False" />
-                            </DataTrigger>
-                        </Label.Triggers>
-
-                    </Label>
-
-                    
-                    <Label
-                        Text="Observación"
-                        Style="{StaticResource FormLabel}" />
-
-                    <Editor
-                        Placeholder="Escriba una observación"
-                        HeightRequest="110"
-                        AutoSize="Disabled"
-                        Text="{Binding Observacion, Mode=TwoWay}" />
-
-                    <Label
-                        Text="{Binding ObservacionError}"
-                        Style="{StaticResource ErrorLabel}"
-                        IsVisible="True">
-
-                        <Label.Triggers>
-                            <DataTrigger
-                                TargetType="Label"
-                                Binding="{Binding ObservacionError}"
-                                Value="">
-                                <Setter
-                                    Property="IsVisible"
-                                    Value="False" />
-                            </DataTrigger>
-                        </Label.Triggers>
-
-                    </Label>
-
-                </VerticalStackLayout>
-
-            </Border>
-
-            
-            <Button
-                Text="GUARDAR VERIFICACIÓN"
-                Style="{StaticResource PrimaryButton}"
-                Command="{Binding GuardarCommand}" />
+            <Label
+                x:Name="MensajeErrorLabel"
+                TextColor="Red"
+                IsVisible="False" />
 
             <Button
-                Text="CANCELAR"
-                Style="{StaticResource SecondaryButton}"
-                Command="{Binding CancelarCommand}" />
+                Text="Guardar"
+                Clicked="OnGuardarClicked" />
+
+            <Button
+                Text="Cancelar"
+                Clicked="OnCancelarClicked"
+                BackgroundColor="Gray"
+                TextColor="White" />
 
         </VerticalStackLayout>
-
     </ScrollView>
 
 </ContentPage>

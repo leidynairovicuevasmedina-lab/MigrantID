@@ -16,20 +16,22 @@ public partial class SolicitudesPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-
         CargarSolicitudes();
     }
 
-
     private void CargarSolicitudes()
     {
-        var solicitudes = _servicio.Solicitudes;
+        var solicitudes =
+            _servicio.Solicitudes;
 
         SolicitudesCollection.ItemsSource = null;
 
-        SolicitudesCollection.ItemsSource = solicitudes;
-    }
+        SolicitudesCollection.ItemsSource =
+            solicitudes;
 
+        MensajeVacioLabel.IsVisible =
+            solicitudes.Count == 0;
+    }
 
     private async void OnAgregarClicked(
         object sender, EventArgs e)
