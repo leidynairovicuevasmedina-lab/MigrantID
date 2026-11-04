@@ -1,86 +1,80 @@
 
-using System;
-using Microsoft.Maui.Controls;
 using MigrantID.Models;
 using MigrantID.Services;
 
-namespace MigrantID.Views
+namespace MigrantID.Views;
+
+public partial class UsuariosPage : ContentPage
 {
-    public partial class UsuariosPage : ContentPage
+    private readonly MigrantIDService _servicio =
+        MigrantIDService.Instancia;
+
+    public UsuariosPage()
     {
-        private readonly MigrantIDService _servicio =
-            MigrantIDService.Instancia;
+        InitializeComponent();
+    }
 
-        public UsuariosPage()
-        {
-            InitializeComponent();
-        }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        CargarUsuarios();
+    }
 
-        protected override void OnAppearing()
+    private void CargarUsuarios()
+    {
+        var usuarios = _servicio.Usuarios;
+
+        UsuariosCollection.ItemsSource = null;
+        UsuariosCollection.ItemsSource = usuarios;
+    }
+
+    private async void OnAgregarClicked(
+        object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//usuario-form");
+    }
+
+    private async void OnEditarClicked(
+        object sender, EventArgs e)
+    {
+        if (sender is not Button boton ||
+            boton.CommandParameter is not Usuario usuario)
         {
-            base.OnAppearing();
-            CargarUsuarios();
+            return;
         }
 
         
-        private void CargarUsuarios()
+        await DisplayAlertAsync(
+            "Editar usuario",
+            $"Usuario seleccionado: {usuario.Nombre}",
+            "Aceptar");
+    }
+
+    private async void OnEliminarClicked(
+        object sender, EventArgs e)
+    {
+        if (sender is not Button boton ||
+            boton.CommandParameter is not Usuario usuario)
         {
-            var usuarios = _servicio.Usuarios;
-
-            UsuariosCollection.ItemsSource = null;
-            UsuariosCollection.ItemsSource = usuarios;
-
-            MensajeVacioLabel.IsVisible = usuarios.Count == 0;
+            return;
         }
 
-        
-        private async void OnAgregarClicked(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync("//usuario-form");
-        }
+        bool confirmar = await DisplayAlertAsync(
+            "Eliminar usuario",
+            $"¿Deseas eliminar a {usuario.Nombre}?",
+            "Sí, eliminar",
+            "Cancelar");
 
-        
-        private async void OnEditarClicked(object sender, EventArgs e)
-        {
-            if (sender is not Button boton ||
-                boton.CommandParameter is not Usuario usuario)
-            {
-                return;
-            }
+        if (!confirmar)
+            return;
 
-            await DisplayAlertAsync(
-                "Editar usuario",
-                $"Usuario seleccionado: {usuario.Nombre}",
-                "Aceptar");
-        }
+        _servicio.Usuarios.Remove(usuario);
 
-        // Eliminar usuario
-        private async void OnEliminarClicked(object sender, EventArgs e)
-        {
-            if (sender is not Button boton ||
-                boton.CommandParameter is not Usuario usuario)
-            {
-                return;
-            }
+        CargarUsuarios();
 
-            bool confirmar = await DisplayAlertAsync(
-                "Eliminar usuario",
-                $"¿Deseas eliminar a {usuario.Nombre}?",
-                "Sí, eliminar",
-                "Cancelar");
-
-            if (!confirmar)
-            {
-                return;
-            }
-
-            _servicio.Usuarios.Remove(usuario);
-            CargarUsuarios();
-
-            await DisplayAlertAsync(
-                "Usuario eliminado",
-                "El usuario se ha eliminado correctamente.",
-                "Aceptar");
-        }
+        await DisplayAlertAsync(
+            "Usuario eliminado",
+            "El usuario se ha eliminado correctamente.",
+            "Aceptar");
     }
 }

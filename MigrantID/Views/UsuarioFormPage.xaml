@@ -3,74 +3,113 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:MigrantID.ViewModels"
     x:Class="MigrantID.Views.UsuarioFormPage"
-    Title="Usuario"
+    x:DataType="vm:UsuarioFormViewModel"
+    Title="Registrar usuario"
     BackgroundColor="#F4F7FA">
 
     <ScrollView>
 
         <VerticalStackLayout
-            Padding="20"
-            Spacing="15">
+            Padding="20,20,20,28"
+            Spacing="12">
 
           
             <Label
-                x:Name="TituloLabel"
                 Text="Registrar usuario"
-                FontSize="26"
-                FontAttributes="Bold"
-                TextColor="#123B5D" />
+                Style="{StaticResource HeaderLabel}" />
 
             <Label
                 Text="Completa los datos del usuario."
-                FontSize="14"
-                TextColor="#687783" />
+                Style="{StaticResource SubheaderLabel}" />
 
            
             <Border
-                BackgroundColor="White"
-                Stroke="#DDE5EB"
-                StrokeThickness="1"
-                Padding="20">
+                Style="{StaticResource Card}">
 
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="12" />
-                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="8">
 
-                <VerticalStackLayout Spacing="12">
-
-                    <Label Text="Nombre completo" />
+                   
+                    <Label
+                        Text="Nombre completo"
+                        Style="{StaticResource FormLabel}" />
 
                     <Entry
-                        x:Name="NombreEntry"
-                        Placeholder="Ingrese el nombre" />
+                        Placeholder="Ingrese el nombre completo"
+                        Keyboard="Text"
+                        Text="{Binding Nombre, Mode=TwoWay}" />
 
-                    <Label Text="Correo electrónico" />
+                    <Label
+                        Text="{Binding NombreError}"
+                        Style="{StaticResource ErrorLabel}">
 
-                    <Entry
-                        x:Name="CorreoEntry"
-                        Placeholder="Ingrese el correo"
-                        Keyboard="Email" />
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding NombreError}"
+                                Value="">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="False" />
+                            </DataTrigger>
+                        </Label.Triggers>
 
-                    <Label Text="Rol" />
-
-                    <Picker
-                        x:Name="RolPicker"
-                        Title="Seleccione un rol">
-
-                        <Picker.Items>
-                            <x:String>Usuario</x:String>
-                            <x:String>Agente</x:String>
-                            <x:String>Administrador</x:String>
-                        </Picker.Items>
-
-                    </Picker>
+                    </Label>
 
                     
                     <Label
-                        x:Name="MensajeErrorLabel"
-                        TextColor="#B42318"
-                        IsVisible="False" />
+                        Text="Correo electrónico"
+                        Style="{StaticResource FormLabel}" />
+
+                    <Entry
+                        Placeholder="ejemplo@correo.com"
+                        Keyboard="Email"
+                        Text="{Binding Correo, Mode=TwoWay}" />
+
+                    <Label
+                        Text="{Binding CorreoError}"
+                        Style="{StaticResource ErrorLabel}">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding CorreoError}"
+                                Value="">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="False" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+                  
+                    <Label
+                        Text="Rol"
+                        Style="{StaticResource FormLabel}" />
+
+                    <Picker
+                        Title="Seleccione un rol"
+                        ItemsSource="{Binding RolesDisponibles}"
+                        SelectedItem="{Binding RolSeleccionado, Mode=TwoWay}" />
+
+                    <Label
+                        Text="{Binding RolError}"
+                        Style="{StaticResource ErrorLabel}">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding RolError}"
+                                Value="">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="False" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
 
                 </VerticalStackLayout>
 
@@ -78,23 +117,15 @@
 
            
             <Button
-                x:Name="GuardarButton"
-                Text="GUARDAR"
-                BackgroundColor="#176B87"
-                TextColor="White"
-                FontAttributes="Bold"
-                CornerRadius="12"
-                HeightRequest="52"
-                Clicked="OnGuardarClicked" />
+                Text="GUARDAR USUARIO"
+                Style="{StaticResource PrimaryButton}"
+                Command="{Binding GuardarCommand}" />
 
-           
+         
             <Button
                 Text="CANCELAR"
-                BackgroundColor="#E8EDF1"
-                TextColor="#123B5D"
-                CornerRadius="12"
-                HeightRequest="50"
-                Clicked="OnCancelarClicked" />
+                Style="{StaticResource SecondaryButton}"
+                Command="{Binding CancelarCommand}" />
 
         </VerticalStackLayout>
 

@@ -8,136 +8,214 @@
     BackgroundColor="#F4F7FA">
 
     <ScrollView>
-        <VerticalStackLayout Padding="25" Spacing="15">
 
-            
+        <VerticalStackLayout
+            Padding="20,20,20,28"
+            Spacing="12">
+
             <Label
-                x:Name="TituloLabel"
-                Text="Registrar documento"
+                Text="{Binding Titulo}"
                 Style="{StaticResource HeaderLabel}" />
 
             <Label
                 Text="Completa la información del documento."
                 Style="{StaticResource SubheaderLabel}" />
 
-            
+
             <Border Style="{StaticResource Card}">
 
-                <VerticalStackLayout Spacing="12">
+                <VerticalStackLayout Spacing="8">
 
-                    
+
                     <Label
                         Text="Tipo de documento"
                         Style="{StaticResource FormLabel}" />
 
                     <Picker
-                        x:Name="TipoDocumentoPicker"
-                        Title="Seleccione el tipo de documento">
+                        Title="Seleccione el tipo de documento"
+                        ItemsSource="{Binding TiposDocumento}"
+                        SelectedItem="{Binding TipoDocumento, Mode=TwoWay}" />
 
-                        <Picker.Items>
-                            <x:String>Pasaporte</x:String>
-                            <x:String>Documento de identidad (ID)</x:String>
-                            <x:String>Residencia temporal</x:String>
-                            <x:String>Residencia permanente</x:String>
-                            <x:String>Permiso de permanencia</x:String>
-                        </Picker.Items>
-                    </Picker>
+                    <Label
+                        Text="{Binding TipoDocumentoError}"
+                        Style="{StaticResource ErrorLabel}"
+                        IsVisible="False">
 
-                    
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding TipoDocumentoError}"
+                                Value="">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="False" />
+                            </DataTrigger>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding TipoDocumentoError}"
+                                Value="Selecciona el tipo de documento.">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="True" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+               
                     <Label
                         Text="Número de documento"
                         Style="{StaticResource FormLabel}" />
 
                     <Entry
-                        x:Name="NumeroDocumentoEntry"
-                        Placeholder="Ingrese el número del documento" />
+                        Placeholder="Ingrese el número del documento"
+                        Text="{Binding NumeroDocumento, Mode=TwoWay}" />
 
-                    
+                    <Label
+                        Text="{Binding NumeroDocumentoError}"
+                        Style="{StaticResource ErrorLabel}"
+                        IsVisible="False">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding NumeroDocumentoError}"
+                                Value="El número de documento es obligatorio.">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="True" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+                  
                     <Label
                         Text="País de emisión"
                         Style="{StaticResource FormLabel}" />
 
                     <Picker
-                        x:Name="PaisEmisionPicker"
-                        Title="Seleccione el país">
+                        Title="Seleccione el país"
+                        ItemsSource="{Binding PaisesEmision}"
+                        SelectedItem="{Binding PaisEmision, Mode=TwoWay}" />
 
-                        <Picker.Items>
-                            <x:String>República Dominicana</x:String>
-                            <x:String>Haití</x:String>
-                            <x:String>Venezuela</x:String>
-                            <x:String>Colombia</x:String>
-                            <x:String>Cuba</x:String>
-                            <x:String>Estados Unidos</x:String>
-                            <x:String>Canadá</x:String>
-                            <x:String>México</x:String>
-                            <x:String>España</x:String>
-                            <x:String>Francia</x:String>
-                            <x:String>Brasil</x:String>
-                            <x:String>Argentina</x:String>
-                            <x:String>Chile</x:String>
-                            <x:String>Perú</x:String>
-                            <x:String>China</x:String>
-                            <x:String>India</x:String>
-                            <x:String>Jamaica</x:String>
-                        </Picker.Items>
+                    <Label
+                        Text="{Binding PaisEmisionError}"
+                        Style="{StaticResource ErrorLabel}"
+                        IsVisible="False">
 
-                    </Picker>
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding PaisEmisionError}"
+                                Value="Selecciona el país de emisión.">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="True" />
+                            </DataTrigger>
+                        </Label.Triggers>
 
-                   
+                    </Label>
+
+                
                     <Label
                         Text="Fecha de emisión"
                         Style="{StaticResource FormLabel}" />
 
                     <DatePicker
-                        x:Name="FechaEmisionPicker" />
+                        Format="dd/MM/yyyy"
+                        Date="{Binding FechaEmision, Mode=TwoWay}" />
 
-                    
+                    <Label
+                        Text="{Binding FechaEmisionError}"
+                        Style="{StaticResource ErrorLabel}"
+                        IsVisible="False">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding FechaEmisionError}"
+                                Value="La fecha de emisión no puede ser futura.">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="True" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+                  
                     <Label
                         Text="Fecha de vencimiento"
                         Style="{StaticResource FormLabel}" />
 
                     <DatePicker
-                        x:Name="FechaVencimientoPicker" />
+                        Format="dd/MM/yyyy"
+                        Date="{Binding FechaVencimiento, Mode=TwoWay}" />
 
-                    
+                    <Label
+                        Text="{Binding FechaVencimientoError}"
+                        Style="{StaticResource ErrorLabel}"
+                        IsVisible="False">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding FechaVencimientoError}"
+                                Value="El vencimiento debe ser posterior a la emisión.">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="True" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+                 
                     <Label
                         Text="Estado"
                         Style="{StaticResource FormLabel}" />
 
                     <Picker
-                        x:Name="EstadoPicker"
-                        Title="Seleccione el estado">
+                        Title="Seleccione el estado"
+                        ItemsSource="{Binding EstadosDisponibles}"
+                        SelectedItem="{Binding Estado, Mode=TwoWay}" />
 
-                        <Picker.Items>
-                            <x:String>Vigente</x:String>
-                            <x:String>En revisión</x:String>
-                            <x:String>Vencido</x:String>
-                        </Picker.Items>
-
-                    </Picker>
-
-                    
                     <Label
-                        x:Name="MensajeErrorLabel"
-                        TextColor="Red"
-                        IsVisible="False" />
+                        Text="{Binding EstadoError}"
+                        Style="{StaticResource ErrorLabel}"
+                        IsVisible="False">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding EstadoError}"
+                                Value="Selecciona el estado del documento.">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="True" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
 
                 </VerticalStackLayout>
 
             </Border>
 
-            
+       
             <Button
                 Text="GUARDAR"
                 Style="{StaticResource PrimaryButton}"
-                Clicked="OnGuardarClicked" />
+                Command="{Binding GuardarCommand}" />
 
             <Button
                 Text="CANCELAR"
                 Style="{StaticResource SecondaryButton}"
-                Clicked="OnCancelarClicked" />
+                Command="{Binding CancelarCommand}" />
 
         </VerticalStackLayout>
+
     </ScrollView>
 
 </ContentPage>
