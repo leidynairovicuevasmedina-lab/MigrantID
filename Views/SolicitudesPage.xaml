@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MigrantID.Views.SolicitudesPage"
+    Title="Solicitudes de orientación"
+    BackgroundColor="#F4F7FA">
+
+    <Grid
+        Padding="20"
+        RowDefinitions="Auto,*,Auto"
+        RowSpacing="14">
+
+        <!-- ENCABEZADO -->
+
+        <VerticalStackLayout
+            Grid.Row="0"
+            Spacing="5">
+
+            <Label
+                Text="Solicitudes de orientación"
+                Style="{StaticResource ListTitle}" />
+
+            <Label
+                Text="Consulta las solicitudes registradas."
+                Style="{StaticResource SubheaderLabel}" />
+
+        </VerticalStackLayout>
+
+        <!-- LISTADO -->
+
+        <CollectionView
+            x:Name="SolicitudesCollection"
+            Grid.Row="1"
+            SelectionMode="None">
+
+            <!-- MENSAJE CUANDO NO HAY REGISTROS -->
+
+            <CollectionView.EmptyView>
+
+                <VerticalStackLayout
+                    Padding="20,45"
+                    Spacing="10"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+
+                    <Label
+                        Text="No hay solicitudes registradas"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="#173B57"
+                        HorizontalTextAlignment="Center" />
+
+                    <Label
+                        Text="Agrega una solicitud de orientación para comenzar."
+                        Style="{StaticResource EmptyState}" />
+
+                </VerticalStackLayout>
+
+            </CollectionView.EmptyView>
+
+            <!-- TARJETAS DE SOLICITUDES -->
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <Border
+                        Style="{StaticResource Card}"
+                        Padding="16"
+                        Margin="0,0,0,12">
+
+                        <VerticalStackLayout Spacing="9">
+
+                            <!-- TEMA -->
+
+                            <Label
+                                Text="{Binding Tema}"
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                TextColor="#173B57" />
+
+                            <!-- DESCRIPCIÓN -->
+
+                            <Label
+                                Text="Descripción de la solicitud"
+                                FontSize="12"
+                                TextColor="#66788A" />
+
+                            <Label
+                                Text="{Binding Descripcion}"
+                                FontSize="14"
+                                TextColor="#26465F"
+                                LineBreakMode="WordWrap" />
+
+                            <!-- FECHA -->
+
+                            <Label
+                                Text="Fecha de solicitud"
+                                FontSize="12"
+                                TextColor="#66788A" />
+
+                            <Label
+                                Text="{Binding FechaSolicitud,
+                                       StringFormat='{0:dd/MM/yyyy}'}"
+                                FontSize="14"
+                                TextColor="#26465F" />
+
+                            <!-- ESTADO -->
+
+                            <Label
+                                Text="Estado"
+                                FontSize="12"
+                                TextColor="#66788A" />
+
+                            <Label
+                                Text="{Binding Estado}"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                TextColor="#176B87" />
+
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <!-- BOTÓN AGREGAR -->
+
+        <Button
+            Grid.Row="2"
+            Text="+ AGREGAR SOLICITUD"
+            Style="{StaticResource PrimaryButton}"
+            Clicked="OnAgregarClicked" />
+
+    </Grid>
+
+</ContentPage>

@@ -4,61 +4,135 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MigrantID.Views.SolicitudFormPage"
-    Title="Registrar solicitud">
+    Title="Registrar solicitud"
+    BackgroundColor="#F4F7FA">
 
     <ScrollView>
 
-        <VerticalStackLayout Padding="20" Spacing="15">
+        <VerticalStackLayout
+            Padding="20,20,20,28"
+            Spacing="12">
+
+            <!-- ENCABEZADO -->
 
             <Label
                 Text="Registrar solicitud de orientación"
-                FontSize="24"
-                FontAttributes="Bold"
-                HorizontalOptions="Center" />
-
-            <Label Text="Usuario" />
-
-            <Picker
-                x:Name="UsuarioPicker"
-                Title="Seleccione un usuario"
-                ItemDisplayBinding="{Binding Nombre}" />
-
-            <Label Text="Tema de la solicitud" />
-
-            <Picker
-                x:Name="TemaPicker"
-                Title="Seleccione un tema">
-
-                <Picker.Items>
-                    <x:String>Información migratoria</x:String>
-                    <x:String>Consulta de documentos</x:String>
-                    <x:String>Estado de solicitud</x:String>
-                    <x:String>Otra orientación</x:String>
-                </Picker.Items>
-
-            </Picker>
-
-            <Label Text="Descripción" />
-
-            <Editor
-                x:Name="DescripcionEditor"
-                Placeholder="Escriba el motivo de la solicitud"
-                HeightRequest="120" />
+                Style="{StaticResource HeaderLabel}" />
 
             <Label
-                x:Name="MensajeErrorLabel"
-                TextColor="Red"
-                IsVisible="False" />
+                Text="Completa los datos de la solicitud."
+                Style="{StaticResource SubheaderLabel}" />
+
+            <!-- TARJETA DEL FORMULARIO -->
+
+            <Border Style="{StaticResource Card}">
+
+                <VerticalStackLayout Spacing="8">
+
+                    <!-- USUARIO -->
+
+                    <Label
+                        Text="Usuario"
+                        Style="{StaticResource FormLabel}" />
+
+                    <Picker
+                        Title="Seleccione un usuario"
+                        ItemsSource="{Binding UsuariosDisponibles}"
+                        ItemDisplayBinding="{Binding Nombre}"
+                        SelectedItem="{Binding UsuarioSeleccionado, Mode=TwoWay}" />
+
+                    <Label
+                        Text="{Binding UsuarioError}"
+                        Style="{StaticResource ErrorLabel}"
+                        IsVisible="True">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding UsuarioError}"
+                                Value="">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="False" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+                    <!-- TEMA -->
+
+                    <Label
+                        Text="Tema de la solicitud"
+                        Style="{StaticResource FormLabel}" />
+
+                    <Picker
+                        Title="Seleccione un tema"
+                        ItemsSource="{Binding TemasDisponibles}"
+                        SelectedItem="{Binding TemaSeleccionado, Mode=TwoWay}" />
+
+                    <Label
+                        Text="{Binding TemaError}"
+                        Style="{StaticResource ErrorLabel}"
+                        IsVisible="True">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding TemaError}"
+                                Value="">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="False" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+                    <!-- DESCRIPCIÓN -->
+
+                    <Label
+                        Text="Descripción"
+                        Style="{StaticResource FormLabel}" />
+
+                    <Editor
+                        Placeholder="Escriba el motivo de la solicitud"
+                        HeightRequest="120"
+                        AutoSize="Disabled"
+                        Text="{Binding Descripcion, Mode=TwoWay}" />
+
+                    <Label
+                        Text="{Binding DescripcionError}"
+                        Style="{StaticResource ErrorLabel}"
+                        IsVisible="True">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding DescripcionError}"
+                                Value="">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="False" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- BOTONES -->
 
             <Button
-                Text="Guardar"
-                Clicked="OnGuardarClicked" />
+                Text="GUARDAR SOLICITUD"
+                Style="{StaticResource PrimaryButton}"
+                Command="{Binding GuardarCommand}" />
 
             <Button
-                Text="Cancelar"
-                Clicked="OnCancelarClicked"
-                BackgroundColor="Gray"
-                TextColor="White" />
+                Text="CANCELAR"
+                Style="{StaticResource SecondaryButton}"
+                Command="{Binding CancelarCommand}" />
 
         </VerticalStackLayout>
 

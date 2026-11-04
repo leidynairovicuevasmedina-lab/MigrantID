@@ -4,68 +4,146 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MigrantID.Views.VerificacionesPage"
-    Title="Verificaciones">
+    Title="Verificaciones"
+    BackgroundColor="#F4F7FA">
 
-    <VerticalStackLayout Padding="20" Spacing="15">
+    <Grid
+        Padding="20"
+        RowDefinitions="Auto,*,Auto"
+        RowSpacing="14">
 
-        <Label
-            Text="Verificaciones registradas"
-            FontSize="24"
-            FontAttributes="Bold"
-            HorizontalOptions="Center" />
+        <!-- ENCABEZADO -->
 
-        <Button
-            Text="Agregar verificación"
-            Clicked="OnAgregarClicked" />
+        <VerticalStackLayout
+            Grid.Row="0"
+            Spacing="5">
 
-        <Label
-            x:Name="MensajeVacioLabel"
-            Text="No hay verificaciones registradas."
-            HorizontalOptions="Center"
-            IsVisible="False" />
+            <Label
+                Text="Verificaciones registradas"
+                Style="{StaticResource ListTitle}" />
+
+            <Label
+                Text="Consulta las verificaciones realizadas."
+                Style="{StaticResource SubheaderLabel}" />
+
+        </VerticalStackLayout>
+
+        <!-- LISTADO -->
 
         <CollectionView
             x:Name="VerificacionesCollection"
-            VerticalOptions="Fill">
+            Grid.Row="1"
+            SelectionMode="None">
+
+            <!-- LISTADO VACÍO -->
+
+            <CollectionView.EmptyView>
+
+                <VerticalStackLayout
+                    Padding="20,45"
+                    Spacing="10"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+
+                    <Label
+                        Text="No hay verificaciones registradas"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="#173B57"
+                        HorizontalTextAlignment="Center" />
+
+                    <Label
+                        Text="Agrega una verificación para comenzar."
+                        Style="{StaticResource EmptyState}" />
+
+                </VerticalStackLayout>
+
+            </CollectionView.EmptyView>
+
+            <!-- TARJETAS DE VERIFICACIONES -->
 
             <CollectionView.ItemTemplate>
+
                 <DataTemplate>
 
                     <Border
-                        Padding="15"
-                        Margin="0,5"
-                        Stroke="LightGray"
-                        StrokeThickness="1">
+                        Style="{StaticResource Card}"
+                        Padding="16"
+                        Margin="0,0,0,12">
 
-                        <VerticalStackLayout Spacing="8">
+                        <VerticalStackLayout Spacing="9">
+
+                            <!-- IDENTIFICADOR DEL DOCUMENTO -->
+
+                            <Label
+                                Text="Documento verificado"
+                                FontSize="12"
+                                TextColor="#66788A" />
 
                             <Label
                                 Text="{Binding IdDocumento,
-                                    StringFormat='Documento: {0}'}"
+                                       StringFormat='ID del documento: {0}'}"
+                                FontSize="17"
                                 FontAttributes="Bold"
-                                FontSize="18" />
+                                TextColor="#173B57" />
+
+                            <!-- FECHA -->
+
+                            <Label
+                                Text="Fecha de verificación"
+                                FontSize="12"
+                                TextColor="#66788A" />
 
                             <Label
                                 Text="{Binding FechaVerificacion,
-                                    StringFormat='Fecha: {0:dd/MM/yyyy}'}" />
+                                       StringFormat='{0:dd/MM/yyyy}'}"
+                                FontSize="14"
+                                TextColor="#26465F" />
+
+                            <!-- RESULTADO -->
 
                             <Label
-                                Text="{Binding Resultado,
-                                    StringFormat='Resultado: {0}'}" />
+                                Text="Resultado"
+                                FontSize="12"
+                                TextColor="#66788A" />
 
                             <Label
-                                Text="{Binding Observacion,
-                                    StringFormat='Observación: {0}'}" />
+                                Text="{Binding Resultado}"
+                                FontSize="15"
+                                FontAttributes="Bold"
+                                TextColor="#176B87" />
+
+                            <!-- OBSERVACIÓN -->
+
+                            <Label
+                                Text="Observación"
+                                FontSize="12"
+                                TextColor="#66788A" />
+
+                            <Label
+                                Text="{Binding Observacion}"
+                                FontSize="14"
+                                TextColor="#26465F"
+                                LineBreakMode="WordWrap" />
 
                         </VerticalStackLayout>
 
                     </Border>
 
                 </DataTemplate>
+
             </CollectionView.ItemTemplate>
 
         </CollectionView>
 
-    </VerticalStackLayout>
+        <!-- BOTÓN AGREGAR -->
+
+        <Button
+            Grid.Row="2"
+            Text="+ AGREGAR VERIFICACIÓN"
+            Style="{StaticResource PrimaryButton}"
+            Clicked="OnAgregarClicked" />
+
+    </Grid>
 
 </ContentPage>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MigrantID.Views.DocumentosPage"
+    Title="Mis documentos"
+    BackgroundColor="#F4F7FA">
+
+    <Grid
+        Padding="20"
+        RowDefinitions="Auto,*,Auto"
+        RowSpacing="14">
+
+        <!-- ENCABEZADO -->
+
+        <VerticalStackLayout
+            Grid.Row="0"
+            Spacing="5">
+
+            <Label
+                Text="Documentos registrados"
+                Style="{StaticResource ListTitle}" />
+
+            <Label
+                Text="Consulta y administra los documentos registrados."
+                Style="{StaticResource SubheaderLabel}" />
+
+        </VerticalStackLayout>
+
+        <!-- LISTADO -->
+
+        <CollectionView
+            x:Name="DocumentosCollection"
+            Grid.Row="1"
+            SelectionMode="None">
+
+            <!-- CUANDO NO HAY DOCUMENTOS -->
+
+            <CollectionView.EmptyView>
+
+                <VerticalStackLayout
+                    Padding="20,45"
+                    Spacing="10"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+
+                    <Label
+                        Text="No hay documentos registrados"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="#173B57"
+                        HorizontalTextAlignment="Center" />
+
+                    <Label
+                        Text="Agrega un documento para comenzar."
+                        Style="{StaticResource EmptyState}" />
+
+                </VerticalStackLayout>
+
+            </CollectionView.EmptyView>
+
+            <!-- TARJETAS -->
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <Border
+                        Style="{StaticResource Card}"
+                        Padding="16"
+                        Margin="0,0,0,12">
+
+                        <VerticalStackLayout Spacing="9">
+
+                            <!-- TIPO DE DOCUMENTO -->
+
+                            <Label
+                                Text="{Binding TipoDocumento}"
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                TextColor="#173B57" />
+
+                            <!-- NÚMERO -->
+
+                            <Label
+                                Text="Número de documento"
+                                FontSize="12"
+                                TextColor="#66788A" />
+
+                            <Label
+                                Text="{Binding NumeroDocumento}"
+                                FontSize="15"
+                                FontAttributes="Bold"
+                                TextColor="#26465F" />
+
+                            <!-- PAÍS -->
+
+                            <Label
+                                Text="País de emisión"
+                                FontSize="12"
+                                TextColor="#66788A" />
+
+                            <Label
+                                Text="{Binding PaisEmision}"
+                                FontSize="14"
+                                TextColor="#26465F" />
+
+                            <!-- FECHA -->
+
+                            <Label
+                                Text="Fecha de vencimiento"
+                                FontSize="12"
+                                TextColor="#66788A" />
+
+                            <Label
+                                Text="{Binding FechaVencimiento,
+                                       StringFormat='{0:dd/MM/yyyy}'}"
+                                FontSize="14"
+                                TextColor="#26465F" />
+
+                            <!-- ESTADO -->
+
+                            <Label
+                                Text="Estado del documento"
+                                FontSize="12"
+                                TextColor="#66788A" />
+
+                            <Label
+                                Text="{Binding Estado}"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                TextColor="#176B87" />
+
+                            <!-- SEPARADOR -->
+
+                            <BoxView
+                                HeightRequest="1"
+                                Color="#DEE6ED"
+                                Margin="0,6" />
+
+                            <!-- BOTONES -->
+
+                            <Grid
+                                ColumnDefinitions="*,*"
+                                ColumnSpacing="10">
+
+                                <Button
+                                    Grid.Column="0"
+                                    Text="EDITAR"
+                                    Style="{StaticResource PrimaryButton}"
+                                    HeightRequest="44"
+                                    FontSize="13"
+                                    CommandParameter="{Binding .}"
+                                    Clicked="OnEditarClicked" />
+
+                                <Button
+                                    Grid.Column="1"
+                                    Text="ELIMINAR"
+                                    BackgroundColor="#FFF1F1"
+                                    TextColor="#B42318"
+                                    BorderColor="#E8B8B8"
+                                    BorderWidth="1"
+                                    CornerRadius="10"
+                                    HeightRequest="44"
+                                    FontSize="13"
+                                    FontAttributes="Bold"
+                                    CommandParameter="{Binding .}"
+                                    Clicked="OnEliminarClicked" />
+
+                            </Grid>
+
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <!-- AGREGAR DOCUMENTO -->
+
+        <Button
+            Grid.Row="2"
+            Text="+ AGREGAR DOCUMENTO"
+            Style="{StaticResource PrimaryButton}"
+            Clicked="OnAgregarClicked" />
+
+    </Grid>
+
+</ContentPage>

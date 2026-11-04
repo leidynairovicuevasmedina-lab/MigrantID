@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MigrantID.Views.SolicitudFormPage"
+    Title="Registrar solicitud"
+    BackgroundColor="#F4F7FA">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="20,20,20,28"
+            Spacing="12">
+
+            <!-- ENCABEZADO -->
+
+            <Label
+                Text="Registrar solicitud de orientación"
+                Style="{StaticResource HeaderLabel}" />
+
+            <Label
+                Text="Completa los datos de la solicitud."
+                Style="{StaticResource SubheaderLabel}" />
+
+            <!-- TARJETA DEL FORMULARIO -->
+
+            <Border Style="{StaticResource Card}">
+
+                <VerticalStackLayout Spacing="8">
+
+                    <!-- USUARIO -->
+
+                    <Label
+                        Text="Usuario"
+                        Style="{StaticResource FormLabel}" />
+
+                    <Picker
+                        Title="Seleccione un usuario"
+                        ItemsSource="{Binding UsuariosDisponibles}"
+                        ItemDisplayBinding="{Binding Nombre}"
+                        SelectedItem="{Binding UsuarioSeleccionado, Mode=TwoWay}" />
+
+                    <Label
+                        Text="{Binding UsuarioError}"
+                        Style="{StaticResource ErrorLabel}"
+                        IsVisible="True">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding UsuarioError}"
+                                Value="">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="False" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+                    <!-- TEMA -->
+
+                    <Label
+                        Text="Tema de la solicitud"
+                        Style="{StaticResource FormLabel}" />
+
+                    <Picker
+                        Title="Seleccione un tema"
+                        ItemsSource="{Binding TemasDisponibles}"
+                        SelectedItem="{Binding TemaSeleccionado, Mode=TwoWay}" />
+
+                    <Label
+                        Text="{Binding TemaError}"
+                        Style="{StaticResource ErrorLabel}"
+                        IsVisible="True">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding TemaError}"
+                                Value="">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="False" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+                    <!-- DESCRIPCIÓN -->
+
+                    <Label
+                        Text="Descripción"
+                        Style="{StaticResource FormLabel}" />
+
+                    <Editor
+                        Placeholder="Escriba el motivo de la solicitud"
+                        HeightRequest="120"
+                        AutoSize="Disabled"
+                        Text="{Binding Descripcion, Mode=TwoWay}" />
+
+                    <Label
+                        Text="{Binding DescripcionError}"
+                        Style="{StaticResource ErrorLabel}"
+                        IsVisible="True">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding DescripcionError}"
+                                Value="">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="False" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- BOTONES -->
+
+            <Button
+                Text="GUARDAR SOLICITUD"
+                Style="{StaticResource PrimaryButton}"
+                Command="{Binding GuardarCommand}" />
+
+            <Button
+                Text="CANCELAR"
+                Style="{StaticResource SecondaryButton}"
+                Command="{Binding CancelarCommand}" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

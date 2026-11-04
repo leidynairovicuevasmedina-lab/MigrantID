@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:MigrantID.ViewModels"
+    x:Class="MigrantID.Views.UsuarioFormPage"
+    x:DataType="vm:UsuarioFormViewModel"
+    Title="Registrar usuario"
+    BackgroundColor="#F4F7FA">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="20,20,20,28"
+            Spacing="12">
+
+            <!-- ENCABEZADO -->
+
+            <Label
+                Text="Registrar usuario"
+                Style="{StaticResource HeaderLabel}" />
+
+            <Label
+                Text="Completa los datos del usuario."
+                Style="{StaticResource SubheaderLabel}" />
+
+            <!-- TARJETA DEL FORMULARIO -->
+
+            <Border
+                Style="{StaticResource Card}">
+
+                <VerticalStackLayout Spacing="8">
+
+                    <!-- NOMBRE -->
+
+                    <Label
+                        Text="Nombre completo"
+                        Style="{StaticResource FormLabel}" />
+
+                    <Entry
+                        Placeholder="Ingrese el nombre completo"
+                        Keyboard="Text"
+                        Text="{Binding Nombre, Mode=TwoWay}" />
+
+                    <Label
+                        Text="{Binding NombreError}"
+                        Style="{StaticResource ErrorLabel}">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding NombreError}"
+                                Value="">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="False" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+                    <!-- CORREO ELECTRÓNICO -->
+
+                    <Label
+                        Text="Correo electrónico"
+                        Style="{StaticResource FormLabel}" />
+
+                    <Entry
+                        Placeholder="ejemplo@correo.com"
+                        Keyboard="Email"
+                        Text="{Binding Correo, Mode=TwoWay}" />
+
+                    <Label
+                        Text="{Binding CorreoError}"
+                        Style="{StaticResource ErrorLabel}">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding CorreoError}"
+                                Value="">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="False" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+                    <!-- ROL DEL USUARIO -->
+
+                    <Label
+                        Text="Rol"
+                        Style="{StaticResource FormLabel}" />
+
+                    <Picker
+                        Title="Seleccione un rol"
+                        ItemsSource="{Binding RolesDisponibles}"
+                        SelectedItem="{Binding RolSeleccionado, Mode=TwoWay}" />
+
+                    <Label
+                        Text="{Binding RolError}"
+                        Style="{StaticResource ErrorLabel}">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding RolError}"
+                                Value="">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="False" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- GUARDAR -->
+
+            <Button
+                Text="GUARDAR USUARIO"
+                Style="{StaticResource PrimaryButton}"
+                Command="{Binding GuardarCommand}" />
+
+            <!-- CANCELAR -->
+
+            <Button
+                Text="CANCELAR"
+                Style="{StaticResource SecondaryButton}"
+                Command="{Binding CancelarCommand}" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

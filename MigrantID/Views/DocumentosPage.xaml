@@ -9,121 +9,164 @@
 
     <Grid
         Padding="20"
-        RowDefinitions="Auto,Auto,*,Auto"
-        RowSpacing="15">
+        RowDefinitions="Auto,*,Auto"
+        RowSpacing="14">
 
-      
+        <!-- ENCABEZADO -->
+
         <VerticalStackLayout
             Grid.Row="0"
-            Spacing="6">
+            Spacing="5">
 
             <Label
-                Text="Mis documentos"
-                FontSize="26"
-                FontAttributes="Bold"
-                TextColor="#123B5D" />
+                Text="Documentos registrados"
+                Style="{StaticResource ListTitle}" />
 
             <Label
                 Text="Consulta y administra los documentos registrados."
-                FontSize="14"
-                TextColor="#687783" />
+                Style="{StaticResource SubheaderLabel}" />
 
         </VerticalStackLayout>
 
-        
-        <Label
-            x:Name="MensajeVacioLabel"
-            Grid.Row="1"
-            Text="Todavía no hay documentos registrados."
-            TextColor="#687783"
-            IsVisible="False" />
+        <!-- LISTADO -->
 
-        
         <CollectionView
             x:Name="DocumentosCollection"
-            Grid.Row="2"
+            Grid.Row="1"
             SelectionMode="None">
 
+            <!-- CUANDO NO HAY DOCUMENTOS -->
+
+            <CollectionView.EmptyView>
+
+                <VerticalStackLayout
+                    Padding="20,45"
+                    Spacing="10"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+
+                    <Label
+                        Text="No hay documentos registrados"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="#173B57"
+                        HorizontalTextAlignment="Center" />
+
+                    <Label
+                        Text="Agrega un documento para comenzar."
+                        Style="{StaticResource EmptyState}" />
+
+                </VerticalStackLayout>
+
+            </CollectionView.EmptyView>
+
+            <!-- TARJETAS -->
+
             <CollectionView.ItemTemplate>
+
                 <DataTemplate>
 
                     <Border
-                        BackgroundColor="White"
-                        Stroke="#DDE5EB"
-                        StrokeThickness="1"
-                        Padding="15"
+                        Style="{StaticResource Card}"
+                        Padding="16"
                         Margin="0,0,0,12">
 
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="12" />
-                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="9">
 
-                        <VerticalStackLayout Spacing="8">
+                            <!-- TIPO DE DOCUMENTO -->
 
                             <Label
                                 Text="{Binding TipoDocumento}"
-                                FontSize="19"
+                                FontSize="18"
                                 FontAttributes="Bold"
-                                TextColor="#123B5D" />
+                                TextColor="#173B57" />
 
-                            <Label>
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="Número: " />
-                                        <Span Text="{Binding NumeroDocumento}" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
+                            <!-- NÚMERO -->
 
-                            <Label>
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="País: " />
-                                        <Span Text="{Binding PaisEmision}" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
+                            <Label
+                                Text="Número de documento"
+                                FontSize="12"
+                                TextColor="#66788A" />
 
-                            <Label>
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="Vencimiento: " />
-                                        <Span Text="{Binding FechaVencimiento, StringFormat='{0:dd/MM/yyyy}'}" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
+                            <Label
+                                Text="{Binding NumeroDocumento}"
+                                FontSize="15"
+                                FontAttributes="Bold"
+                                TextColor="#26465F" />
 
-                            <Label>
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="Estado: " />
-                                        <Span Text="{Binding Estado}" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
+                            <!-- PAÍS -->
 
-                        
-                   <Grid
-                   ColumnDefinitions="*,*"
-                   ColumnSpacing="10">
+                            <Label
+                                Text="País de emisión"
+                                FontSize="12"
+                                TextColor="#66788A" />
+
+                            <Label
+                                Text="{Binding PaisEmision}"
+                                FontSize="14"
+                                TextColor="#26465F" />
+
+                            <!-- FECHA -->
+
+                            <Label
+                                Text="Fecha de vencimiento"
+                                FontSize="12"
+                                TextColor="#66788A" />
+
+                            <Label
+                                Text="{Binding FechaVencimiento,
+                                       StringFormat='{0:dd/MM/yyyy}'}"
+                                FontSize="14"
+                                TextColor="#26465F" />
+
+                            <!-- ESTADO -->
+
+                            <Label
+                                Text="Estado del documento"
+                                FontSize="12"
+                                TextColor="#66788A" />
+
+                            <Label
+                                Text="{Binding Estado}"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                TextColor="#176B87" />
+
+                            <!-- SEPARADOR -->
+
+                            <BoxView
+                                HeightRequest="1"
+                                Color="#DEE6ED"
+                                Margin="0,6" />
+
+                            <!-- BOTONES -->
+
+                            <Grid
+                                ColumnDefinitions="*,*"
+                                ColumnSpacing="10">
 
                                 <Button
                                     Grid.Column="0"
                                     Text="EDITAR"
-                                    BackgroundColor="#176B87"
-                                    TextColor="White"
-                                    CornerRadius="10"
-                                    Clicked="OnEditarClicked"
-                                    CommandParameter="{Binding .}" />
+                                    Style="{StaticResource PrimaryButton}"
+                                    HeightRequest="44"
+                                    FontSize="13"
+                                    CommandParameter="{Binding .}"
+                                    Clicked="OnEditarClicked" />
 
                                 <Button
                                     Grid.Column="1"
                                     Text="ELIMINAR"
-                                    BackgroundColor="#F1F4F6"
+                                    BackgroundColor="#FFF1F1"
                                     TextColor="#B42318"
+                                    BorderColor="#E8B8B8"
+                                    BorderWidth="1"
                                     CornerRadius="10"
-                                    Clicked="OnEliminarClicked"
-                                    CommandParameter="{Binding .}" />
+                                    HeightRequest="44"
+                                    FontSize="13"
+                                    FontAttributes="Bold"
+                                    CommandParameter="{Binding .}"
+                                    Clicked="OnEliminarClicked" />
 
                             </Grid>
 
@@ -132,19 +175,17 @@
                     </Border>
 
                 </DataTemplate>
+
             </CollectionView.ItemTemplate>
 
         </CollectionView>
 
-        
+        <!-- AGREGAR DOCUMENTO -->
+
         <Button
-            Grid.Row="3"
+            Grid.Row="2"
             Text="+ AGREGAR DOCUMENTO"
-            BackgroundColor="#176B87"
-            TextColor="White"
-            FontAttributes="Bold"
-            CornerRadius="12"
-            HeightRequest="52"
+            Style="{StaticResource PrimaryButton}"
             Clicked="OnAgregarClicked" />
 
     </Grid>

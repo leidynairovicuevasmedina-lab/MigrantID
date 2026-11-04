@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MigrantID.Views.DocumentoFormPage"
+    Title="Documento"
+    BackgroundColor="#F4F7FA">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="20,20,20,28"
+            Spacing="12">
+
+            <!-- ENCABEZADO -->
+
+            <Label
+                Text="{Binding Titulo}"
+                Style="{StaticResource HeaderLabel}" />
+
+            <Label
+                Text="Completa la información del documento."
+                Style="{StaticResource SubheaderLabel}" />
+
+            <!-- TARJETA DEL FORMULARIO -->
+
+            <Border Style="{StaticResource Card}">
+
+                <VerticalStackLayout Spacing="8">
+
+                    <!-- TIPO DE DOCUMENTO -->
+
+                    <Label
+                        Text="Tipo de documento"
+                        Style="{StaticResource FormLabel}" />
+
+                    <Picker
+                        Title="Seleccione el tipo de documento"
+                        ItemsSource="{Binding TiposDocumento}"
+                        SelectedItem="{Binding TipoDocumento, Mode=TwoWay}" />
+
+                    <Label
+                        Text="{Binding TipoDocumentoError}"
+                        Style="{StaticResource ErrorLabel}"
+                        IsVisible="False">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding TipoDocumentoError}"
+                                Value="">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="False" />
+                            </DataTrigger>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding TipoDocumentoError}"
+                                Value="Selecciona el tipo de documento.">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="True" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+                    <!-- NÚMERO DE DOCUMENTO -->
+
+                    <Label
+                        Text="Número de documento"
+                        Style="{StaticResource FormLabel}" />
+
+                    <Entry
+                        Placeholder="Ingrese el número del documento"
+                        Text="{Binding NumeroDocumento, Mode=TwoWay}" />
+
+                    <Label
+                        Text="{Binding NumeroDocumentoError}"
+                        Style="{StaticResource ErrorLabel}"
+                        IsVisible="False">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding NumeroDocumentoError}"
+                                Value="El número de documento es obligatorio.">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="True" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+                    <!-- PAÍS DE EMISIÓN -->
+
+                    <Label
+                        Text="País de emisión"
+                        Style="{StaticResource FormLabel}" />
+
+                    <Picker
+                        Title="Seleccione el país"
+                        ItemsSource="{Binding PaisesEmision}"
+                        SelectedItem="{Binding PaisEmision, Mode=TwoWay}" />
+
+                    <Label
+                        Text="{Binding PaisEmisionError}"
+                        Style="{StaticResource ErrorLabel}"
+                        IsVisible="False">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding PaisEmisionError}"
+                                Value="Selecciona el país de emisión.">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="True" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+                    <!-- FECHA DE EMISIÓN -->
+
+                    <Label
+                        Text="Fecha de emisión"
+                        Style="{StaticResource FormLabel}" />
+
+                    <DatePicker
+                        Format="dd/MM/yyyy"
+                        Date="{Binding FechaEmision, Mode=TwoWay}" />
+
+                    <Label
+                        Text="{Binding FechaEmisionError}"
+                        Style="{StaticResource ErrorLabel}"
+                        IsVisible="False">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding FechaEmisionError}"
+                                Value="La fecha de emisión no puede ser futura.">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="True" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+                    <!-- FECHA DE VENCIMIENTO -->
+
+                    <Label
+                        Text="Fecha de vencimiento"
+                        Style="{StaticResource FormLabel}" />
+
+                    <DatePicker
+                        Format="dd/MM/yyyy"
+                        Date="{Binding FechaVencimiento, Mode=TwoWay}" />
+
+                    <Label
+                        Text="{Binding FechaVencimientoError}"
+                        Style="{StaticResource ErrorLabel}"
+                        IsVisible="False">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding FechaVencimientoError}"
+                                Value="El vencimiento debe ser posterior a la emisión.">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="True" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+                    <!-- ESTADO -->
+
+                    <Label
+                        Text="Estado"
+                        Style="{StaticResource FormLabel}" />
+
+                    <Picker
+                        Title="Seleccione el estado"
+                        ItemsSource="{Binding EstadosDisponibles}"
+                        SelectedItem="{Binding Estado, Mode=TwoWay}" />
+
+                    <Label
+                        Text="{Binding EstadoError}"
+                        Style="{StaticResource ErrorLabel}"
+                        IsVisible="False">
+
+                        <Label.Triggers>
+                            <DataTrigger
+                                TargetType="Label"
+                                Binding="{Binding EstadoError}"
+                                Value="Selecciona el estado del documento.">
+                                <Setter
+                                    Property="IsVisible"
+                                    Value="True" />
+                            </DataTrigger>
+                        </Label.Triggers>
+
+                    </Label>
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- BOTONES -->
+
+            <Button
+                Text="GUARDAR"
+                Style="{StaticResource PrimaryButton}"
+                Command="{Binding GuardarCommand}" />
+
+            <Button
+                Text="CANCELAR"
+                Style="{StaticResource SecondaryButton}"
+                Command="{Binding CancelarCommand}" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,371 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\leidy\\source\\repos\\MigrantID\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\MigrantID\\AppShell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MigrantID\\MigrantID\\AppShell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\views\\verificacionformpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\views\\verificacionformpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\services\\migrantidservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\services\\migrantidservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\views\\verificacionespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\views\\verificacionespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\resources\\styles\\colors.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\resources\\styles\\colors.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\views\\usuariospage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\views\\usuariospage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\views\\usuariospage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\views\\usuariospage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\views\\usuarioformpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\views\\usuarioformpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\views\\solicitudformpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\views\\solicitudformpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\views\\solicitudespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\views\\solicitudespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\views\\solicitudespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\views\\solicitudespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\views\\principalpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\views\\principalpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\views\\loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\views\\loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\views\\documentoformpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\views\\documentoformpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\views\\documentospage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\views\\documentospage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\views\\documentoformpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\views\\documentoformpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\viewmodels\\verificacionformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\viewmodels\\verificacionformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\viewmodels\\usuarioformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\viewmodels\\usuarioformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\viewmodels\\solicitudformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\viewmodels\\solicitudformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|c:\\users\\leidy\\source\\repos\\migrantid\\migrantid\\viewmodels\\documentoformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7877D21C-BD19-BC7F-B6BD-A3143F79722E}|MigrantID\\MigrantID.csproj|solutionrelative:migrantid\\viewmodels\\documentoformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AppShell.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\MigrantID\\AppShell.xaml.cs",
+              "RelativeDocumentMoniker": "MigrantID\\MigrantID\\AppShell.xaml.cs",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\MigrantID\\AppShell.xaml.cs",
+              "RelativeToolTip": "MigrantID\\MigrantID\\AppShell.xaml.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-04T18:15:18.314Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MigrantIDService.cs",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Services\\MigrantIDService.cs",
+              "RelativeDocumentMoniker": "MigrantID\\Services\\MigrantIDService.cs",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Services\\MigrantIDService.cs",
+              "RelativeToolTip": "MigrantID\\Services\\MigrantIDService.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAcwC4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-04T15:52:20.655Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "VerificacionFormPage.xaml",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\VerificacionFormPage.xaml",
+              "RelativeDocumentMoniker": "MigrantID\\Views\\VerificacionFormPage.xaml",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\VerificacionFormPage.xaml",
+              "RelativeToolTip": "MigrantID\\Views\\VerificacionFormPage.xaml",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAAAJIAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-04T15:16:01.339Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\App.xaml",
+              "RelativeDocumentMoniker": "MigrantID\\App.xaml",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\App.xaml",
+              "RelativeToolTip": "MigrantID\\App.xaml",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-04T15:17:09.254Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "VerificacionesPage.xaml",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\VerificacionesPage.xaml",
+              "RelativeDocumentMoniker": "MigrantID\\Views\\VerificacionesPage.xaml",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\VerificacionesPage.xaml",
+              "RelativeToolTip": "MigrantID\\Views\\VerificacionesPage.xaml",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAAAIIAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-04T15:13:51.459Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Colors.xaml",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Resources\\Styles\\Colors.xaml",
+              "RelativeDocumentMoniker": "MigrantID\\Resources\\Styles\\Colors.xaml",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Resources\\Styles\\Colors.xaml",
+              "RelativeToolTip": "MigrantID\\Resources\\Styles\\Colors.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-04T15:47:46.033Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UsuariosPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\UsuariosPage.xaml.cs",
+              "RelativeDocumentMoniker": "MigrantID\\Views\\UsuariosPage.xaml.cs",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\UsuariosPage.xaml.cs",
+              "RelativeToolTip": "MigrantID\\Views\\UsuariosPage.xaml.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAwwC0AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-04T15:13:10.844Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UsuariosPage.xaml",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\UsuariosPage.xaml",
+              "RelativeDocumentMoniker": "MigrantID\\Views\\UsuariosPage.xaml",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\UsuariosPage.xaml",
+              "RelativeToolTip": "MigrantID\\Views\\UsuariosPage.xaml",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAAAJQAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-04T15:10:56.517Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UsuarioFormPage.xaml",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\UsuarioFormPage.xaml",
+              "RelativeDocumentMoniker": "MigrantID\\Views\\UsuarioFormPage.xaml",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\UsuarioFormPage.xaml",
+              "RelativeToolTip": "MigrantID\\Views\\UsuarioFormPage.xaml",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAAAHsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-04T15:09:57.961Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SolicitudFormPage.xaml",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\SolicitudFormPage.xaml",
+              "RelativeDocumentMoniker": "MigrantID\\Views\\SolicitudFormPage.xaml",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\SolicitudFormPage.xaml",
+              "RelativeToolTip": "MigrantID\\Views\\SolicitudFormPage.xaml",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAAAHgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-04T15:09:12.954Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "SolicitudesPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\SolicitudesPage.xaml.cs",
+              "RelativeDocumentMoniker": "MigrantID\\Views\\SolicitudesPage.xaml.cs",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\SolicitudesPage.xaml.cs",
+              "RelativeToolTip": "MigrantID\\Views\\SolicitudesPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-04T15:08:44.2Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "SolicitudesPage.xaml",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\SolicitudesPage.xaml",
+              "RelativeDocumentMoniker": "MigrantID\\Views\\SolicitudesPage.xaml",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\SolicitudesPage.xaml",
+              "RelativeToolTip": "MigrantID\\Views\\SolicitudesPage.xaml",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAAAHwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-04T15:05:20.086Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "PrincipalPage.xaml",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\PrincipalPage.xaml",
+              "RelativeDocumentMoniker": "MigrantID\\Views\\PrincipalPage.xaml",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\PrincipalPage.xaml",
+              "RelativeToolTip": "MigrantID\\Views\\PrincipalPage.xaml",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-04T15:05:14.441Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "LoginPage.xaml",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\LoginPage.xaml",
+              "RelativeDocumentMoniker": "MigrantID\\Views\\LoginPage.xaml",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\LoginPage.xaml",
+              "RelativeToolTip": "MigrantID\\Views\\LoginPage.xaml",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-04T15:05:09.955Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "DocumentoFormPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\DocumentoFormPage.xaml.cs",
+              "RelativeDocumentMoniker": "MigrantID\\Views\\DocumentoFormPage.xaml.cs",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\DocumentoFormPage.xaml.cs",
+              "RelativeToolTip": "MigrantID\\Views\\DocumentoFormPage.xaml.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-04T15:05:04.592Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "DocumentosPage.xaml",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\DocumentosPage.xaml",
+              "RelativeDocumentMoniker": "MigrantID\\Views\\DocumentosPage.xaml",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\DocumentosPage.xaml",
+              "RelativeToolTip": "MigrantID\\Views\\DocumentosPage.xaml",
+              "ViewState": "AgIAAJsAAAAAAAAAAAAAAK0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-04T15:01:31.969Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "DocumentoFormPage.xaml",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\DocumentoFormPage.xaml",
+              "RelativeDocumentMoniker": "MigrantID\\Views\\DocumentoFormPage.xaml",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\Views\\DocumentoFormPage.xaml",
+              "RelativeToolTip": "MigrantID\\Views\\DocumentoFormPage.xaml",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAM0AAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-04T14:59:47.867Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "VerificacionFormViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\ViewModels\\VerificacionFormViewModel.cs",
+              "RelativeDocumentMoniker": "MigrantID\\ViewModels\\VerificacionFormViewModel.cs",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\ViewModels\\VerificacionFormViewModel.cs",
+              "RelativeToolTip": "MigrantID\\ViewModels\\VerificacionFormViewModel.cs",
+              "ViewState": "AgIAAKcAAAAAAAAAAAAgwLMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-04T14:58:33.655Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "UsuarioFormViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\ViewModels\\UsuarioFormViewModel.cs",
+              "RelativeDocumentMoniker": "MigrantID\\ViewModels\\UsuarioFormViewModel.cs",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\ViewModels\\UsuarioFormViewModel.cs",
+              "RelativeToolTip": "MigrantID\\ViewModels\\UsuarioFormViewModel.cs",
+              "ViewState": "AgIAAKgAAAAAAAAAAAAuwKUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-04T14:54:56.45Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "SolicitudFormViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\ViewModels\\SolicitudFormViewModel.cs",
+              "RelativeDocumentMoniker": "MigrantID\\ViewModels\\SolicitudFormViewModel.cs",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\ViewModels\\SolicitudFormViewModel.cs",
+              "RelativeToolTip": "MigrantID\\ViewModels\\SolicitudFormViewModel.cs",
+              "ViewState": "AgIAAKAAAAAAAAAAAAAzwJ4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-04T14:48:59.989Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "DocumentoFormViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\ViewModels\\DocumentoFormViewModel.cs",
+              "RelativeDocumentMoniker": "MigrantID\\ViewModels\\DocumentoFormViewModel.cs",
+              "ToolTip": "C:\\Users\\leidy\\source\\repos\\MigrantID\\MigrantID\\ViewModels\\DocumentoFormViewModel.cs",
+              "RelativeToolTip": "MigrantID\\ViewModels\\DocumentoFormViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-04T14:39:15.449Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

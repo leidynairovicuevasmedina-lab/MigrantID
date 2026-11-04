@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MigrantID.Views.PrincipalPage"
+    Title="Inicio"
+    BackgroundColor="#F4F7FA">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="25"
+            Spacing="20">
+
+           
+            <Label
+                Text="MigrantID RD"
+                FontSize="28"
+                FontAttributes="Bold"
+                TextColor="#123B5D" />
+
+            <Label
+                Text="Bienvenido al sistema de gestión migratoria"
+                FontSize="14"
+                TextColor="#667788" />
+
+            
+            <Border
+                BackgroundColor="#176B87"
+                StrokeThickness="0"
+                Padding="20">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="15" />
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="10">
+
+                    <Label
+                        Text="Gestión migratoria"
+                        FontSize="21"
+                        FontAttributes="Bold"
+                        TextColor="White" />
+
+                    <Label
+                        Text="Consulta y administra la información registrada en MigrantID RD."
+                        FontSize="14"
+                        TextColor="White" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            
+            <Label
+                Text="Menú principal"
+                FontSize="19"
+                FontAttributes="Bold"
+                TextColor="#123B5D" />
+
+            <Grid
+                ColumnDefinitions="*,*"
+                RowDefinitions="Auto,Auto"
+                ColumnSpacing="12"
+                RowSpacing="12">
+
+               
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="DOCUMENTOS"
+                    BackgroundColor="White"
+                    TextColor="#176B87"
+                    BorderColor="#176B87"
+                    BorderWidth="1"
+                    CornerRadius="12"
+                    HeightRequest="85"
+                    FontSize="13"
+                    FontAttributes="Bold"
+                    Clicked="OnDocumentosClicked" />
+
+                
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="USUARIOS"
+                    BackgroundColor="White"
+                    TextColor="#176B87"
+                    BorderColor="#176B87"
+                    BorderWidth="1"
+                    CornerRadius="12"
+                    HeightRequest="85"
+                    FontSize="13"
+                    FontAttributes="Bold"
+                    Clicked="OnUsuariosClicked" />
+
+                
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="VERIFICACIONES"
+                    BackgroundColor="White"
+                    TextColor="#176B87"
+                    BorderColor="#176B87"
+                    BorderWidth="1"
+                    CornerRadius="12"
+                    HeightRequest="85"
+                    FontSize="12"
+                    FontAttributes="Bold"
+                    Clicked="OnVerificacionesClicked" />
+
+                
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="SOLICITUDES"
+                    BackgroundColor="White"
+                    TextColor="#176B87"
+                    BorderColor="#176B87"
+                    BorderWidth="1"
+                    CornerRadius="12"
+                    HeightRequest="85"
+                    FontSize="13"
+                    FontAttributes="Bold"
+                    Clicked="OnSolicitudesClicked" />
+
+            </Grid>
+
+            
+            <Label
+                Text="Verifica, orienta y protege tu información."
+                FontSize="12"
+                TextColor="#89949E"
+                HorizontalOptions="Center"
+                Margin="0,20,0,0" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>
