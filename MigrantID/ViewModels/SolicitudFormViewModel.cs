@@ -12,8 +12,7 @@ public partial class SolicitudFormViewModel : ObservableObject
     private readonly MigrantIDService _servicio =
         MigrantIDService.Instancia;
 
-    // USUARIOS DISPONIBLES
-
+    
     public ObservableCollection<Usuario> UsuariosDisponibles
     { get; } = new();
 

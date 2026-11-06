@@ -5,35 +5,36 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MigrantID.Views.VerificacionFormPage"
     Title="Registrar verificación"
-    BackgroundColor="#F4F7FA">
+    BackgroundColor="#F7F4FC">
 
     <ScrollView>
 
         <VerticalStackLayout
             Padding="20,20,20,28"
-            Spacing="12">
+            Spacing="14">
 
-            <!-- ENCABEZADO -->
-
+            
             <Label
                 Text="Registrar verificación"
-                Style="{StaticResource HeaderLabel}" />
+                Style="{StaticResource HeaderLabel}"
+                TextColor="#512478" />
 
             <Label
                 Text="Completa los datos de la verificación."
                 Style="{StaticResource SubheaderLabel}" />
 
-            <!-- TARJETA DEL FORMULARIO -->
+         
+            <Border                Style="{StaticResource Card}"
+                Stroke="#DDD3EF">
 
-            <Border Style="{StaticResource Card}">
+                <VerticalStackLayout Spacing="10">
 
-                <VerticalStackLayout Spacing="8">
-
-                    <!-- DOCUMENTO -->
+                    
 
                     <Label
                         Text="Documento a verificar"
-                        Style="{StaticResource FormLabel}" />
+                        Style="{StaticResource FormLabel}"
+                        TextColor="#512478" />
 
                     <Picker
                         Title="Seleccione un documento"
@@ -44,6 +45,8 @@
                     <Label
                         Text="{Binding DocumentoError}"
                         Style="{StaticResource ErrorLabel}"
+                        TextColor="#D40000"
+                        FontAttributes="Bold"
                         IsVisible="True">
 
                         <Label.Triggers>
@@ -51,19 +54,21 @@
                                 TargetType="Label"
                                 Binding="{Binding DocumentoError}"
                                 Value="">
+
                                 <Setter
                                     Property="IsVisible"
                                     Value="False" />
+
                             </DataTrigger>
                         </Label.Triggers>
 
                     </Label>
 
-                    <!-- FECHA -->
-
+                    
                     <Label
                         Text="Fecha de verificación"
-                        Style="{StaticResource FormLabel}" />
+                        Style="{StaticResource FormLabel}"
+                        TextColor="#512478" />
 
                     <DatePicker
                         Format="dd/MM/yyyy"
@@ -72,6 +77,8 @@
                     <Label
                         Text="{Binding FechaVerificacionError}"
                         Style="{StaticResource ErrorLabel}"
+                        TextColor="#D40000"
+                        FontAttributes="Bold"
                         IsVisible="True">
 
                         <Label.Triggers>
@@ -79,19 +86,22 @@
                                 TargetType="Label"
                                 Binding="{Binding FechaVerificacionError}"
                                 Value="">
+
                                 <Setter
                                     Property="IsVisible"
                                     Value="False" />
+
                             </DataTrigger>
                         </Label.Triggers>
 
                     </Label>
 
-                    <!-- RESULTADO -->
+                   
 
                     <Label
                         Text="Resultado"
-                        Style="{StaticResource FormLabel}" />
+                        Style="{StaticResource FormLabel}"
+                        TextColor="#512478" />
 
                     <Picker
                         Title="Seleccione un resultado"
@@ -101,6 +111,8 @@
                     <Label
                         Text="{Binding ResultadoError}"
                         Style="{StaticResource ErrorLabel}"
+                        TextColor="#D40000"
+                        FontAttributes="Bold"
                         IsVisible="True">
 
                         <Label.Triggers>
@@ -108,19 +120,21 @@
                                 TargetType="Label"
                                 Binding="{Binding ResultadoError}"
                                 Value="">
+
                                 <Setter
                                     Property="IsVisible"
                                     Value="False" />
+
                             </DataTrigger>
                         </Label.Triggers>
 
                     </Label>
 
-                    <!-- OBSERVACIÓN -->
-
+                    
                     <Label
                         Text="Observación"
-                        Style="{StaticResource FormLabel}" />
+                        Style="{StaticResource FormLabel}"
+                        TextColor="#512478" />
 
                     <Editor
                         Placeholder="Escriba una observación"
@@ -131,6 +145,8 @@
                     <Label
                         Text="{Binding ObservacionError}"
                         Style="{StaticResource ErrorLabel}"
+                        TextColor="#D40000"
+                        FontAttributes="Bold"
                         IsVisible="True">
 
                         <Label.Triggers>
@@ -138,9 +154,11 @@
                                 TargetType="Label"
                                 Binding="{Binding ObservacionError}"
                                 Value="">
+
                                 <Setter
                                     Property="IsVisible"
                                     Value="False" />
+
                             </DataTrigger>
                         </Label.Triggers>
 
@@ -150,16 +168,21 @@
 
             </Border>
 
-            <!-- BOTONES -->
-
+         
             <Button
                 Text="GUARDAR VERIFICACIÓN"
                 Style="{StaticResource PrimaryButton}"
+                BackgroundColor="#673AB7"
+                TextColor="White"
                 Command="{Binding GuardarCommand}" />
 
+       
             <Button
                 Text="CANCELAR"
                 Style="{StaticResource SecondaryButton}"
+                BackgroundColor="#F0E9FC"
+                TextColor="#512478"
+                BorderColor="#8651D8"
                 Command="{Binding CancelarCommand}" />
 
         </VerticalStackLayout>

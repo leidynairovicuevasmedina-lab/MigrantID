@@ -5,35 +5,39 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MigrantID.Views.SolicitudFormPage"
     Title="Registrar solicitud"
-    BackgroundColor="#F4F7FA">
+    BackgroundColor="#F7F4FC">
 
     <ScrollView>
 
         <VerticalStackLayout
             Padding="20,20,20,28"
-            Spacing="12">
+            Spacing="14">
 
             <!-- ENCABEZADO -->
 
             <Label
                 Text="Registrar solicitud de orientación"
-                Style="{StaticResource HeaderLabel}" />
+                Style="{StaticResource HeaderLabel}"
+                TextColor="#512478" />
 
             <Label
                 Text="Completa los datos de la solicitud."
                 Style="{StaticResource SubheaderLabel}" />
 
-            <!-- TARJETA DEL FORMULARIO -->
+            <!-- FORMULARIO -->
 
-            <Border Style="{StaticResource Card}">
+            <Border
+                Style="{StaticResource Card}"
+                Stroke="#DDD3EF">
 
-                <VerticalStackLayout Spacing="8">
+                <VerticalStackLayout Spacing="10">
 
                     <!-- USUARIO -->
 
                     <Label
                         Text="Usuario"
-                        Style="{StaticResource FormLabel}" />
+                        Style="{StaticResource FormLabel}"
+                        TextColor="#512478" />
 
                     <Picker
                         Title="Seleccione un usuario"
@@ -44,6 +48,8 @@
                     <Label
                         Text="{Binding UsuarioError}"
                         Style="{StaticResource ErrorLabel}"
+                        TextColor="#D40000"
+                        FontAttributes="Bold"
                         IsVisible="True">
 
                         <Label.Triggers>
@@ -59,11 +65,12 @@
 
                     </Label>
 
-                    <!-- TEMA -->
+                    <!-- TEMA DE LA SOLICITUD -->
 
                     <Label
                         Text="Tema de la solicitud"
-                        Style="{StaticResource FormLabel}" />
+                        Style="{StaticResource FormLabel}"
+                        TextColor="#512478" />
 
                     <Picker
                         Title="Seleccione un tema"
@@ -73,6 +80,8 @@
                     <Label
                         Text="{Binding TemaError}"
                         Style="{StaticResource ErrorLabel}"
+                        TextColor="#D40000"
+                        FontAttributes="Bold"
                         IsVisible="True">
 
                         <Label.Triggers>
@@ -88,11 +97,12 @@
 
                     </Label>
 
-                    <!-- DESCRIPCIÓN -->
+                    <!-- DESCRIPCION -->
 
                     <Label
                         Text="Descripción"
-                        Style="{StaticResource FormLabel}" />
+                        Style="{StaticResource FormLabel}"
+                        TextColor="#512478" />
 
                     <Editor
                         Placeholder="Escriba el motivo de la solicitud"
@@ -103,6 +113,8 @@
                     <Label
                         Text="{Binding DescripcionError}"
                         Style="{StaticResource ErrorLabel}"
+                        TextColor="#D40000"
+                        FontAttributes="Bold"
                         IsVisible="True">
 
                         <Label.Triggers>
@@ -122,16 +134,23 @@
 
             </Border>
 
-            <!-- BOTONES -->
+            <!-- BOTON GUARDAR -->
 
             <Button
                 Text="GUARDAR SOLICITUD"
                 Style="{StaticResource PrimaryButton}"
+                BackgroundColor="#673AB7"
+                TextColor="White"
                 Command="{Binding GuardarCommand}" />
+
+            <!-- BOTON CANCELAR -->
 
             <Button
                 Text="CANCELAR"
                 Style="{StaticResource SecondaryButton}"
+                BackgroundColor="#F0E9FC"
+                TextColor="#512478"
+                BorderColor="#8651D8"
                 Command="{Binding CancelarCommand}" />
 
         </VerticalStackLayout>

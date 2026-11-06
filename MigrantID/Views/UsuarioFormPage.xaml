@@ -7,36 +7,39 @@
     x:Class="MigrantID.Views.UsuarioFormPage"
     x:DataType="vm:UsuarioFormViewModel"
     Title="Registrar usuario"
-    BackgroundColor="#F4F7FA">
+    BackgroundColor="#F7F4FC">
 
     <ScrollView>
 
         <VerticalStackLayout
             Padding="20,20,20,28"
-            Spacing="12">
+            Spacing="14">
 
             <!-- ENCABEZADO -->
 
             <Label
                 Text="Registrar usuario"
-                Style="{StaticResource HeaderLabel}" />
+                Style="{StaticResource HeaderLabel}"
+                TextColor="#512478" />
 
             <Label
-                Text="Completa los datos del usuario."
+                Text="Completa la información del usuario."
                 Style="{StaticResource SubheaderLabel}" />
 
-            <!-- TARJETA DEL FORMULARIO -->
+            <!-- FORMULARIO -->
 
             <Border
-                Style="{StaticResource Card}">
+                Style="{StaticResource Card}"
+                Stroke="#DDD3EF">
 
-                <VerticalStackLayout Spacing="8">
+                <VerticalStackLayout Spacing="10">
 
-                    <!-- NOMBRE -->
+                    <!-- NOMBRE COMPLETO -->
 
                     <Label
                         Text="Nombre completo"
-                        Style="{StaticResource FormLabel}" />
+                        Style="{StaticResource FormLabel}"
+                        TextColor="#512478" />
 
                     <Entry
                         Placeholder="Ingrese el nombre completo"
@@ -45,7 +48,10 @@
 
                     <Label
                         Text="{Binding NombreError}"
-                        Style="{StaticResource ErrorLabel}">
+                        Style="{StaticResource ErrorLabel}"
+                        TextColor="#D40000"
+                        FontAttributes="Bold"
+                        IsVisible="True">
 
                         <Label.Triggers>
                             <DataTrigger
@@ -60,11 +66,12 @@
 
                     </Label>
 
-                    <!-- CORREO ELECTRÓNICO -->
+                    <!-- CORREO ELECTRONICO -->
 
                     <Label
                         Text="Correo electrónico"
-                        Style="{StaticResource FormLabel}" />
+                        Style="{StaticResource FormLabel}"
+                        TextColor="#512478" />
 
                     <Entry
                         Placeholder="ejemplo@correo.com"
@@ -73,7 +80,10 @@
 
                     <Label
                         Text="{Binding CorreoError}"
-                        Style="{StaticResource ErrorLabel}">
+                        Style="{StaticResource ErrorLabel}"
+                        TextColor="#D40000"
+                        FontAttributes="Bold"
+                        IsVisible="True">
 
                         <Label.Triggers>
                             <DataTrigger
@@ -92,7 +102,8 @@
 
                     <Label
                         Text="Rol"
-                        Style="{StaticResource FormLabel}" />
+                        Style="{StaticResource FormLabel}"
+                        TextColor="#512478" />
 
                     <Picker
                         Title="Seleccione un rol"
@@ -101,7 +112,10 @@
 
                     <Label
                         Text="{Binding RolError}"
-                        Style="{StaticResource ErrorLabel}">
+                        Style="{StaticResource ErrorLabel}"
+                        TextColor="#D40000"
+                        FontAttributes="Bold"
+                        IsVisible="True">
 
                         <Label.Triggers>
                             <DataTrigger
@@ -120,18 +134,23 @@
 
             </Border>
 
-            <!-- GUARDAR -->
+            <!-- BOTON GUARDAR -->
 
             <Button
                 Text="GUARDAR USUARIO"
                 Style="{StaticResource PrimaryButton}"
+                BackgroundColor="#673AB7"
+                TextColor="White"
                 Command="{Binding GuardarCommand}" />
 
-            <!-- CANCELAR -->
+            <!-- BOTON CANCELAR -->
 
             <Button
                 Text="CANCELAR"
                 Style="{StaticResource SecondaryButton}"
+                BackgroundColor="#F0E9FC"
+                TextColor="#512478"
+                BorderColor="#8651D8"
                 Command="{Binding CancelarCommand}" />
 
         </VerticalStackLayout>

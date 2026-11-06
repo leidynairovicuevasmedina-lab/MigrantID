@@ -5,59 +5,167 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MigrantID.Views.PrincipalPage"
     Title="Inicio"
-    BackgroundColor="#F4F7FA">
+    BackgroundColor="#F7F6FA">
 
     <ScrollView>
 
         <VerticalStackLayout
-            Padding="25"
-            Spacing="20">
+            Padding="20,22,20,32"
+            Spacing="19">
 
-           
-            <Label
-                Text="MigrantID RD"
-                FontSize="28"
-                FontAttributes="Bold"
-                TextColor="#123B5D" />
+            <!-- ENCABEZADO DE LA APP -->
 
-            <Label
-                Text="Bienvenido al sistema de gestión migratoria"
-                FontSize="14"
-                TextColor="#667788" />
+            <Grid
+                ColumnDefinitions="Auto,*,Auto"
+                ColumnSpacing="12">
 
-            
-            <Border
-                BackgroundColor="#176B87"
-                StrokeThickness="0"
-                Padding="20">
+                <Border
+                    BackgroundColor="#432663"
+                    StrokeThickness="0"
+                    WidthRequest="52"
+                    HeightRequest="52">
 
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="15" />
-                </Border.StrokeShape>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="15"/>
+                    </Border.StrokeShape>
 
-                <VerticalStackLayout Spacing="10">
+                    <Grid>
+
+                        <Ellipse
+                            Stroke="White"
+                            Fill="Transparent"
+                            StrokeThickness="2"
+                            WidthRequest="27"
+                            HeightRequest="27"/>
+
+                        <Ellipse
+                            Stroke="White"
+                            Fill="Transparent"
+                            StrokeThickness="1.5"
+                            WidthRequest="13"
+                            HeightRequest="27"/>
+
+                        <Line
+                            X1="0"
+                            Y1="13"
+                            X2="27"
+                            Y2="13"
+                            Stroke="White"
+                            StrokeThickness="1.5"
+                            WidthRequest="27"
+                            HeightRequest="27"/>
+
+                    </Grid>
+
+                </Border>
+
+                <VerticalStackLayout
+                    Grid.Column="1"
+                    VerticalOptions="Center"
+                    Spacing="3">
 
                     <Label
-                        Text="Gestión migratoria"
+                        Text="MigrantID RD"
                         FontSize="21"
                         FontAttributes="Bold"
-                        TextColor="White" />
+                        TextColor="#352B54"/>
 
                     <Label
-                        Text="Consulta y administra la información registrada en MigrantID RD."
+                        Text="Centro de gestión migratoria"
+                        FontSize="12"
+                        TextColor="#817A8D"/>
+
+                </VerticalStackLayout>
+
+                <Border
+                    Grid.Column="2"
+                    BackgroundColor="#E4F4F0"
+                    StrokeThickness="0"
+                    Padding="9"
+                    VerticalOptions="Center">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+
+                    <Path
+                        Data="M12,2 L20,6 L20,12 C20,17 16,20 12,22 C8,20 4,17 4,12 L4,6 Z M8,12 L11,15 L16,9"
+                        Stroke="#14857D"
+                        StrokeThickness="2"
+                        StrokeLineCap="Round"
+                        StrokeLineJoin="Round"
+                        Fill="Transparent"
+                        WidthRequest="24"
+                        HeightRequest="24"
+                        Aspect="Uniform"/>
+
+                </Border>
+
+            </Grid>
+
+            <!-- PANEL DE BIENVENIDA -->
+
+            <Border
+                BackgroundColor="#432663"
+                StrokeThickness="0"
+                Padding="23">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="22"/>
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label
+                        Text="PANEL DE CONTROL"
+                        FontSize="11"
+                        FontAttributes="Bold"
+                        CharacterSpacing="2"
+                        TextColor="#D9BCF5"/>
+
+                    <Label
+                        Text="Bienvenido a MigrantID"
+                        FontSize="25"
+                        FontAttributes="Bold"
+                        TextColor="White"/>
+
+                    <Label
+                        Text="Información organizada y accesible desde un solo lugar."
                         FontSize="14"
-                        TextColor="White" />
+                        TextColor="#E9E0F1"
+                        LineBreakMode="WordWrap"/>
+
+                    <BoxView
+                        HeightRequest="4"
+                        WidthRequest="55"
+                        Color="#D6A347"
+                        HorizontalOptions="Start"
+                        Margin="0,5,0,0"/>
 
                 </VerticalStackLayout>
 
             </Border>
 
-            
-            <Label
-                Text="Menú principal"
-                FontSize="19"
-                FontAttributes="Bold"
-                TextColor="#123B5D" />
+            <!-- TITULO DEL MINI DASHBOARD -->
+
+            <Grid ColumnDefinitions="*,Auto">
+
+                <Label
+                    Text="Resumen general"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    TextColor="#352B54"/>
+
+                <Label
+                    Grid.Column="1"
+                    Text="Registros en memoria"
+                    FontSize="11"
+                    TextColor="#817A8D"
+                    VerticalOptions="Center"/>
+
+            </Grid>
+
+            <!-- MINI DASHBOARD -->
 
             <Grid
                 ColumnDefinitions="*,*"
@@ -65,75 +173,394 @@
                 ColumnSpacing="12"
                 RowSpacing="12">
 
-               
-                <Button
+                <!-- CONTADOR DE DOCUMENTOS -->
+
+                <Border
                     Grid.Row="0"
                     Grid.Column="0"
-                    Text="DOCUMENTOS"
                     BackgroundColor="White"
-                    TextColor="#176B87"
-                    BorderColor="#176B87"
-                    BorderWidth="1"
-                    CornerRadius="12"
-                    HeightRequest="85"
-                    FontSize="13"
-                    FontAttributes="Bold"
-                    Clicked="OnDocumentosClicked" />
+                    Stroke="#EBE7F0"
+                    StrokeThickness="1"
+                    Padding="15">
 
-                
-                <Button
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="17"/>
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout Spacing="9">
+
+                        <Path
+                            Data="M6,2 L15,2 L20,7 L20,22 L6,22 Z M15,2 L15,7 L20,7 M9,12 L17,12 M9,16 L17,16"
+                            Stroke="#6742A3"
+                            StrokeThickness="2"
+                            StrokeLineCap="Round"
+                            StrokeLineJoin="Round"
+                            Fill="Transparent"
+                            WidthRequest="27"
+                            HeightRequest="27"
+                            HorizontalOptions="Start"
+                            Aspect="Uniform"/>
+
+                        <Label
+                            x:Name="ContadorDocumentos"
+                            Text="0"
+                            FontSize="28"
+                            FontAttributes="Bold"
+                            TextColor="#352B54"/>
+
+                        <Label
+                            Text="Documentos"
+                            FontSize="12"
+                            TextColor="#736F7D"/>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- CONTADOR DE USUARIOS -->
+
+                <Border
                     Grid.Row="0"
                     Grid.Column="1"
-                    Text="USUARIOS"
                     BackgroundColor="White"
-                    TextColor="#176B87"
-                    BorderColor="#176B87"
-                    BorderWidth="1"
-                    CornerRadius="12"
-                    HeightRequest="85"
-                    FontSize="13"
-                    FontAttributes="Bold"
-                    Clicked="OnUsuariosClicked" />
+                    Stroke="#EBE7F0"
+                    StrokeThickness="1"
+                    Padding="15">
 
-                
-                <Button
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="17"/>
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout Spacing="9">
+
+                        <Path
+                            Data="M12,12 A4,4 0 1 0 12,4 A4,4 0 1 0 12,12 M4,21 C4,16 8,14 12,14 C16,14 20,16 20,21"
+                            Stroke="#14857D"
+                            StrokeThickness="2"
+                            StrokeLineCap="Round"
+                            StrokeLineJoin="Round"
+                            Fill="Transparent"
+                            WidthRequest="27"
+                            HeightRequest="27"
+                            HorizontalOptions="Start"
+                            Aspect="Uniform"/>
+
+                        <Label
+                            x:Name="ContadorUsuarios"
+                            Text="0"
+                            FontSize="28"
+                            FontAttributes="Bold"
+                            TextColor="#352B54"/>
+
+                        <Label
+                            Text="Usuarios"
+                            FontSize="12"
+                            TextColor="#736F7D"/>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- CONTADOR DE VERIFICACIONES -->
+
+                <Border
                     Grid.Row="1"
                     Grid.Column="0"
-                    Text="VERIFICACIONES"
                     BackgroundColor="White"
-                    TextColor="#176B87"
-                    BorderColor="#176B87"
-                    BorderWidth="1"
-                    CornerRadius="12"
-                    HeightRequest="85"
-                    FontSize="12"
-                    FontAttributes="Bold"
-                    Clicked="OnVerificacionesClicked" />
+                    Stroke="#EBE7F0"
+                    StrokeThickness="1"
+                    Padding="15">
 
-                
-                <Button
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="17"/>
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout Spacing="9">
+
+                        <Path
+                            Data="M12,2 L20,6 L20,12 C20,17 16,20 12,22 C8,20 4,17 4,12 L4,6 Z M8,12 L11,15 L16,9"
+                            Stroke="#2F5F8E"
+                            StrokeThickness="2"
+                            StrokeLineCap="Round"
+                            StrokeLineJoin="Round"
+                            Fill="Transparent"
+                            WidthRequest="27"
+                            HeightRequest="27"
+                            HorizontalOptions="Start"
+                            Aspect="Uniform"/>
+
+                        <Label
+                            x:Name="ContadorVerificaciones"
+                            Text="0"
+                            FontSize="28"
+                            FontAttributes="Bold"
+                            TextColor="#352B54"/>
+
+                        <Label
+                            Text="Verificaciones"
+                            FontSize="12"
+                            TextColor="#736F7D"/>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- CONTADOR DE SOLICITUDES -->
+
+                <Border
                     Grid.Row="1"
                     Grid.Column="1"
-                    Text="SOLICITUDES"
                     BackgroundColor="White"
-                    TextColor="#176B87"
-                    BorderColor="#176B87"
-                    BorderWidth="1"
-                    CornerRadius="12"
-                    HeightRequest="85"
-                    FontSize="13"
-                    FontAttributes="Bold"
-                    Clicked="OnSolicitudesClicked" />
+                    Stroke="#EBE7F0"
+                    StrokeThickness="1"
+                    Padding="15">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="17"/>
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout Spacing="9">
+
+                        <Path
+                            Data="M4,4 L20,4 L20,18 L9,18 L4,22 Z M8,9 L16,9 M8,13 L14,13"
+                            Stroke="#A7792F"
+                            StrokeThickness="2"
+                            StrokeLineCap="Round"
+                            StrokeLineJoin="Round"
+                            Fill="Transparent"
+                            WidthRequest="27"
+                            HeightRequest="27"
+                            HorizontalOptions="Start"
+                            Aspect="Uniform"/>
+
+                        <Label
+                            x:Name="ContadorSolicitudes"
+                            Text="0"
+                            FontSize="28"
+                            FontAttributes="Bold"
+                            TextColor="#352B54"/>
+
+                        <Label
+                            Text="Solicitudes"
+                            FontSize="12"
+                            TextColor="#736F7D"/>
+
+                    </VerticalStackLayout>
+
+                </Border>
 
             </Grid>
 
-            
+            <!-- TITULO DE LOS ACCESOS -->
+
             <Label
-                Text="Verifica, orienta y protege tu información."
-                FontSize="12"
-                TextColor="#89949E"
-                HorizontalOptions="Center"
-                Margin="0,20,0,0" />
+                Text="Accesos rápidos"
+                FontSize="20"
+                FontAttributes="Bold"
+                TextColor="#352B54"/>
+
+            <!-- TARJETAS DE NAVEGACION -->
+
+            <Grid
+                ColumnDefinitions="*,*"
+                RowDefinitions="Auto,Auto"
+                ColumnSpacing="12"
+                RowSpacing="12">
+
+                <!-- ACCESO A DOCUMENTOS -->
+
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    BackgroundColor="White"
+                    Stroke="#E5DDF0"
+                    StrokeThickness="1"
+                    Padding="15">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="17"/>
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout Spacing="12">
+
+                        <Path
+                            Data="M6,2 L15,2 L20,7 L20,22 L6,22 Z M15,2 L15,7 L20,7 M9,12 L17,12"
+                            Stroke="#6742A3"
+                            StrokeThickness="2"
+                            Fill="Transparent"
+                            WidthRequest="28"
+                            HeightRequest="28"
+                            HorizontalOptions="Start"
+                            Aspect="Uniform"/>
+
+                        <Label
+                            Text="Documentos"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            TextColor="#352B54"/>
+
+                        <Button
+                            Text="ABRIR"
+                            BackgroundColor="#6742A3"
+                            TextColor="White"
+                            HeightRequest="43"
+                            CornerRadius="11"
+                            FontSize="12"
+                            FontAttributes="Bold"
+                            Clicked="OnDocumentosClicked"/>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- ACCESO A USUARIOS -->
+
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    BackgroundColor="White"
+                    Stroke="#E5DDF0"
+                    StrokeThickness="1"
+                    Padding="15">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="17"/>
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout Spacing="12">
+
+                        <Path
+                            Data="M12,12 A4,4 0 1 0 12,4 A4,4 0 1 0 12,12 M4,21 C4,16 8,14 12,14 C16,14 20,16 20,21"
+                            Stroke="#14857D"
+                            StrokeThickness="2"
+                            Fill="Transparent"
+                            WidthRequest="28"
+                            HeightRequest="28"
+                            HorizontalOptions="Start"
+                            Aspect="Uniform"/>
+
+                        <Label
+                            Text="Usuarios"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            TextColor="#352B54"/>
+
+                        <Button
+                            Text="ABRIR"
+                            BackgroundColor="#14857D"
+                            TextColor="White"
+                            HeightRequest="43"
+                            CornerRadius="11"
+                            FontSize="12"
+                            FontAttributes="Bold"
+                            Clicked="OnUsuariosClicked"/>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- ACCESO A VERIFICACIONES -->
+
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    BackgroundColor="White"
+                    Stroke="#E5DDF0"
+                    StrokeThickness="1"
+                    Padding="15">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="17"/>
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout Spacing="12">
+
+                        <Path
+                            Data="M12,2 L20,6 L20,12 C20,17 16,20 12,22 C8,20 4,17 4,12 L4,6 Z M8,12 L11,15 L16,9"
+                            Stroke="#2F5F8E"
+                            StrokeThickness="2"
+                            Fill="Transparent"
+                            WidthRequest="28"
+                            HeightRequest="28"
+                            HorizontalOptions="Start"
+                            Aspect="Uniform"/>
+
+                        <Label
+                            Text="Verificaciones"
+                            FontSize="15"
+                            FontAttributes="Bold"
+                            TextColor="#352B54"/>
+
+                        <Button
+                            Text="ABRIR"
+                            BackgroundColor="#2F5F8E"
+                            TextColor="White"
+                            HeightRequest="43"
+                            CornerRadius="11"
+                            FontSize="12"
+                            FontAttributes="Bold"
+                            Clicked="OnVerificacionesClicked"/>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- ACCESO A SOLICITUDES -->
+
+                <Border
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    BackgroundColor="White"
+                    Stroke="#E5DDF0"
+                    StrokeThickness="1"
+                    Padding="15">
+
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="17"/>
+                    </Border.StrokeShape>
+
+                    <VerticalStackLayout Spacing="12">
+
+                        <Path
+                            Data="M4,4 L20,4 L20,18 L9,18 L4,22 Z M8,9 L16,9 M8,13 L14,13"
+                            Stroke="#A7792F"
+                            StrokeThickness="2"
+                            Fill="Transparent"
+                            WidthRequest="28"
+                            HeightRequest="28"
+                            HorizontalOptions="Start"
+                            Aspect="Uniform"/>
+
+                        <Label
+                            Text="Solicitudes"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            TextColor="#352B54"/>
+
+                        <Button
+                            Text="ABRIR"
+                            BackgroundColor="#A7792F"
+                            TextColor="White"
+                            HeightRequest="43"
+                            CornerRadius="11"
+                            FontSize="12"
+                            FontAttributes="Bold"
+                            Clicked="OnSolicitudesClicked"/>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+            </Grid>
+
+            <!-- PIE DE PAGINA -->
+
+            <Label
+                Text="MigrantID RD | Gestión migratoria"
+                FontSize="11"
+                TextColor="#817A8D"
+                HorizontalTextAlignment="Center"
+                Margin="0,10,0,0"/>
 
         </VerticalStackLayout>
 

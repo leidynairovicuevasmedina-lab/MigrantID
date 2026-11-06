@@ -1,5 +1,6 @@
+
 <Solution>
-  <Project Path="MigrantID/MigrantID.csproj">
+  <Project Path="MigrantID.csproj">
     <Deploy Solution="Debug|*" />
   </Project>
 </Solution>

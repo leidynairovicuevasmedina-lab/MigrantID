@@ -5,35 +5,39 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MigrantID.Views.DocumentoFormPage"
     Title="Documento"
-    BackgroundColor="#F4F7FA">
+    BackgroundColor="#F7F4FC">
 
     <ScrollView>
 
         <VerticalStackLayout
             Padding="20,20,20,28"
-            Spacing="12">
+            Spacing="14">
 
             <!-- ENCABEZADO -->
 
             <Label
                 Text="{Binding Titulo}"
-                Style="{StaticResource HeaderLabel}" />
+                Style="{StaticResource HeaderLabel}"
+                TextColor="#512478" />
 
             <Label
                 Text="Completa la información del documento."
                 Style="{StaticResource SubheaderLabel}" />
 
-            <!-- TARJETA DEL FORMULARIO -->
+            <!-- FORMULARIO -->
 
-            <Border Style="{StaticResource Card}">
+            <Border
+                Style="{StaticResource Card}"
+                Stroke="#DDD3EF">
 
-                <VerticalStackLayout Spacing="8">
+                <VerticalStackLayout Spacing="10">
 
                     <!-- TIPO DE DOCUMENTO -->
 
                     <Label
                         Text="Tipo de documento"
-                        Style="{StaticResource FormLabel}" />
+                        Style="{StaticResource FormLabel}"
+                        TextColor="#512478" />
 
                     <Picker
                         Title="Seleccione el tipo de documento"
@@ -43,34 +47,28 @@
                     <Label
                         Text="{Binding TipoDocumentoError}"
                         Style="{StaticResource ErrorLabel}"
-                        IsVisible="False">
+                        TextColor="#D40000"
+                        FontAttributes="Bold"
+                        IsVisible="True">
 
                         <Label.Triggers>
                             <DataTrigger
                                 TargetType="Label"
                                 Binding="{Binding TipoDocumentoError}"
                                 Value="">
-                                <Setter
-                                    Property="IsVisible"
-                                    Value="False" />
-                            </DataTrigger>
-                            <DataTrigger
-                                TargetType="Label"
-                                Binding="{Binding TipoDocumentoError}"
-                                Value="Selecciona el tipo de documento.">
-                                <Setter
-                                    Property="IsVisible"
-                                    Value="True" />
+                                <Setter Property="IsVisible"
+                                        Value="False" />
                             </DataTrigger>
                         </Label.Triggers>
 
                     </Label>
 
-                    <!-- NÚMERO DE DOCUMENTO -->
+                    <!-- NUMERO DE DOCUMENTO -->
 
                     <Label
                         Text="Número de documento"
-                        Style="{StaticResource FormLabel}" />
+                        Style="{StaticResource FormLabel}"
+                        TextColor="#512478" />
 
                     <Entry
                         Placeholder="Ingrese el número del documento"
@@ -79,26 +77,28 @@
                     <Label
                         Text="{Binding NumeroDocumentoError}"
                         Style="{StaticResource ErrorLabel}"
-                        IsVisible="False">
+                        TextColor="#D40000"
+                        FontAttributes="Bold"
+                        IsVisible="True">
 
                         <Label.Triggers>
                             <DataTrigger
                                 TargetType="Label"
                                 Binding="{Binding NumeroDocumentoError}"
-                                Value="El número de documento es obligatorio.">
-                                <Setter
-                                    Property="IsVisible"
-                                    Value="True" />
+                                Value="">
+                                <Setter Property="IsVisible"
+                                        Value="False" />
                             </DataTrigger>
                         </Label.Triggers>
 
                     </Label>
 
-                    <!-- PAÍS DE EMISIÓN -->
+                    <!-- PAIS DE EMISION -->
 
                     <Label
                         Text="País de emisión"
-                        Style="{StaticResource FormLabel}" />
+                        Style="{StaticResource FormLabel}"
+                        TextColor="#512478" />
 
                     <Picker
                         Title="Seleccione el país"
@@ -108,26 +108,28 @@
                     <Label
                         Text="{Binding PaisEmisionError}"
                         Style="{StaticResource ErrorLabel}"
-                        IsVisible="False">
+                        TextColor="#D40000"
+                        FontAttributes="Bold"
+                        IsVisible="True">
 
                         <Label.Triggers>
                             <DataTrigger
                                 TargetType="Label"
                                 Binding="{Binding PaisEmisionError}"
-                                Value="Selecciona el país de emisión.">
-                                <Setter
-                                    Property="IsVisible"
-                                    Value="True" />
+                                Value="">
+                                <Setter Property="IsVisible"
+                                        Value="False" />
                             </DataTrigger>
                         </Label.Triggers>
 
                     </Label>
 
-                    <!-- FECHA DE EMISIÓN -->
+                    <!-- FECHA DE EMISION -->
 
                     <Label
                         Text="Fecha de emisión"
-                        Style="{StaticResource FormLabel}" />
+                        Style="{StaticResource FormLabel}"
+                        TextColor="#512478" />
 
                     <DatePicker
                         Format="dd/MM/yyyy"
@@ -136,16 +138,17 @@
                     <Label
                         Text="{Binding FechaEmisionError}"
                         Style="{StaticResource ErrorLabel}"
-                        IsVisible="False">
+                        TextColor="#D40000"
+                        FontAttributes="Bold"
+                        IsVisible="True">
 
                         <Label.Triggers>
                             <DataTrigger
                                 TargetType="Label"
                                 Binding="{Binding FechaEmisionError}"
-                                Value="La fecha de emisión no puede ser futura.">
-                                <Setter
-                                    Property="IsVisible"
-                                    Value="True" />
+                                Value="">
+                                <Setter Property="IsVisible"
+                                        Value="False" />
                             </DataTrigger>
                         </Label.Triggers>
 
@@ -155,7 +158,8 @@
 
                     <Label
                         Text="Fecha de vencimiento"
-                        Style="{StaticResource FormLabel}" />
+                        Style="{StaticResource FormLabel}"
+                        TextColor="#512478" />
 
                     <DatePicker
                         Format="dd/MM/yyyy"
@@ -164,16 +168,17 @@
                     <Label
                         Text="{Binding FechaVencimientoError}"
                         Style="{StaticResource ErrorLabel}"
-                        IsVisible="False">
+                        TextColor="#D40000"
+                        FontAttributes="Bold"
+                        IsVisible="True">
 
                         <Label.Triggers>
                             <DataTrigger
                                 TargetType="Label"
                                 Binding="{Binding FechaVencimientoError}"
-                                Value="El vencimiento debe ser posterior a la emisión.">
-                                <Setter
-                                    Property="IsVisible"
-                                    Value="True" />
+                                Value="">
+                                <Setter Property="IsVisible"
+                                        Value="False" />
                             </DataTrigger>
                         </Label.Triggers>
 
@@ -183,7 +188,8 @@
 
                     <Label
                         Text="Estado"
-                        Style="{StaticResource FormLabel}" />
+                        Style="{StaticResource FormLabel}"
+                        TextColor="#512478" />
 
                     <Picker
                         Title="Seleccione el estado"
@@ -193,16 +199,17 @@
                     <Label
                         Text="{Binding EstadoError}"
                         Style="{StaticResource ErrorLabel}"
-                        IsVisible="False">
+                        TextColor="#D40000"
+                        FontAttributes="Bold"
+                        IsVisible="True">
 
                         <Label.Triggers>
                             <DataTrigger
                                 TargetType="Label"
                                 Binding="{Binding EstadoError}"
-                                Value="Selecciona el estado del documento.">
-                                <Setter
-                                    Property="IsVisible"
-                                    Value="True" />
+                                Value="">
+                                <Setter Property="IsVisible"
+                                        Value="False" />
                             </DataTrigger>
                         </Label.Triggers>
 
@@ -212,16 +219,23 @@
 
             </Border>
 
-            <!-- BOTONES -->
+            <!-- GUARDAR -->
 
             <Button
                 Text="GUARDAR"
                 Style="{StaticResource PrimaryButton}"
+                BackgroundColor="#673AB7"
+                TextColor="White"
                 Command="{Binding GuardarCommand}" />
+
+            <!-- CANCELAR -->
 
             <Button
                 Text="CANCELAR"
                 Style="{StaticResource SecondaryButton}"
+                BackgroundColor="#F0E9FC"
+                TextColor="#512478"
+                BorderColor="#8651D8"
                 Command="{Binding CancelarCommand}" />
 
         </VerticalStackLayout>

@@ -49,7 +49,7 @@
                         Text="No hay verificaciones registradas"
                         FontSize="18"
                         FontAttributes="Bold"
-                        TextColor="#173B57"
+                        TextColor="red"
                         HorizontalTextAlignment="Center" />
 
                     <Label
