@@ -105,8 +105,7 @@
                                 FontSize="14"
                                 TextColor="#26465F" />
 
-                            <!-- FECHA -->
-
+                           
                             <Label
                                 Text="Fecha de vencimiento"
                                 FontSize="12"
@@ -118,8 +117,7 @@
                                 FontSize="14"
                                 TextColor="#26465F" />
 
-                            <!-- ESTADO -->
-
+                            
                             <Label
                                 Text="Estado del documento"
                                 FontSize="12"
@@ -131,15 +129,13 @@
                                 FontAttributes="Bold"
                                 TextColor="#176B87" />
 
-                            <!-- SEPARADOR -->
-
+                            
                             <BoxView
                                 HeightRequest="1"
                                 Color="#DEE6ED"
                                 Margin="0,6" />
 
-                            <!-- BOTONES -->
-
+                            
                             <Grid
                                 ColumnDefinitions="*,*"
                                 ColumnSpacing="10">
@@ -179,8 +175,7 @@
 
         </CollectionView>
 
-        <!-- AGREGAR DOCUMENTO -->
-
+        
         <Button
             Grid.Row="2"
             Text="+ AGREGAR DOCUMENTO"

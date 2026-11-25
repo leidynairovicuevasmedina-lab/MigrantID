@@ -13,8 +13,7 @@
         RowDefinitions="Auto,*,Auto"
         RowSpacing="14">
 
-        <!-- ENCABEZADO -->
-
+      
         <VerticalStackLayout
             Grid.Row="0"
             Spacing="5">
@@ -29,8 +28,7 @@
 
         </VerticalStackLayout>
 
-        <!-- LISTADO -->
-
+       
         <CollectionView
             x:Name="VerificacionesCollection"
             Grid.Row="1"
@@ -113,8 +111,7 @@
                                 TextColor="#26465F"
                                 LineBreakMode="WordWrap" />
 
-                            <!-- BOTONES CRUD -->
-
+                            
                             <Grid
                                 ColumnDefinitions="*,*"
                                 ColumnSpacing="10"
@@ -138,17 +135,17 @@
 
                             </Grid>
 
-                        </VerticalStackLayout>
+                  </VerticalStackLayout>
 
-                    </Border>
+            </Border>
 
-                </DataTemplate>
+           </DataTemplate>
 
             </CollectionView.ItemTemplate>
 
         </CollectionView>
 
-        <!-- AGREGAR -->
+      
 
         <Button
             Grid.Row="2"

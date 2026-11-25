@@ -9,7 +9,7 @@ public partial class UsuarioFormPage : ContentPage
     {
         InitializeComponent();
 
-        // Conectar la pantalla con su ViewModel.
+        
         BindingContext = new UsuarioFormViewModel();
     }
 }

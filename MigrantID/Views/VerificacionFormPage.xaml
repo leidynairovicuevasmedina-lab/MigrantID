@@ -28,8 +28,7 @@
 
                 <VerticalStackLayout Spacing="10">
 
-                    <!-- DOCUMENTO -->
-
+                    
                     <Label
                         Text="Documento a verificar"
                         Style="{StaticResource FormLabel}"
@@ -63,8 +62,7 @@
 
                     </Label>
 
-                    <!-- FECHA -->
-
+                    
                     <Label
                         Text="Fecha de verificación"
                         Style="{StaticResource FormLabel}"
@@ -96,7 +94,7 @@
 
                     </Label>
 
-                    <!-- RESULTADO -->
+                 
 
                     <Label
                         Text="Resultado"
@@ -130,8 +128,7 @@
 
                     </Label>
 
-                    <!-- OBSERVACIÓN -->
-
+                   
                     <Label
                         Text="Observación"
                         Style="{StaticResource FormLabel}"
@@ -169,8 +166,7 @@
 
             </Border>
 
-            <!-- GUARDAR -->
-
+            
             <Button
                 Text="GUARDAR VERIFICACIÓN"
                 Style="{StaticResource PrimaryButton}"
@@ -178,8 +174,7 @@
                 TextColor="White"
                 Command="{Binding GuardarCommand}" />
 
-            <!-- ELIMINAR -->
-
+         
             <Button
                 Text="ELIMINAR VERIFICACIÓN"
                 BackgroundColor="#B42318"
@@ -190,8 +185,7 @@
                 Command="{Binding EliminarCommand}"
                 IsVisible="{Binding ModoEditar}" />
 
-            <!-- CANCELAR -->
-
+            
             <Button
                 Text="CANCELAR"
                 Style="{StaticResource SecondaryButton}"

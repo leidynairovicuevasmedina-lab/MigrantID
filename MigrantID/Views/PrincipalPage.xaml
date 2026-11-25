@@ -13,8 +13,7 @@
             Padding="20,22,20,32"
             Spacing="19">
 
-            <!-- ENCABEZADO DE LA APP -->
-
+            
             <Grid
                 ColumnDefinitions="Auto,*,Auto"
                 ColumnSpacing="12">
@@ -103,8 +102,7 @@
 
             </Grid>
 
-            <!-- PANEL DE BIENVENIDA -->
-
+            
             <Border
                 BackgroundColor="#432663"
                 StrokeThickness="0"
@@ -146,8 +144,7 @@
 
             </Border>
 
-            <!-- TITULO DEL MINI DASHBOARD -->
-
+            
             <Grid ColumnDefinitions="*,Auto">
 
                 <Label
@@ -165,16 +162,14 @@
 
             </Grid>
 
-            <!-- MINI DASHBOARD -->
-
+            
             <Grid
                 ColumnDefinitions="*,*"
                 RowDefinitions="Auto,Auto"
                 ColumnSpacing="12"
                 RowSpacing="12">
 
-                <!-- CONTADOR DE DOCUMENTOS -->
-
+                
                 <Border
                     Grid.Row="0"
                     Grid.Column="0"
@@ -217,8 +212,7 @@
 
                 </Border>
 
-                <!-- CONTADOR DE USUARIOS -->
-
+                
                 <Border
                     Grid.Row="0"
                     Grid.Column="1"
@@ -261,8 +255,7 @@
 
                 </Border>
 
-                <!-- CONTADOR DE VERIFICACIONES -->
-
+                
                 <Border
                     Grid.Row="1"
                     Grid.Column="0"
@@ -305,8 +298,7 @@
 
                 </Border>
 
-                <!-- CONTADOR DE SOLICITUDES -->
-
+                
                 <Border
                     Grid.Row="1"
                     Grid.Column="1"
@@ -351,24 +343,21 @@
 
             </Grid>
 
-            <!-- TITULO DE LOS ACCESOS -->
-
+            
             <Label
                 Text="Accesos rápidos"
                 FontSize="20"
                 FontAttributes="Bold"
                 TextColor="#352B54"/>
 
-            <!-- TARJETAS DE NAVEGACION -->
-
+            
             <Grid
                 ColumnDefinitions="*,*"
                 RowDefinitions="Auto,Auto"
                 ColumnSpacing="12"
                 RowSpacing="12">
 
-                <!-- ACCESO A DOCUMENTOS -->
-
+                
                 <Border
                     Grid.Row="0"
                     Grid.Column="0"
@@ -413,8 +402,7 @@
 
                 </Border>
 
-                <!-- ACCESO A USUARIOS -->
-
+               
                 <Border
                     Grid.Row="0"
                     Grid.Column="1"
@@ -459,8 +447,7 @@
 
                 </Border>
 
-                <!-- ACCESO A VERIFICACIONES -->
-
+                
                 <Border
                     Grid.Row="1"
                     Grid.Column="0"
@@ -505,8 +492,7 @@
 
                 </Border>
 
-                <!-- ACCESO A SOLICITUDES -->
-
+                
                 <Border
                     Grid.Row="1"
                     Grid.Column="1"
@@ -553,8 +539,7 @@
 
             </Grid>
 
-            <!-- PIE DE PAGINA -->
-
+            
             <Label
                 Text="MigrantID RD | Gestión migratoria"
                 FontSize="11"

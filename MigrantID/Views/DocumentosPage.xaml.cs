@@ -21,8 +21,7 @@ public partial class DocumentosPage : ContentPage
         CargarDocumentos();
     }
 
-    // MOSTRAR DOCUMENTOS
-
+    
     private void CargarDocumentos()
     {
         var documentos = _servicio.ObtenerDocumentos();
@@ -31,8 +30,7 @@ public partial class DocumentosPage : ContentPage
         DocumentosCollection.ItemsSource = documentos;
     }
 
-    // AGREGAR DOCUMENTO
-
+    
     private async void OnAgregarClicked(
         object sender, EventArgs e)
     {
@@ -42,8 +40,7 @@ public partial class DocumentosPage : ContentPage
             "//documento-form");
     }
 
-    // EDITAR DOCUMENTO
-
+    
     private async void OnEditarClicked(
         object sender, EventArgs e)
     {
@@ -59,8 +56,7 @@ public partial class DocumentosPage : ContentPage
             "//documento-form");
     }
 
-    // ELIMINAR DOCUMENTO
-
+    
     private async void OnEliminarClicked(
         object sender, EventArgs e)
     {

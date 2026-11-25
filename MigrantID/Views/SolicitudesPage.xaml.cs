@@ -10,8 +10,7 @@ public partial class SolicitudesPage : ContentPage
     private readonly MigrantIDService _servicio =
         MigrantIDService.Instancia;
 
-    // CONSTRUCTOR
-
+   
     public SolicitudesPage()
     {
         InitializeComponent();
@@ -20,8 +19,7 @@ public partial class SolicitudesPage : ContentPage
             _servicio.Solicitudes;
     }
 
-    // MOSTRAR SOLICITUDES
-
+    
     protected override void OnAppearing()
     {
         base.OnAppearing();
@@ -30,8 +28,7 @@ public partial class SolicitudesPage : ContentPage
             _servicio.Solicitudes;
     }
 
-    // AGREGAR
-
+    
     private async void OnAgregarClicked(
         object? sender, EventArgs e)
     {
@@ -39,8 +36,7 @@ public partial class SolicitudesPage : ContentPage
             "//solicitud-form?id=0");
     }
 
-    // EDITAR
-
+  
     private async void OnEditarClicked(
         object? sender, EventArgs e)
     {
@@ -53,8 +49,6 @@ public partial class SolicitudesPage : ContentPage
         await Shell.Current.GoToAsync(
             $"//solicitud-form?id={solicitud.IdSolicitud}");
     }
-
-    // ELIMINAR
 
     private async void OnEliminarClicked(
         object? sender, EventArgs e)

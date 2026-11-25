@@ -13,11 +13,11 @@
         RowDefinitions="Auto,*,Auto"
         RowSpacing="14">
 
-        <!-- ENCABEZADO -->
+      
 
-        <VerticalStackLayout
-            Grid.Row="0"
-            Spacing="5">
+      <VerticalStackLayout
+          Grid.Row="0"
+          Spacing="5">
 
             <Label
                 Text="Solicitudes de orientación"
@@ -29,8 +29,7 @@
 
         </VerticalStackLayout>
 
-        <!-- LISTADO -->
-
+       
         <CollectionView
             x:Name="SolicitudesCollection"
             Grid.Row="1"
@@ -70,29 +69,27 @@
 
                         <VerticalStackLayout Spacing="9">
 
-                            <!-- TEMA -->
-
-                            <Label
+                          
+                    <Label
                                 Text="{Binding Tema}"
                                 FontSize="18"
                                 FontAttributes="Bold"
                                 TextColor="#173B57" />
 
-                            <!-- DESCRIPCIÓN -->
+                           
 
-                            <Label
+                    <Label
                                 Text="Descripción de la solicitud"
                                 FontSize="12"
                                 TextColor="#66788A" />
 
-                            <Label
+                     <Label
                                 Text="{Binding Descripcion}"
                                 FontSize="14"
                                 TextColor="#26465F"
                                 LineBreakMode="WordWrap" />
 
-                            <!-- FECHA -->
-
+                            
                             <Label
                                 Text="Fecha de solicitud"
                                 FontSize="12"
@@ -103,8 +100,7 @@
                                 FontSize="14"
                                 TextColor="#26465F" />
 
-                            <!-- ESTADO -->
-
+                           
                             <Label
                                 Text="Estado"
                                 FontSize="12"
@@ -116,8 +112,7 @@
                                 FontAttributes="Bold"
                                 TextColor="#176B87" />
 
-                            <!-- BOTONES CRUD -->
-
+                          
                             <Grid
                                 ColumnDefinitions="*,*"
                                 ColumnSpacing="10"
@@ -151,8 +146,7 @@
 
         </CollectionView>
 
-        <!-- AGREGAR -->
-
+      
         <Button
             Grid.Row="2"
             Text="+ AGREGAR SOLICITUD"

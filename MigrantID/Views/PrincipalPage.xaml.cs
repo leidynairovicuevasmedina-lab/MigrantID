@@ -17,8 +17,7 @@ namespace MigrantID.Views
             ActualizarDashboard();
         }
 
-        // Se ejecuta cada vez que entramos a Inicio.
-
+        
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -26,9 +25,7 @@ namespace MigrantID.Views
             ActualizarDashboard();
         }
 
-        // Actualiza los cuatro indicadores
-        // utilizando los registros reales.
-
+       
         private void ActualizarDashboard()
         {
             ContadorDocumentos.Text =
@@ -44,8 +41,7 @@ namespace MigrantID.Views
                 _servicio.Solicitudes.Count.ToString();
         }
 
-        // NAVEGAR A DOCUMENTOS
-
+        
         private async void OnDocumentosClicked(
             object? sender,
             EventArgs e)
@@ -53,8 +49,7 @@ namespace MigrantID.Views
             await Shell.Current.GoToAsync("//documentos");
         }
 
-        // NAVEGAR A USUARIOS
-
+       
         private async void OnUsuariosClicked(
             object? sender,
             EventArgs e)
@@ -62,8 +57,7 @@ namespace MigrantID.Views
             await Shell.Current.GoToAsync("//usuarios");
         }
 
-        // NAVEGAR A VERIFICACIONES
-
+       
         private async void OnVerificacionesClicked(
             object? sender,
             EventArgs e)
@@ -71,8 +65,7 @@ namespace MigrantID.Views
             await Shell.Current.GoToAsync("//verificaciones");
         }
 
-        // NAVEGAR A SOLICITUDES
-
+        
         private async void OnSolicitudesClicked(
             object? sender,
             EventArgs e)

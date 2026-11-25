@@ -15,8 +15,7 @@
             Padding="20,20,20,28"
             Spacing="14">
 
-            <!-- ENCABEZADO -->
-
+           
             <Label
                 Text="{Binding TituloPagina}"
                 Style="{StaticResource HeaderLabel}"
@@ -26,22 +25,20 @@
                 Text="Completa la información del usuario."
                 Style="{StaticResource SubheaderLabel}" />
 
-            <!-- FORMULARIO -->
-
+           
             <Border
                 Style="{StaticResource Card}"
                 Stroke="#DDD3EF">
 
                 <VerticalStackLayout Spacing="10">
 
-                    <!-- NOMBRE COMPLETO -->
-
-                    <Label
+                    
+                  <Label
                         Text="Nombre completo"
                         Style="{StaticResource FormLabel}"
                         TextColor="#512478" />
 
-                    <Entry
+                  <Entry
                         Placeholder="Ingrese el nombre completo"
                         Keyboard="Text"
                         Text="{Binding Nombre, Mode=TwoWay}" />
@@ -68,9 +65,8 @@
 
                     </Label>
 
-                    <!-- CORREO ELECTRÓNICO -->
-
-                    <Label
+                   
+                 <Label
                         Text="Correo electrónico"
                         Style="{StaticResource FormLabel}"
                         TextColor="#512478" />
@@ -100,10 +96,9 @@
                             </DataTrigger>
                         </Label.Triggers>
 
-                    </Label>
+                </Label>
 
-                    <!-- ROL DEL USUARIO -->
-
+                 
                     <Label
                         Text="Rol"
                         Style="{StaticResource FormLabel}"
@@ -114,7 +109,7 @@
                         ItemsSource="{Binding RolesDisponibles}"
                         SelectedItem="{Binding RolSeleccionado, Mode=TwoWay}" />
 
-                    <Label
+                 <Label
                         Text="{Binding RolError}"
                         Style="{StaticResource ErrorLabel}"
                         TextColor="#D40000"
@@ -130,28 +125,25 @@
                                 <Setter
                                     Property="IsVisible"
                                     Value="False" />
-
-                            </DataTrigger>
+                      </DataTrigger>
                         </Label.Triggers>
 
-                    </Label>
+                </Label>
 
                 </VerticalStackLayout>
 
             </Border>
 
-            <!-- GUARDAR O ACTUALIZAR -->
-
-            <Button
+           
+   <Button
                 Text="GUARDAR USUARIO"
                 Style="{StaticResource PrimaryButton}"
                 BackgroundColor="#673AB7"
                 TextColor="White"
                 Command="{Binding GuardarCommand}" />
 
-            <!-- ELIMINAR: SOLO EN MODO EDICIÓN -->
-
-            <Button
+            
+       <Button
                 Text="ELIMINAR USUARIO"
                 BackgroundColor="#B42318"
                 TextColor="White"
@@ -161,8 +153,7 @@
                 Command="{Binding EliminarCommand}"
                 IsVisible="{Binding ModoEditar}" />
 
-            <!-- CANCELAR -->
-
+            
             <Button
                 Text="CANCELAR"
                 Style="{StaticResource SecondaryButton}"
