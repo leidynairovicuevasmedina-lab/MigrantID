@@ -12,30 +12,28 @@ public partial class UsuariosPage : ContentPage
     public UsuariosPage()
     {
         InitializeComponent();
+
+        UsuariosCollection.ItemsSource = _servicio.Usuarios;
     }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
+
         CargarUsuarios();
     }
 
     private void CargarUsuarios()
     {
-        var usuarios = _servicio.Usuarios;
-
-        UsuariosCollection.ItemsSource = null;
-        UsuariosCollection.ItemsSource = usuarios;
+        UsuariosCollection.ItemsSource = _servicio.Usuarios;
     }
 
-    private async void OnAgregarClicked(
-        object sender, EventArgs e)
+    private async void OnAgregarClicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//usuario-form");
+        await Shell.Current.GoToAsync("//usuario-form?id=0");
     }
 
-    private async void OnEditarClicked(
-        object sender, EventArgs e)
+    private async void OnEditarClicked(object sender, EventArgs e)
     {
         if (sender is not Button boton ||
             boton.CommandParameter is not Usuario usuario)
@@ -43,15 +41,11 @@ public partial class UsuariosPage : ContentPage
             return;
         }
 
-        // Se conserva el comportamiento original.
-        await DisplayAlertAsync(
-            "Editar usuario",
-            $"Usuario seleccionado: {usuario.Nombre}",
-            "Aceptar");
+        await Shell.Current.GoToAsync(
+            $"//usuario-form?id={usuario.IdUsuario}");
     }
 
-    private async void OnEliminarClicked(
-        object sender, EventArgs e)
+    private async void OnEliminarClicked(object sender, EventArgs e)
     {
         if (sender is not Button boton ||
             boton.CommandParameter is not Usuario usuario)
@@ -68,13 +62,15 @@ public partial class UsuariosPage : ContentPage
         if (!confirmar)
             return;
 
-        _servicio.Usuarios.Remove(usuario);
+        bool eliminado = _servicio.EliminarUsuario(
+            usuario.IdUsuario);
 
-        CargarUsuarios();
+        if (!eliminado)
+            return;
 
         await DisplayAlertAsync(
             "Usuario eliminado",
-            "El usuario se ha eliminado correctamente.",
+            "El usuario fue eliminado correctamente.",
             "Aceptar");
     }
 }

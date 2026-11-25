@@ -1,25 +1,23 @@
 ﻿
-using System;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MigrantID.Models;
 using MigrantID.Services;
-using Microsoft.Maui.Controls;
 
 namespace MigrantID.ViewModels;
 
-public partial class UsuarioFormViewModel : ObservableObject
+public partial class UsuarioFormViewModel : ObservableObject, IQueryAttributable
 {
-    // SERVICIO EN MEMORIA
+    private readonly MigrantIDService _servicio = MigrantIDService.Instancia;
 
-    private readonly MigrantIDService _servicio =
-        MigrantIDService.Instancia;
+    private int _idEditando;
 
+    [ObservableProperty]
+    private bool modoEditar;
 
-    // DATOS DEL FORMULARIO
+    [ObservableProperty]
+    private string tituloPagina = "Registrar usuario";
 
     [ObservableProperty]
     private string nombre = string.Empty;
@@ -30,9 +28,6 @@ public partial class UsuarioFormViewModel : ObservableObject
     [ObservableProperty]
     private string? rolSeleccionado;
 
-
-    // MENSAJES DE VALIDACION
-
     [ObservableProperty]
     private string nombreError = string.Empty;
 
@@ -42,9 +37,6 @@ public partial class UsuarioFormViewModel : ObservableObject
     [ObservableProperty]
     private string rolError = string.Empty;
 
-
-    // ROLES DISPONIBLES
-
     public string[] RolesDisponibles { get; } =
     {
         "Usuario",
@@ -52,28 +44,60 @@ public partial class UsuarioFormViewModel : ObservableObject
         "Administrador"
     };
 
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        if (query.TryGetValue("id", out var valor) &&
+            int.TryParse(valor?.ToString(), out int id))
+        {
+            Usuario? usuario = _servicio.ObtenerUsuarioPorId(id);
 
-    // VALIDAR NOMBRE
+            if (usuario != null)
+            {
+                _idEditando = usuario.IdUsuario;
+                ModoEditar = true;
+                TituloPagina = "Editar usuario";
+
+                Nombre = usuario.Nombre;
+                Correo = usuario.Correo;
+                RolSeleccionado = usuario.Rol;
+
+                LimpiarErrores();
+                return;
+            }
+        }
+
+        LimpiarFormulario();
+    }
+
+    partial void OnNombreChanged(string value)
+    {
+        NombreError = string.Empty;
+    }
+
+    partial void OnCorreoChanged(string value)
+    {
+        CorreoError = string.Empty;
+    }
+
+    partial void OnRolSeleccionadoChanged(string? value)
+    {
+        RolError = string.Empty;
+    }
 
     private void ValidarNombre()
     {
         if (string.IsNullOrWhiteSpace(Nombre))
         {
-            NombreError =
-                "El nombre es obligatorio.";
+            NombreError = "El nombre es obligatorio.";
         }
         else if (Nombre.Trim().Length < 2 ||
                  Nombre.Trim().Length > 100)
         {
-            NombreError =
-                "El nombre debe contener entre 2 y 100 caracteres.";
+            NombreError = "El nombre debe tener entre 2 y 100 caracteres.";
         }
-        else if (!Regex.IsMatch(
-            Nombre.Trim(),
-            @"^[\p{L}\s'-]+$"))
+        else if (!Regex.IsMatch(Nombre.Trim(), @"^[\p{L}\s'-]+$"))
         {
-            NombreError =
-                "El nombre solo puede contener letras y espacios.";
+            NombreError = "El nombre solo puede contener letras y espacios.";
         }
         else
         {
@@ -81,22 +105,15 @@ public partial class UsuarioFormViewModel : ObservableObject
         }
     }
 
-
-    // VALIDAR CORREO
-
     private void ValidarCorreo()
     {
         if (string.IsNullOrWhiteSpace(Correo))
         {
-            CorreoError =
-                "El correo electrónico es obligatorio.";
+            CorreoError = "El correo electrónico es obligatorio.";
         }
-        else if (!Regex.IsMatch(
-            Correo.Trim(),
-            @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+        else if (!Regex.IsMatch(Correo.Trim(), @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
         {
-            CorreoError =
-                "Introduce un correo electrónico válido.";
+            CorreoError = "Introduce un correo electrónico válido.";
         }
         else
         {
@@ -104,24 +121,12 @@ public partial class UsuarioFormViewModel : ObservableObject
         }
     }
 
-
-    // VALIDAR ROL
-
     private void ValidarRol()
     {
-        if (string.IsNullOrWhiteSpace(RolSeleccionado))
-        {
-            RolError =
-                "Debes seleccionar un rol.";
-        }
-        else
-        {
-            RolError = string.Empty;
-        }
+        RolError = string.IsNullOrWhiteSpace(RolSeleccionado)
+            ? "Debes seleccionar un rol."
+            : string.Empty;
     }
-
-
-    // VALIDAR FORMULARIO COMPLETO
 
     private bool ValidarFormulario()
     {
@@ -129,73 +134,108 @@ public partial class UsuarioFormViewModel : ObservableObject
         ValidarCorreo();
         ValidarRol();
 
-        return
-            string.IsNullOrEmpty(NombreError) &&
-            string.IsNullOrEmpty(CorreoError) &&
-            string.IsNullOrEmpty(RolError);
+        return string.IsNullOrEmpty(NombreError) &&
+               string.IsNullOrEmpty(CorreoError) &&
+               string.IsNullOrEmpty(RolError);
     }
-
-
-    // GUARDAR USUARIO
 
     [RelayCommand]
     private async Task GuardarAsync()
     {
-        // Validar todos los campos.
         if (!ValidarFormulario())
-        {
             return;
-        }
 
-        // Crear usuario.
-        Usuario nuevoUsuario = new Usuario
+        Usuario usuario = new()
         {
+            IdUsuario = _idEditando,
             Nombre = Nombre.Trim(),
             Correo = Correo.Trim(),
             Rol = RolSeleccionado!,
             Activo = true
         };
 
-        // Guardar en memoria.
-        _servicio.AgregarUsuario(nuevoUsuario);
+        bool actualizando = ModoEditar;
 
-        // Mostrar confirmación.
+        if (actualizando)
+        {
+            Usuario? anterior = _servicio.ObtenerUsuarioPorId(_idEditando);
+
+            if (anterior == null)
+                return;
+
+            usuario.Activo = anterior.Activo;
+
+            if (!_servicio.ActualizarUsuario(usuario))
+                return;
+        }
+        else
+        {
+            _servicio.AgregarUsuario(usuario);
+        }
+
         await Shell.Current.DisplayAlertAsync(
-            "Registro exitoso",
-            "El usuario fue registrado correctamente.",
+            "Operación completada",
+            actualizando
+                ? "El usuario fue actualizado correctamente."
+                : "El usuario fue registrado correctamente.",
             "Aceptar");
 
-        // Limpiar campos y errores.
         LimpiarFormulario();
 
-        // Regresar al listado.
-        await Shell.Current.GoToAsync(
-            "//usuarios/lista-usuarios");
+        await Shell.Current.GoToAsync("//usuarios/lista-usuarios");
     }
 
+    [RelayCommand]
+    private async Task EliminarAsync()
+    {
+        if (!ModoEditar)
+            return;
 
-    // CANCELAR REGISTRO
+        bool confirmar = await Shell.Current.DisplayAlertAsync(
+            "Eliminar usuario",
+            $"¿Deseas eliminar a {Nombre}?",
+            "Sí, eliminar",
+            "Cancelar");
+
+        if (!confirmar)
+            return;
+
+        _servicio.EliminarUsuario(_idEditando);
+
+        LimpiarFormulario();
+
+        await Shell.Current.DisplayAlertAsync(
+            "Usuario eliminado",
+            "El usuario fue eliminado correctamente.",
+            "Aceptar");
+
+        await Shell.Current.GoToAsync("//usuarios/lista-usuarios");
+    }
 
     [RelayCommand]
     private async Task CancelarAsync()
     {
         LimpiarFormulario();
-
-        await Shell.Current.GoToAsync(
-            "//usuarios/lista-usuarios");
+        await Shell.Current.GoToAsync("//usuarios/lista-usuarios");
     }
 
-
-    // LIMPIAR FORMULARIO
+    private void LimpiarErrores()
+    {
+        NombreError = string.Empty;
+        CorreoError = string.Empty;
+        RolError = string.Empty;
+    }
 
     public void LimpiarFormulario()
     {
+        _idEditando = 0;
+        ModoEditar = false;
+        TituloPagina = "Registrar usuario";
+
         Nombre = string.Empty;
         Correo = string.Empty;
         RolSeleccionado = null;
 
-        NombreError = string.Empty;
-        CorreoError = string.Empty;
-        RolError = string.Empty;
+        LimpiarErrores();
     }
 }

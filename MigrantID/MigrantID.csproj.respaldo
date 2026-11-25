@@ -1,8 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+<<<<<<< HEAD
+		<TargetFrameworks>net10.0-android</TargetFrameworks>
+		<TargetFrameworks Condition="!$([MSBuild]::IsOSPlatform('linux'))">$(TargetFrameworks);net10.0-ios;net10.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.19041.0</TargetFrameworks>
+=======
 
 		<TargetFramework>net10.0-android</TargetFramework>
+>>>>>>> d8677da5234dd211bf32f5e6d4f3a506c5232721
 
 		<!-- Note for MacCatalyst:
 		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
@@ -66,8 +72,13 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+<<<<<<< HEAD
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
+=======
 		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.120" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="11.0.0-rc.3.26522.148" />
+>>>>>>> d8677da5234dd211bf32f5e6d4f3a506c5232721
 	</ItemGroup>
 
 	<ItemGroup>

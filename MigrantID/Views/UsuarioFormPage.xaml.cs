@@ -3,13 +3,21 @@ using MigrantID.ViewModels;
 
 namespace MigrantID.Views;
 
-public partial class UsuarioFormPage : ContentPage
+public partial class UsuarioFormPage : ContentPage, IQueryAttributable
 {
+    private readonly UsuarioFormViewModel _viewModel;
+
     public UsuarioFormPage()
     {
         InitializeComponent();
 
-        // Conectar la pantalla con su ViewModel.
-        BindingContext = new UsuarioFormViewModel();
+        _viewModel = new UsuarioFormViewModel();
+
+        BindingContext = _viewModel;
+    }
+
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        _viewModel.ApplyQueryAttributes(query);
     }
 }

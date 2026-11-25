@@ -6,7 +6,7 @@
     xmlns:vm="clr-namespace:MigrantID.ViewModels"
     x:Class="MigrantID.Views.UsuarioFormPage"
     x:DataType="vm:UsuarioFormViewModel"
-    Title="Registrar usuario"
+    Title="{Binding TituloPagina}"
     BackgroundColor="#F7F4FC">
 
     <ScrollView>
@@ -15,10 +15,8 @@
             Padding="20,20,20,28"
             Spacing="14">
 
-            <!-- ENCABEZADO -->
-
             <Label
-                Text="Registrar usuario"
+                Text="{Binding TituloPagina}"
                 Style="{StaticResource HeaderLabel}"
                 TextColor="#512478" />
 
@@ -26,15 +24,11 @@
                 Text="Completa la información del usuario."
                 Style="{StaticResource SubheaderLabel}" />
 
-            <!-- FORMULARIO -->
-
             <Border
                 Style="{StaticResource Card}"
                 Stroke="#DDD3EF">
 
                 <VerticalStackLayout Spacing="10">
-
-                    <!-- NOMBRE COMPLETO -->
 
                     <Label
                         Text="Nombre completo"
@@ -66,8 +60,6 @@
 
                     </Label>
 
-                    <!-- CORREO ELECTRONICO -->
-
                     <Label
                         Text="Correo electrónico"
                         Style="{StaticResource FormLabel}"
@@ -97,8 +89,6 @@
                         </Label.Triggers>
 
                     </Label>
-
-                    <!-- ROL DEL USUARIO -->
 
                     <Label
                         Text="Rol"
@@ -134,8 +124,6 @@
 
             </Border>
 
-            <!-- BOTON GUARDAR -->
-
             <Button
                 Text="GUARDAR USUARIO"
                 Style="{StaticResource PrimaryButton}"
@@ -143,7 +131,15 @@
                 TextColor="White"
                 Command="{Binding GuardarCommand}" />
 
-            <!-- BOTON CANCELAR -->
+            <Button
+                Text="ELIMINAR USUARIO"
+                BackgroundColor="#B42318"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="10"
+                HeightRequest="48"
+                Command="{Binding EliminarCommand}"
+                IsVisible="{Binding ModoEditar}" />
 
             <Button
                 Text="CANCELAR"

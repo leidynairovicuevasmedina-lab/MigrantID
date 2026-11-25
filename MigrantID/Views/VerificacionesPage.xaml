@@ -12,8 +12,6 @@
         RowDefinitions="Auto,*,Auto"
         RowSpacing="14">
 
-        <!-- ENCABEZADO -->
-
         <VerticalStackLayout
             Grid.Row="0"
             Spacing="5">
@@ -23,19 +21,15 @@
                 Style="{StaticResource ListTitle}" />
 
             <Label
-                Text="Consulta las verificaciones realizadas."
+                Text="Consulta y administra las verificaciones realizadas."
                 Style="{StaticResource SubheaderLabel}" />
 
         </VerticalStackLayout>
-
-        <!-- LISTADO -->
 
         <CollectionView
             x:Name="VerificacionesCollection"
             Grid.Row="1"
             SelectionMode="None">
-
-            <!-- LISTADO VACÍO -->
 
             <CollectionView.EmptyView>
 
@@ -49,7 +43,7 @@
                         Text="No hay verificaciones registradas"
                         FontSize="18"
                         FontAttributes="Bold"
-                        TextColor="red"
+                        TextColor="Red"
                         HorizontalTextAlignment="Center" />
 
                     <Label
@@ -59,8 +53,6 @@
                 </VerticalStackLayout>
 
             </CollectionView.EmptyView>
-
-            <!-- TARJETAS DE VERIFICACIONES -->
 
             <CollectionView.ItemTemplate>
 
@@ -72,8 +64,6 @@
                         Margin="0,0,0,12">
 
                         <VerticalStackLayout Spacing="9">
-
-                            <!-- IDENTIFICADOR DEL DOCUMENTO -->
 
                             <Label
                                 Text="Documento verificado"
@@ -87,8 +77,6 @@
                                 FontAttributes="Bold"
                                 TextColor="#173B57" />
 
-                            <!-- FECHA -->
-
                             <Label
                                 Text="Fecha de verificación"
                                 FontSize="12"
@@ -99,8 +87,6 @@
                                        StringFormat='{0:dd/MM/yyyy}'}"
                                 FontSize="14"
                                 TextColor="#26465F" />
-
-                            <!-- RESULTADO -->
 
                             <Label
                                 Text="Resultado"
@@ -113,8 +99,6 @@
                                 FontAttributes="Bold"
                                 TextColor="#176B87" />
 
-                            <!-- OBSERVACIÓN -->
-
                             <Label
                                 Text="Observación"
                                 FontSize="12"
@@ -126,6 +110,40 @@
                                 TextColor="#26465F"
                                 LineBreakMode="WordWrap" />
 
+                            <BoxView
+                                HeightRequest="1"
+                                Color="#DEE6ED"
+                                Margin="0,6" />
+
+                            <Grid
+                                ColumnDefinitions="*,*"
+                                ColumnSpacing="10">
+
+                                <Button
+                                    Grid.Column="0"
+                                    Text="EDITAR"
+                                    Style="{StaticResource PrimaryButton}"
+                                    HeightRequest="44"
+                                    FontSize="13"
+                                    CommandParameter="{Binding .}"
+                                    Clicked="OnEditarClicked" />
+
+                                <Button
+                                    Grid.Column="1"
+                                    Text="ELIMINAR"
+                                    BackgroundColor="#FFF1F1"
+                                    TextColor="#B42318"
+                                    BorderColor="#E8B8B8"
+                                    BorderWidth="1"
+                                    CornerRadius="10"
+                                    HeightRequest="44"
+                                    FontSize="13"
+                                    FontAttributes="Bold"
+                                    CommandParameter="{Binding .}"
+                                    Clicked="OnEliminarClicked" />
+
+                            </Grid>
+
                         </VerticalStackLayout>
 
                     </Border>
@@ -135,8 +153,6 @@
             </CollectionView.ItemTemplate>
 
         </CollectionView>
-
-        <!-- BOTÓN AGREGAR -->
 
         <Button
             Grid.Row="2"

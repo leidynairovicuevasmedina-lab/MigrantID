@@ -1,119 +1,168 @@
 ﻿
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using MigrantID.Models;
 
-namespace MigrantID.Services
+namespace MigrantID.Services;
+
+public class MigrantIDService
 {
-    public class MigrantIDService
+    public static MigrantIDService Instancia { get; } = new();
+
+    private int _siguienteIdDocumento = 1;
+    private int _siguienteIdUsuario = 1;
+    private int _siguienteIdVerificacion = 1;
+    private int _siguienteIdSolicitud = 1;
+
+    public Documento? DocumentoEnEdicion { get; set; }
+
+    public ObservableCollection<Documento> Documentos { get; } = new();
+    public ObservableCollection<Usuario> Usuarios { get; } = new();
+    public ObservableCollection<Verificacion> Verificaciones { get; } = new();
+    public ObservableCollection<SolicitudOrientacion> Solicitudes { get; } = new();
+
+    public Documento AgregarDocumento(Documento documento)
     {
+        documento.IdDocumento = _siguienteIdDocumento++;
+        Documentos.Add(documento);
+        return documento;
+    }
 
-        public static MigrantIDService Instancia { get; } = new();
+    public List<Documento> ObtenerDocumentos()
+    {
+        return Documentos.ToList();
+    }
 
-        public Documento? DocumentoEnEdicion { get; set; }
+    public Documento? ObtenerDocumentoPorId(int id)
+    {
+        return Documentos.FirstOrDefault(x => x.IdDocumento == id);
+    }
 
-        private int _siguienteIdDocumento = 1;
-        private int _siguienteIdUsuario = 1;
-        private int _siguienteIdVerificacion = 1;
-        private int _siguienteIdSolicitud = 1;
+    public bool ActualizarDocumento(Documento documento)
+    {
+        var existente = ObtenerDocumentoPorId(documento.IdDocumento);
 
-        public List<Documento> Documentos { get; } = new();
+        if (existente == null)
+            return false;
 
-        public List<Usuario> Usuarios { get; } = new();
+        var indice = Documentos.IndexOf(existente);
+        Documentos[indice] = documento;
 
-        public List<Verificacion> Verificaciones { get; } = new();
+        return true;
+    }
 
-        public List<SolicitudOrientacion> Solicitudes { get; } = new();
+    public bool EliminarDocumento(int id)
+    {
+        var documento = ObtenerDocumentoPorId(id);
 
-        public Documento AgregarDocumento(Documento documento)
-        {
-            documento.IdDocumento = _siguienteIdDocumento++;
+        if (documento == null)
+            return false;
 
-            Documentos.Add(documento);
+        return Documentos.Remove(documento);
+    }
 
-            return documento;
-        }
+    public Usuario AgregarUsuario(Usuario usuario)
+    {
+        usuario.IdUsuario = _siguienteIdUsuario++;
+        Usuarios.Add(usuario);
+        return usuario;
+    }
 
-        public List<Documento> ObtenerDocumentos()
-        {
-            return Documentos.ToList();
-        }
+    public Usuario? ObtenerUsuarioPorId(int id)
+    {
+        return Usuarios.FirstOrDefault(x => x.IdUsuario == id);
+    }
 
-        public Documento? ObtenerDocumentoPorId(int id)
-        {
-            return Documentos.FirstOrDefault(
-                documento => documento.IdDocumento == id);
-        }
+    public bool ActualizarUsuario(Usuario usuario)
+    {
+        var existente = ObtenerUsuarioPorId(usuario.IdUsuario);
 
-        public bool ActualizarDocumento(Documento documentoActualizado)
-        {
-            Documento? documentoExistente =
-                ObtenerDocumentoPorId(documentoActualizado.IdDocumento);
+        if (existente == null)
+            return false;
 
-            if (documentoExistente == null)
-            {
-                return false;
-            }
+        var indice = Usuarios.IndexOf(existente);
+        Usuarios[indice] = usuario;
 
-            documentoExistente.TipoDocumento =
-                documentoActualizado.TipoDocumento;
+        return true;
+    }
 
-            documentoExistente.NumeroDocumento =
-                documentoActualizado.NumeroDocumento;
+    public bool EliminarUsuario(int id)
+    {
+        var usuario = ObtenerUsuarioPorId(id);
 
-            documentoExistente.PaisEmision =
-                documentoActualizado.PaisEmision;
+        if (usuario == null)
+            return false;
 
-            documentoExistente.FechaEmision =
-                documentoActualizado.FechaEmision;
+        return Usuarios.Remove(usuario);
+    }
 
-            documentoExistente.FechaVencimiento =
-                documentoActualizado.FechaVencimiento;
+    public Verificacion AgregarVerificacion(Verificacion verificacion)
+    {
+        verificacion.IdVerificacion = _siguienteIdVerificacion++;
+        Verificaciones.Add(verificacion);
+        return verificacion;
+    }
 
-            documentoExistente.Estado =
-                documentoActualizado.Estado;
+    public Verificacion? ObtenerVerificacionPorId(int id)
+    {
+        return Verificaciones.FirstOrDefault(x => x.IdVerificacion == id);
+    }
 
-            return true;
-        }
+    public bool ActualizarVerificacion(Verificacion verificacion)
+    {
+        var existente = ObtenerVerificacionPorId(verificacion.IdVerificacion);
 
-        public bool EliminarDocumento(int id)
-        {
-            Documento? documento = ObtenerDocumentoPorId(id);
+        if (existente == null)
+            return false;
 
-            if (documento == null)
-            {
-                return false;
-            }
+        var indice = Verificaciones.IndexOf(existente);
+        Verificaciones[indice] = verificacion;
 
-            return Documentos.Remove(documento);
-        }
+        return true;
+    }
 
-        public Usuario AgregarUsuario(Usuario usuario)
-        {
-            usuario.IdUsuario = _siguienteIdUsuario++;
+    public bool EliminarVerificacion(int id)
+    {
+        var verificacion = ObtenerVerificacionPorId(id);
 
-            Usuarios.Add(usuario);
+        if (verificacion == null)
+            return false;
 
-            return usuario;
-        }
+        return Verificaciones.Remove(verificacion);
+    }
 
-        public Verificacion AgregarVerificacion(Verificacion verificacion)
-        {
-            verificacion.IdVerificacion = _siguienteIdVerificacion++;
+    public SolicitudOrientacion AgregarSolicitud(SolicitudOrientacion solicitud)
+    {
+        solicitud.IdSolicitud = _siguienteIdSolicitud++;
+        Solicitudes.Add(solicitud);
+        return solicitud;
+    }
 
-            Verificaciones.Add(verificacion);
+    public SolicitudOrientacion? ObtenerSolicitudPorId(int id)
+    {
+        return Solicitudes.FirstOrDefault(x => x.IdSolicitud == id);
+    }
 
-            return verificacion;
-        }
+    public bool ActualizarSolicitud(SolicitudOrientacion solicitud)
+    {
+        var existente = ObtenerSolicitudPorId(solicitud.IdSolicitud);
 
-        public SolicitudOrientacion AgregarSolicitud(
-            SolicitudOrientacion solicitud)
-        {
-            solicitud.IdSolicitud = _siguienteIdSolicitud++;
+        if (existente == null)
+            return false;
 
-            Solicitudes.Add(solicitud);
+        var indice = Solicitudes.IndexOf(existente);
+        Solicitudes[indice] = solicitud;
 
-            return solicitud;
-        }
+        return true;
+    }
+
+    public bool EliminarSolicitud(int id)
+    {
+        var solicitud = ObtenerSolicitudPorId(id);
+
+        if (solicitud == null)
+            return false;
+
+        return Solicitudes.Remove(solicitud);
     }
 }

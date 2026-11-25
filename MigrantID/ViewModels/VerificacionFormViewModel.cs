@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.ObjectModel;
+using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MigrantID.Models;
@@ -7,12 +8,18 @@ using MigrantID.Services;
 
 namespace MigrantID.ViewModels;
 
-public partial class VerificacionFormViewModel : ObservableObject
+public partial class VerificacionFormViewModel : ObservableObject, IQueryAttributable
 {
     private readonly MigrantIDService _servicio =
         MigrantIDService.Instancia;
 
-    // DOCUMENTOS DISPONIBLES
+    private int _idEditando;
+
+    [ObservableProperty]
+    private bool modoEditar;
+
+    [ObservableProperty]
+    private string tituloPagina = "Registrar verificación";
 
     public ObservableCollection<Documento> DocumentosDisponibles
     { get; } = new();
@@ -23,8 +30,6 @@ public partial class VerificacionFormViewModel : ObservableObject
         "Verificado",
         "Requiere revisión"
     };
-
-    // PROPIEDADES DEL FORMULARIO
 
     [ObservableProperty]
     private Documento? documentoSeleccionado;
@@ -38,8 +43,6 @@ public partial class VerificacionFormViewModel : ObservableObject
     [ObservableProperty]
     private string observacion = string.Empty;
 
-    // MENSAJES DE VALIDACIÓN
-
     [ObservableProperty]
     private string documentoError = string.Empty;
 
@@ -52,44 +55,89 @@ public partial class VerificacionFormViewModel : ObservableObject
     [ObservableProperty]
     private string observacionError = string.Empty;
 
-    // LIMPIAR ERRORES AL MODIFICAR CAMPOS
-
-    partial void OnDocumentoSeleccionadoChanged(Documento? value)
+    public void ApplyQueryAttributes(
+        IDictionary<string, object> query)
     {
-        DocumentoError = string.Empty;
-    }
+        CargarFormulario();
 
-    partial void OnFechaVerificacionChanged(DateTime value)
-    {
-        FechaVerificacionError = string.Empty;
-    }
-
-    partial void OnResultadoSeleccionadoChanged(string? value)
-    {
-        ResultadoError = string.Empty;
-    }
-
-    partial void OnObservacionChanged(string value)
-    {
-        ObservacionError = string.Empty;
-    }
-
-    // CARGAR LOS DOCUMENTOS REGISTRADOS
-
-    public void CargarFormulario()
-    {
-        DocumentosDisponibles.Clear();
-
-        foreach (Documento documento
-                 in _servicio.ObtenerDocumentos())
+        if (query.TryGetValue("id", out var valor) &&
+            int.TryParse(valor?.ToString(), out int id) &&
+            id > 0)
         {
-            DocumentosDisponibles.Add(documento);
+            Verificacion? verificacion =
+                _servicio.ObtenerVerificacionPorId(id);
+
+            if (verificacion != null)
+            {
+                CargarVerificacion(verificacion);
+                return;
+            }
         }
 
         LimpiarFormulario();
     }
 
-    // VALIDACIONES POR CAMPO
+    public void CargarFormulario()
+    {
+        int? idDocumento =
+            DocumentoSeleccionado?.IdDocumento;
+
+        DocumentosDisponibles.Clear();
+
+        foreach (Documento documento in _servicio.Documentos)
+        {
+            DocumentosDisponibles.Add(documento);
+        }
+
+        if (idDocumento.HasValue)
+        {
+            DocumentoSeleccionado =
+                DocumentosDisponibles.FirstOrDefault(
+                    x => x.IdDocumento == idDocumento.Value);
+        }
+    }
+
+    private void CargarVerificacion(Verificacion verificacion)
+    {
+        _idEditando = verificacion.IdVerificacion;
+
+        ModoEditar = true;
+        TituloPagina = "Editar verificación";
+
+        DocumentoSeleccionado =
+            DocumentosDisponibles.FirstOrDefault(
+                x => x.IdDocumento == verificacion.IdDocumento);
+
+        FechaVerificacion = verificacion.FechaVerificacion;
+        ResultadoSeleccionado = verificacion.Resultado;
+        Observacion = verificacion.Observacion;
+
+        LimpiarErrores();
+    }
+
+    partial void OnDocumentoSeleccionadoChanged(
+        Documento? value)
+    {
+        DocumentoError = string.Empty;
+    }
+
+    partial void OnFechaVerificacionChanged(
+        DateTime value)
+    {
+        FechaVerificacionError = string.Empty;
+    }
+
+    partial void OnResultadoSeleccionadoChanged(
+        string? value)
+    {
+        ResultadoError = string.Empty;
+    }
+
+    partial void OnObservacionChanged(
+        string value)
+    {
+        ObservacionError = string.Empty;
+    }
 
     private bool ValidarFormulario()
     {
@@ -128,34 +176,48 @@ public partial class VerificacionFormViewModel : ObservableObject
         }.All(string.IsNullOrEmpty);
     }
 
-    // GUARDAR VERIFICACIÓN
-
     [RelayCommand]
     private async Task GuardarAsync()
     {
         if (!ValidarFormulario())
             return;
 
-        Verificacion nuevaVerificacion = new()
+        Verificacion verificacion = new()
         {
-            IdDocumento =
-                DocumentoSeleccionado!.IdDocumento,
-
-            FechaVerificacion =
-                FechaVerificacion,
-
-            Resultado =
-                ResultadoSeleccionado!,
-
-            Observacion =
-                Observacion.Trim()
+            IdVerificacion = _idEditando,
+            IdDocumento = DocumentoSeleccionado!.IdDocumento,
+            FechaVerificacion = FechaVerificacion,
+            Resultado = ResultadoSeleccionado!,
+            Observacion = Observacion.Trim()
         };
 
-        _servicio.AgregarVerificacion(nuevaVerificacion);
+        bool actualizando = ModoEditar;
+
+        if (actualizando)
+        {
+            bool actualizado =
+                _servicio.ActualizarVerificacion(verificacion);
+
+            if (!actualizado)
+            {
+                await Shell.Current.DisplayAlertAsync(
+                    "Error",
+                    "No se encontró la verificación.",
+                    "Aceptar");
+
+                return;
+            }
+        }
+        else
+        {
+            _servicio.AgregarVerificacion(verificacion);
+        }
 
         await Shell.Current.DisplayAlertAsync(
-            "Registro exitoso",
-            "La verificación fue registrada correctamente.",
+            "Operación completada",
+            actualizando
+                ? "La verificación fue actualizada correctamente."
+                : "La verificación fue registrada correctamente.",
             "Aceptar");
 
         LimpiarFormulario();
@@ -164,7 +226,44 @@ public partial class VerificacionFormViewModel : ObservableObject
             "//verificaciones/lista-verificaciones");
     }
 
-    // CANCELAR
+    [RelayCommand]
+    private async Task EliminarAsync()
+    {
+        if (!ModoEditar)
+            return;
+
+        bool confirmar = await Shell.Current.DisplayAlertAsync(
+            "Eliminar verificación",
+            "¿Deseas eliminar esta verificación?",
+            "Sí, eliminar",
+            "Cancelar");
+
+        if (!confirmar)
+            return;
+
+        bool eliminado =
+            _servicio.EliminarVerificacion(_idEditando);
+
+        if (!eliminado)
+        {
+            await Shell.Current.DisplayAlertAsync(
+                "Error",
+                "No se encontró la verificación.",
+                "Aceptar");
+
+            return;
+        }
+
+        LimpiarFormulario();
+
+        await Shell.Current.DisplayAlertAsync(
+            "Verificación eliminada",
+            "La verificación fue eliminada correctamente.",
+            "Aceptar");
+
+        await Shell.Current.GoToAsync(
+            "//verificaciones/lista-verificaciones");
+    }
 
     [RelayCommand]
     private async Task CancelarAsync()
@@ -175,8 +274,6 @@ public partial class VerificacionFormViewModel : ObservableObject
             "//verificaciones/lista-verificaciones");
     }
 
-    // LIMPIAR MENSAJES
-
     private void LimpiarErrores()
     {
         DocumentoError = string.Empty;
@@ -185,10 +282,13 @@ public partial class VerificacionFormViewModel : ObservableObject
         ObservacionError = string.Empty;
     }
 
-    // RESTABLECER FORMULARIO
-
     private void LimpiarFormulario()
     {
+        _idEditando = 0;
+
+        ModoEditar = false;
+        TituloPagina = "Registrar verificación";
+
         DocumentoSeleccionado = null;
         FechaVerificacion = DateTime.Today;
         ResultadoSeleccionado = null;
