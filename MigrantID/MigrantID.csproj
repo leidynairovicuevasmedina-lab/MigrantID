@@ -2,8 +2,11 @@
 
 	<PropertyGroup>
 
-		<!-- Plataforma Android, igual que el proyecto del profesor -->
 		<TargetFrameworks>net10.0-android</TargetFrameworks>
+
+		<TargetFrameworks Condition="!$([MSBuild]::IsOSPlatform('linux'))">$(TargetFrameworks);net10.0-ios;net10.0-maccatalyst</TargetFrameworks>
+
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.19041.0</TargetFrameworks>
 
 		<OutputType>Exe</OutputType>
 		<RootNamespace>MigrantID</RootNamespace>
@@ -12,75 +15,62 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
-		<!-- Generacion de XAML -->
 		<MauiXamlInflator>SourceGen</MauiXamlInflator>
 
-		<!-- Nombre de la aplicacion -->
 		<ApplicationTitle>MigrantID</ApplicationTitle>
 
-		<!-- Identificador de la aplicacion -->
 		<ApplicationId>com.companyname.migrantid</ApplicationId>
 
-		<!-- Versiones -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
 
 		<WindowsPackageType>None</WindowsPackageType>
 
-		<!-- Version minima de Android -->
-		<SupportedOSPlatformVersion
-            Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 
 	</PropertyGroup>
 
 	<ItemGroup>
 
-		<!-- Icono de la aplicacion -->
-		<MauiIcon
-            Include="Resources\AppIcon\appicon.svg"
-            ForegroundFile="Resources\AppIcon\appiconfg.svg"
-            Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg"
+                  ForegroundFile="Resources\AppIcon\appiconfg.svg"
+                  Color="#512BD4" />
 
-		<!-- Pantalla de inicio -->
-		<MauiSplashScreen
-            Include="Resources\Splash\splash.svg"
-            Color="#512BD4"
-            BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg"
+                          Color="#512BD4"
+                          BaseSize="128,128" />
 
-		<!-- Imagenes -->
 		<MauiImage Include="Resources\Images\*" />
 
-		<MauiImage
-            Update="Resources\Images\dotnet_bot.png"
-            Resize="True"
-            BaseSize="300,185" />
+		<MauiImage Update="Resources\Images\dotnet_bot.png"
+                   Resize="True"
+                   BaseSize="300,185" />
 
-		<!-- Fuentes -->
 		<MauiFont Include="Resources\Fonts\*" />
 
-		<!-- Recursos adicionales -->
-		<MauiAsset
-            Include="Resources\Raw\**"
-            LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+		<MauiAsset Include="Resources\Raw\**"
+                   LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 
 	</ItemGroup>
 
 	<ItemGroup>
 
-		<!-- CommunityToolkit MVVM -->
-		<PackageReference
-            Include="CommunityToolkit.Mvvm"
-            Version="8.4.2" />
+		<PackageReference Include="CommunityToolkit.Mvvm"
+                          Version="8.4.2" />
 
-		<!-- Controles MAUI -->
-		<PackageReference
-            Include="Microsoft.Maui.Controls"
-            Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls"
+                          Version="$(MauiVersion)" />
 
-		<!-- Registro de depuracion -->
-		<PackageReference
-            Include="Microsoft.Extensions.Logging.Debug"
-            Version="10.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug"
+                          Version="10.0.0" />
 
 	</ItemGroup>
 

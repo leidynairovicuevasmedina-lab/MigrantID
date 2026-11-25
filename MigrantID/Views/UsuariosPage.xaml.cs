@@ -9,12 +9,16 @@ public partial class UsuariosPage : ContentPage
     private readonly MigrantIDService _servicio =
         MigrantIDService.Instancia;
 
+    // CONSTRUCTOR
+
     public UsuariosPage()
     {
         InitializeComponent();
 
         UsuariosCollection.ItemsSource = _servicio.Usuarios;
     }
+
+    // MOSTRAR USUARIOS REGISTRADOS
 
     protected override void OnAppearing()
     {
@@ -28,24 +32,36 @@ public partial class UsuariosPage : ContentPage
         UsuariosCollection.ItemsSource = _servicio.Usuarios;
     }
 
-    private async void OnAgregarClicked(object sender, EventArgs e)
+    // AGREGAR NUEVO USUARIO
+
+    private async void OnAgregarClicked(
+        object? sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//usuario-form?id=0");
+        await Shell.Current.GoToAsync(
+            "//usuario-form?id=0");
     }
 
-    private async void OnEditarClicked(object sender, EventArgs e)
+    // EDITAR USUARIO EXISTENTE
+
+    private async void OnEditarClicked(
+        object? sender, EventArgs e)
     {
         if (sender is not Button boton ||
             boton.CommandParameter is not Usuario usuario)
         {
             return;
         }
+
+        // Abrir el formulario enviando el ID del usuario.
 
         await Shell.Current.GoToAsync(
             $"//usuario-form?id={usuario.IdUsuario}");
     }
 
-    private async void OnEliminarClicked(object sender, EventArgs e)
+    // ELIMINAR USUARIO
+
+    private async void OnEliminarClicked(
+        object? sender, EventArgs e)
     {
         if (sender is not Button boton ||
             boton.CommandParameter is not Usuario usuario)
@@ -53,24 +69,39 @@ public partial class UsuariosPage : ContentPage
             return;
         }
 
+        // Solicitar confirmación antes de eliminar.
+
         bool confirmar = await DisplayAlertAsync(
             "Eliminar usuario",
-            $"¿Deseas eliminar a {usuario.Nombre}?",
+            $"¿Estás seguro de eliminar a {usuario.Nombre}?",
             "Sí, eliminar",
             "Cancelar");
 
         if (!confirmar)
+        {
             return;
+        }
+
+        // Eliminar mediante el servicio.
 
         bool eliminado = _servicio.EliminarUsuario(
             usuario.IdUsuario);
 
-        if (!eliminado)
-            return;
+        if (eliminado)
+        {
+            await DisplayAlertAsync(
+                "Usuario eliminado",
+                "El usuario fue eliminado correctamente.",
+                "Aceptar");
 
-        await DisplayAlertAsync(
-            "Usuario eliminado",
-            "El usuario fue eliminado correctamente.",
-            "Aceptar");
+            CargarUsuarios();
+        }
+        else
+        {
+            await DisplayAlertAsync(
+                "Error",
+                "No se encontró el usuario seleccionado.",
+                "Aceptar");
+        }
     }
 }

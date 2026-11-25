@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MigrantID.Views.SolicitudFormPage"
-    Title="Registrar solicitud"
+    Title="{Binding TituloPagina}"
     BackgroundColor="#F7F4FC">
 
     <ScrollView>
@@ -13,18 +13,14 @@
             Padding="20,20,20,28"
             Spacing="14">
 
-            <!-- ENCABEZADO -->
-
             <Label
-                Text="Registrar solicitud de orientación"
+                Text="{Binding TituloPagina}"
                 Style="{StaticResource HeaderLabel}"
                 TextColor="#512478" />
 
             <Label
                 Text="Completa los datos de la solicitud."
                 Style="{StaticResource SubheaderLabel}" />
-
-            <!-- FORMULARIO -->
 
             <Border
                 Style="{StaticResource Card}"
@@ -57,15 +53,17 @@
                                 TargetType="Label"
                                 Binding="{Binding UsuarioError}"
                                 Value="">
+
                                 <Setter
                                     Property="IsVisible"
                                     Value="False" />
+
                             </DataTrigger>
                         </Label.Triggers>
 
                     </Label>
 
-                    <!-- TEMA DE LA SOLICITUD -->
+                    <!-- TEMA -->
 
                     <Label
                         Text="Tema de la solicitud"
@@ -89,15 +87,17 @@
                                 TargetType="Label"
                                 Binding="{Binding TemaError}"
                                 Value="">
+
                                 <Setter
                                     Property="IsVisible"
                                     Value="False" />
+
                             </DataTrigger>
                         </Label.Triggers>
 
                     </Label>
 
-                    <!-- DESCRIPCION -->
+                    <!-- DESCRIPCIÓN -->
 
                     <Label
                         Text="Descripción"
@@ -122,9 +122,11 @@
                                 TargetType="Label"
                                 Binding="{Binding DescripcionError}"
                                 Value="">
+
                                 <Setter
                                     Property="IsVisible"
                                     Value="False" />
+
                             </DataTrigger>
                         </Label.Triggers>
 
@@ -134,7 +136,7 @@
 
             </Border>
 
-            <!-- BOTON GUARDAR -->
+            <!-- GUARDAR -->
 
             <Button
                 Text="GUARDAR SOLICITUD"
@@ -143,7 +145,19 @@
                 TextColor="White"
                 Command="{Binding GuardarCommand}" />
 
-            <!-- BOTON CANCELAR -->
+            <!-- ELIMINAR -->
+
+            <Button
+                Text="ELIMINAR SOLICITUD"
+                BackgroundColor="#B42318"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="10"
+                HeightRequest="48"
+                IsVisible="{Binding ModoEditar}"
+                Command="{Binding EliminarCommand}" />
+
+            <!-- CANCELAR -->
 
             <Button
                 Text="CANCELAR"

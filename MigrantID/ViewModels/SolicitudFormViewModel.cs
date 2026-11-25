@@ -1,23 +1,30 @@
 ﻿
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MigrantID.Models;
 using MigrantID.Services;
+using Microsoft.Maui.Controls;
 
 namespace MigrantID.ViewModels;
 
-public partial class SolicitudFormViewModel : ObservableObject
+public partial class SolicitudFormViewModel :
+    ObservableObject, IQueryAttributable
 {
     private readonly MigrantIDService _servicio =
         MigrantIDService.Instancia;
+
+    private int _idEditando;
 
     
     public ObservableCollection<Usuario> UsuariosDisponibles
     { get; } = new();
 
-    // TEMAS DISPONIBLES
-
+    
     public string[] TemasDisponibles { get; } =
     {
         "Información migratoria",
@@ -26,8 +33,15 @@ public partial class SolicitudFormViewModel : ObservableObject
         "Otra orientación"
     };
 
-    // PROPIEDADES DEL FORMULARIO
+    
+    [ObservableProperty]
+    private bool modoEditar;
 
+    [ObservableProperty]
+    private string tituloPagina =
+        "Registrar solicitud de orientación";
+
+    
     [ObservableProperty]
     private Usuario? usuarioSeleccionado;
 
@@ -37,8 +51,7 @@ public partial class SolicitudFormViewModel : ObservableObject
     [ObservableProperty]
     private string descripcion = string.Empty;
 
-    // MENSAJES DE VALIDACIÓN
-
+    
     [ObservableProperty]
     private string usuarioError = string.Empty;
 
@@ -48,8 +61,8 @@ public partial class SolicitudFormViewModel : ObservableObject
     [ObservableProperty]
     private string descripcionError = string.Empty;
 
-    // ELIMINAR ERRORES AL CORREGIR CAMPOS
 
+    
     partial void OnUsuarioSeleccionadoChanged(Usuario? value)
     {
         UsuarioError = string.Empty;
@@ -65,30 +78,110 @@ public partial class SolicitudFormViewModel : ObservableObject
         DescripcionError = string.Empty;
     }
 
-    // CARGAR USUARIOS REGISTRADOS
 
+    
     public void CargarFormulario()
     {
+        int? idSeleccionado =
+            UsuarioSeleccionado?.IdUsuario;
+
         UsuariosDisponibles.Clear();
 
-        foreach (Usuario usuario in _servicio.Usuarios)
+        foreach (var usuario in _servicio.Usuarios)
         {
             UsuariosDisponibles.Add(usuario);
         }
 
-        LimpiarFormulario();
+        if (idSeleccionado.HasValue)
+        {
+            UsuarioSeleccionado =
+                UsuariosDisponibles.FirstOrDefault(
+                    x => x.IdUsuario == idSeleccionado.Value);
+        }
     }
 
-    // VALIDACIONES INDIVIDUALES
 
+    public void ApplyQueryAttributes(
+        IDictionary<string, object> query)
+    {
+        CargarFormulario();
+
+        if (query.TryGetValue("id", out var valor) &&
+            int.TryParse(valor?.ToString(), out int id) &&
+            id > 0)
+        {
+            var solicitud =
+                _servicio.ObtenerSolicitudPorId(id);
+
+            if (solicitud is not null)
+            {
+                CargarDesde(solicitud);
+                return;
+            }
+        }
+
+        PrepararNueva();
+    }
+
+
+    
+    private void CargarDesde(SolicitudOrientacion solicitud)
+    {
+        _idEditando = solicitud.IdSolicitud;
+
+        ModoEditar = true;
+
+        TituloPagina =
+            "Editar solicitud de orientación";
+
+        UsuarioSeleccionado =
+            UsuariosDisponibles.FirstOrDefault(
+                x => x.IdUsuario == solicitud.IdUsuario);
+
+        TemaSeleccionado = solicitud.Tema;
+        Descripcion = solicitud.Descripcion;
+
+        LimpiarErrores();
+    }
+
+
+    
+    private void PrepararNueva()
+    {
+        _idEditando = 0;
+        ModoEditar = false;
+
+        TituloPagina =
+            "Registrar solicitud de orientación";
+
+        UsuarioSeleccionado = null;
+        TemaSeleccionado = null;
+        Descripcion = string.Empty;
+
+        LimpiarErrores();
+    }
+
+
+    
+    private void LimpiarErrores()
+    {
+        UsuarioError = string.Empty;
+        TemaError = string.Empty;
+        DescripcionError = string.Empty;
+    }
+
+
+    
     private bool ValidarFormulario()
     {
         LimpiarErrores();
 
-        if (UsuarioSeleccionado == null)
+        if (UsuarioSeleccionado is null ||
+            _servicio.ObtenerUsuarioPorId(
+                UsuarioSeleccionado.IdUsuario) is null)
         {
             UsuarioError =
-                "Debe seleccionar un usuario.";
+                "Debe seleccionar un usuario válido.";
         }
 
         if (string.IsNullOrWhiteSpace(TemaSeleccionado))
@@ -111,73 +204,121 @@ public partial class SolicitudFormViewModel : ObservableObject
         }.All(string.IsNullOrEmpty);
     }
 
-    // GUARDAR SOLICITUD
 
+    
     [RelayCommand]
     private async Task GuardarAsync()
     {
         if (!ValidarFormulario())
-            return;
-
-        SolicitudOrientacion nuevaSolicitud = new()
         {
-            IdUsuario =
-                UsuarioSeleccionado!.IdUsuario,
+            return;
+        }
 
-            Tema =
-                TemaSeleccionado!,
+        SolicitudOrientacion? anterior = ModoEditar
+            ? _servicio.ObtenerSolicitudPorId(_idEditando)
+            : null;
 
-            Descripcion =
-                Descripcion.Trim(),
+        if (ModoEditar && anterior is null)
+        {
+            await Shell.Current.DisplayAlertAsync(
+                "No encontrada",
+                "La solicitud que intentas editar ya no existe.",
+                "Aceptar");
+
+            return;
+        }
+
+        SolicitudOrientacion registro = new()
+        {
+            IdSolicitud = _idEditando,
+            IdUsuario = UsuarioSeleccionado!.IdUsuario,
+            Tema = TemaSeleccionado!,
+            Descripcion = Descripcion.Trim(),
 
             FechaSolicitud =
-                DateTime.Now,
+                anterior?.FechaSolicitud ?? DateTime.Now,
 
             Estado =
-                "Pendiente"
+                anterior?.Estado ?? "Pendiente"
         };
 
-        _servicio.AgregarSolicitud(nuevaSolicitud);
+        bool editar = ModoEditar;
+
+        if (editar)
+        {
+            if (!_servicio.ActualizarSolicitud(registro))
+            {
+                return;
+            }
+        }
+        else
+        {
+            _servicio.AgregarSolicitud(registro);
+        }
 
         await Shell.Current.DisplayAlertAsync(
-            "Registro exitoso",
-            "La solicitud fue registrada correctamente.",
+            "Operación completada",
+            editar
+                ? "Solicitud actualizada correctamente."
+                : "Solicitud registrada correctamente.",
             "Aceptar");
 
-        LimpiarFormulario();
+        PrepararNueva();
 
         await Shell.Current.GoToAsync(
             "//solicitudes/lista-solicitudes");
     }
 
-    // CANCELAR
 
+   
+    [RelayCommand]
+    private async Task EliminarAsync()
+    {
+        if (!ModoEditar)
+        {
+            return;
+        }
+
+        bool confirmar = await Shell.Current.DisplayAlertAsync(
+            "Eliminar solicitud",
+            "¿Deseas eliminar esta solicitud?",
+            "Sí, eliminar",
+            "Cancelar");
+
+        if (!confirmar)
+        {
+            return;
+        }
+
+        if (!_servicio.EliminarSolicitud(_idEditando))
+        {
+            await Shell.Current.DisplayAlertAsync(
+                "No encontrada",
+                "La solicitud ya no existe.",
+                "Aceptar");
+
+            return;
+        }
+
+        await Shell.Current.DisplayAlertAsync(
+            "Solicitud eliminada",
+            "El registro fue eliminado correctamente.",
+            "Aceptar");
+
+        PrepararNueva();
+
+        await Shell.Current.GoToAsync(
+            "//solicitudes/lista-solicitudes");
+    }
+
+
+ 
     [RelayCommand]
     private async Task CancelarAsync()
     {
-        LimpiarFormulario();
+        PrepararNueva();
 
         await Shell.Current.GoToAsync(
             "//solicitudes/lista-solicitudes");
-    }
-
-    // LIMPIAR MENSAJES DE ERROR
-
-    private void LimpiarErrores()
-    {
-        UsuarioError = string.Empty;
-        TemaError = string.Empty;
-        DescripcionError = string.Empty;
-    }
-
-    // LIMPIAR FORMULARIO
-
-    private void LimpiarFormulario()
-    {
-        UsuarioSeleccionado = null;
-        TemaSeleccionado = null;
-        Descripcion = string.Empty;
-
-        LimpiarErrores();
     }
 }

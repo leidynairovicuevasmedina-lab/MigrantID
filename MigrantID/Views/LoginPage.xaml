@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
+
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -7,16 +8,29 @@
     BackgroundColor="#F4F7FA">
 
     <ScrollView>
+
         <VerticalStackLayout
             Padding="30"
             Spacing="18"
             VerticalOptions="Center">
 
+            <!-- LOGOTIPO MIGRANTID -->
+
+            <Image
+                Source="migrantid_logo.png"
+                HeightRequest="150"
+                WidthRequest="230"
+                Aspect="AspectFit"
+                HorizontalOptions="Center"
+                Margin="0,10,0,0" />
+
+            <!-- NOMBRE DE LA APLICACIÓN -->
+
             <Label
                 Text="MigrantID RD"
                 FontSize="32"
                 FontAttributes="Bold"
-                TextColor="#123B5D"
+                TextColor="#512478"
                 HorizontalOptions="Center" />
 
             <Label
@@ -26,9 +40,11 @@
                 HorizontalTextAlignment="Center"
                 Margin="0,0,0,20" />
 
+            <!-- TARJETA DE INICIO DE SESIÓN -->
+
             <Border
                 BackgroundColor="White"
-                Stroke="#D9E2EA"
+                Stroke="#DDD3EF"
                 StrokeThickness="1"
                 Padding="22">
 
@@ -42,12 +58,14 @@
                         Text="Bienvenido"
                         FontSize="22"
                         FontAttributes="Bold"
-                        TextColor="#123B5D" />
+                        TextColor="#512478" />
 
                     <Label
                         Text="Ingresa tus datos para acceder al sistema"
                         FontSize="14"
                         TextColor="#687783" />
+
+                    <!-- CORREO ELECTRÓNICO -->
 
                     <Entry
                         x:Name="CorreoEntry"
@@ -55,11 +73,15 @@
                         Keyboard="Email"
                         HeightRequest="50" />
 
+                    <!-- CONTRASEÑA -->
+
                     <Entry
                         x:Name="ContrasenaEntry"
                         Placeholder="Contraseña"
                         IsPassword="True"
                         HeightRequest="50" />
+
+                    <!-- MENSAJE DE ERROR -->
 
                     <Label
                         x:Name="MensajeErrorLabel"
@@ -68,9 +90,11 @@
                         TextColor="#B42318"
                         IsVisible="False" />
 
+                    <!-- BOTÓN DE ACCESO -->
+
                     <Button
                         Text="INICIAR SESIÓN"
-                        BackgroundColor="#176B87"
+                        BackgroundColor="#673AB7"
                         TextColor="White"
                         FontAttributes="Bold"
                         HeightRequest="50"
@@ -79,15 +103,11 @@
                         Clicked="OnLoginClicked" />
 
                 </VerticalStackLayout>
+
             </Border>
 
-            <Label
-                Text=""
-                FontSize="12"
-                TextColor="#89949E"
-                HorizontalOptions="Center"
-                Margin="0,10,0,0" />
-
         </VerticalStackLayout>
+
     </ScrollView>
+
 </ContentPage>

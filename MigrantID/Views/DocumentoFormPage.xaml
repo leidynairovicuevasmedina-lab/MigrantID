@@ -13,8 +13,7 @@
             Padding="20,20,20,28"
             Spacing="14">
 
-            <!-- ENCABEZADO -->
-
+            
             <Label
                 Text="{Binding Titulo}"
                 Style="{StaticResource HeaderLabel}"
@@ -24,16 +23,14 @@
                 Text="Completa la información del documento."
                 Style="{StaticResource SubheaderLabel}" />
 
-            <!-- FORMULARIO -->
-
+            
             <Border
                 Style="{StaticResource Card}"
                 Stroke="#DDD3EF">
 
                 <VerticalStackLayout Spacing="10">
 
-                    <!-- TIPO DE DOCUMENTO -->
-
+                    
                     <Label
                         Text="Tipo de documento"
                         Style="{StaticResource FormLabel}"
@@ -63,8 +60,7 @@
 
                     </Label>
 
-                    <!-- NUMERO DE DOCUMENTO -->
-
+                    
                     <Label
                         Text="Número de documento"
                         Style="{StaticResource FormLabel}"
@@ -93,8 +89,7 @@
 
                     </Label>
 
-                    <!-- PAIS DE EMISION -->
-
+                    
                     <Label
                         Text="País de emisión"
                         Style="{StaticResource FormLabel}"
@@ -124,8 +119,7 @@
 
                     </Label>
 
-                    <!-- FECHA DE EMISION -->
-
+                    
                     <Label
                         Text="Fecha de emisión"
                         Style="{StaticResource FormLabel}"
@@ -154,8 +148,7 @@
 
                     </Label>
 
-                    <!-- FECHA DE VENCIMIENTO -->
-
+                    
                     <Label
                         Text="Fecha de vencimiento"
                         Style="{StaticResource FormLabel}"
@@ -184,8 +177,7 @@
 
                     </Label>
 
-                    <!-- ESTADO -->
-
+                    
                     <Label
                         Text="Estado"
                         Style="{StaticResource FormLabel}"
@@ -219,8 +211,7 @@
 
             </Border>
 
-            <!-- GUARDAR -->
-
+            
             <Button
                 Text="GUARDAR"
                 Style="{StaticResource PrimaryButton}"
@@ -228,8 +219,7 @@
                 TextColor="White"
                 Command="{Binding GuardarCommand}" />
 
-            <!-- CANCELAR -->
-
+            
             <Button
                 Text="CANCELAR"
                 Style="{StaticResource SecondaryButton}"

@@ -3,6 +3,7 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:MigrantID.Models"
     x:Class="MigrantID.Views.SolicitudesPage"
     Title="Solicitudes de orientación"
     BackgroundColor="#F4F7FA">
@@ -23,7 +24,7 @@
                 Style="{StaticResource ListTitle}" />
 
             <Label
-                Text="Consulta las solicitudes registradas."
+                Text="Consulta, edita o elimina las solicitudes."
                 Style="{StaticResource SubheaderLabel}" />
 
         </VerticalStackLayout>
@@ -34,8 +35,6 @@
             x:Name="SolicitudesCollection"
             Grid.Row="1"
             SelectionMode="None">
-
-            <!-- MENSAJE CUANDO NO HAY REGISTROS -->
 
             <CollectionView.EmptyView>
 
@@ -49,7 +48,7 @@
                         Text="No hay solicitudes registradas"
                         FontSize="18"
                         FontAttributes="Bold"
-                        TextColor="red"
+                        TextColor="Red"
                         HorizontalTextAlignment="Center" />
 
                     <Label
@@ -60,11 +59,9 @@
 
             </CollectionView.EmptyView>
 
-            <!-- TARJETAS DE SOLICITUDES -->
-
             <CollectionView.ItemTemplate>
 
-                <DataTemplate>
+                <DataTemplate x:DataType="models:SolicitudOrientacion">
 
                     <Border
                         Style="{StaticResource Card}"
@@ -102,8 +99,7 @@
                                 TextColor="#66788A" />
 
                             <Label
-                                Text="{Binding FechaSolicitud,
-                                       StringFormat='{0:dd/MM/yyyy}'}"
+                                Text="{Binding FechaSolicitud, StringFormat='{0:dd/MM/yyyy}'}"
                                 FontSize="14"
                                 TextColor="#26465F" />
 
@@ -120,6 +116,31 @@
                                 FontAttributes="Bold"
                                 TextColor="#176B87" />
 
+                            <!-- BOTONES CRUD -->
+
+                            <Grid
+                                ColumnDefinitions="*,*"
+                                ColumnSpacing="10"
+                                Margin="0,8,0,0">
+
+                                <Button
+                                    Grid.Column="0"
+                                    Text="EDITAR"
+                                    BackgroundColor="#673AB7"
+                                    TextColor="White"
+                                    CommandParameter="{Binding .}"
+                                    Clicked="OnEditarClicked" />
+
+                                <Button
+                                    Grid.Column="1"
+                                    Text="ELIMINAR"
+                                    BackgroundColor="#B42318"
+                                    TextColor="White"
+                                    CommandParameter="{Binding .}"
+                                    Clicked="OnEliminarClicked" />
+
+                            </Grid>
+
                         </VerticalStackLayout>
 
                     </Border>
@@ -130,7 +151,7 @@
 
         </CollectionView>
 
-        <!-- BOTÓN AGREGAR -->
+        <!-- AGREGAR -->
 
         <Button
             Grid.Row="2"

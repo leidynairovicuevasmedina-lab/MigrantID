@@ -15,6 +15,8 @@
             Padding="20,20,20,28"
             Spacing="14">
 
+            <!-- ENCABEZADO -->
+
             <Label
                 Text="{Binding TituloPagina}"
                 Style="{StaticResource HeaderLabel}"
@@ -24,11 +26,15 @@
                 Text="Completa la información del usuario."
                 Style="{StaticResource SubheaderLabel}" />
 
+            <!-- FORMULARIO -->
+
             <Border
                 Style="{StaticResource Card}"
                 Stroke="#DDD3EF">
 
                 <VerticalStackLayout Spacing="10">
+
+                    <!-- NOMBRE COMPLETO -->
 
                     <Label
                         Text="Nombre completo"
@@ -52,13 +58,17 @@
                                 TargetType="Label"
                                 Binding="{Binding NombreError}"
                                 Value="">
+
                                 <Setter
                                     Property="IsVisible"
                                     Value="False" />
+
                             </DataTrigger>
                         </Label.Triggers>
 
                     </Label>
+
+                    <!-- CORREO ELECTRÓNICO -->
 
                     <Label
                         Text="Correo electrónico"
@@ -82,13 +92,17 @@
                                 TargetType="Label"
                                 Binding="{Binding CorreoError}"
                                 Value="">
+
                                 <Setter
                                     Property="IsVisible"
                                     Value="False" />
+
                             </DataTrigger>
                         </Label.Triggers>
 
                     </Label>
+
+                    <!-- ROL DEL USUARIO -->
 
                     <Label
                         Text="Rol"
@@ -112,9 +126,11 @@
                                 TargetType="Label"
                                 Binding="{Binding RolError}"
                                 Value="">
+
                                 <Setter
                                     Property="IsVisible"
                                     Value="False" />
+
                             </DataTrigger>
                         </Label.Triggers>
 
@@ -124,12 +140,16 @@
 
             </Border>
 
+            <!-- GUARDAR O ACTUALIZAR -->
+
             <Button
                 Text="GUARDAR USUARIO"
                 Style="{StaticResource PrimaryButton}"
                 BackgroundColor="#673AB7"
                 TextColor="White"
                 Command="{Binding GuardarCommand}" />
+
+            <!-- ELIMINAR: SOLO EN MODO EDICIÓN -->
 
             <Button
                 Text="ELIMINAR USUARIO"
@@ -140,6 +160,8 @@
                 HeightRequest="48"
                 Command="{Binding EliminarCommand}"
                 IsVisible="{Binding ModoEditar}" />
+
+            <!-- CANCELAR -->
 
             <Button
                 Text="CANCELAR"

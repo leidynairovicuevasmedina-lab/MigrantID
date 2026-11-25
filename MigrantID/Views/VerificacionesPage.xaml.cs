@@ -1,4 +1,5 @@
 
+using System;
 using MigrantID.Models;
 using MigrantID.Services;
 
@@ -17,28 +18,29 @@ public partial class VerificacionesPage : ContentPage
             _servicio.Verificaciones;
     }
 
+    // CARGAR VERIFICACIONES
+
     protected override void OnAppearing()
     {
         base.OnAppearing();
 
-        CargarVerificaciones();
-    }
-
-    private void CargarVerificaciones()
-    {
         VerificacionesCollection.ItemsSource =
             _servicio.Verificaciones;
     }
 
+    // AGREGAR
+
     private async void OnAgregarClicked(
-        object sender, EventArgs e)
+        object? sender, EventArgs e)
     {
         await Shell.Current.GoToAsync(
             "//verificacion-form?id=0");
     }
 
+    // EDITAR
+
     private async void OnEditarClicked(
-        object sender, EventArgs e)
+        object? sender, EventArgs e)
     {
         if (sender is not Button boton ||
             boton.CommandParameter is not Verificacion verificacion)
@@ -50,8 +52,10 @@ public partial class VerificacionesPage : ContentPage
             $"//verificacion-form?id={verificacion.IdVerificacion}");
     }
 
+    // ELIMINAR
+
     private async void OnEliminarClicked(
-        object sender, EventArgs e)
+        object? sender, EventArgs e)
     {
         if (sender is not Button boton ||
             boton.CommandParameter is not Verificacion verificacion)
@@ -66,24 +70,24 @@ public partial class VerificacionesPage : ContentPage
             "Cancelar");
 
         if (!confirmar)
-            return;
-
-        bool eliminado = _servicio.EliminarVerificacion(
-            verificacion.IdVerificacion);
-
-        if (!eliminado)
         {
-            await DisplayAlertAsync(
-                "Error",
-                "No se encontró la verificación.",
-                "Aceptar");
-
             return;
         }
 
-        await DisplayAlertAsync(
-            "Verificación eliminada",
-            "La verificación fue eliminada correctamente.",
-            "Aceptar");
+        if (_servicio.EliminarVerificacion(
+            verificacion.IdVerificacion))
+        {
+            await DisplayAlertAsync(
+                "Verificación eliminada",
+                "El registro fue eliminado correctamente.",
+                "Aceptar");
+        }
+        else
+        {
+            await DisplayAlertAsync(
+                "No encontrada",
+                "La verificación ya no existe.",
+                "Aceptar");
+        }
     }
 }

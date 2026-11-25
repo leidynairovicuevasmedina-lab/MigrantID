@@ -1,25 +1,24 @@
 ﻿
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MigrantID.Models;
 using MigrantID.Services;
+using Microsoft.Maui.Controls;
 
 namespace MigrantID.ViewModels;
 
-public partial class VerificacionFormViewModel : ObservableObject, IQueryAttributable
+public partial class VerificacionFormViewModel :
+    ObservableObject, IQueryAttributable
 {
     private readonly MigrantIDService _servicio =
         MigrantIDService.Instancia;
 
     private int _idEditando;
-
-    [ObservableProperty]
-    private bool modoEditar;
-
-    [ObservableProperty]
-    private string tituloPagina = "Registrar verificación";
 
     public ObservableCollection<Documento> DocumentosDisponibles
     { get; } = new();
@@ -31,6 +30,15 @@ public partial class VerificacionFormViewModel : ObservableObject, IQueryAttribu
         "Requiere revisión"
     };
 
+    
+
+    [ObservableProperty]
+    private bool modoEditar;
+
+    [ObservableProperty]
+    private string tituloPagina = "Registrar verificación";
+
+    
     [ObservableProperty]
     private Documento? documentoSeleccionado;
 
@@ -43,6 +51,7 @@ public partial class VerificacionFormViewModel : ObservableObject, IQueryAttribu
     [ObservableProperty]
     private string observacion = string.Empty;
 
+    
     [ObservableProperty]
     private string documentoError = string.Empty;
 
@@ -55,6 +64,50 @@ public partial class VerificacionFormViewModel : ObservableObject, IQueryAttribu
     [ObservableProperty]
     private string observacionError = string.Empty;
 
+        
+    partial void OnDocumentoSeleccionadoChanged(Documento? value)
+    {
+        DocumentoError = string.Empty;
+    }
+
+    partial void OnFechaVerificacionChanged(DateTime value)
+    {
+        FechaVerificacionError = string.Empty;
+    }
+
+    partial void OnResultadoSeleccionadoChanged(string? value)
+    {
+        ResultadoError = string.Empty;
+    }
+
+    partial void OnObservacionChanged(string value)
+    {
+        ObservacionError = string.Empty;
+    }
+
+
+    
+    public void CargarFormulario()
+    {
+        int? idSeleccionado = DocumentoSeleccionado?.IdDocumento;
+
+        DocumentosDisponibles.Clear();
+
+        foreach (var documento in _servicio.ObtenerDocumentos())
+        {
+            DocumentosDisponibles.Add(documento);
+        }
+
+        if (idSeleccionado.HasValue)
+        {
+            DocumentoSeleccionado =
+                DocumentosDisponibles.FirstOrDefault(
+                    x => x.IdDocumento == idSeleccionado.Value);
+        }
+    }
+
+
+    
     public void ApplyQueryAttributes(
         IDictionary<string, object> query)
     {
@@ -64,40 +117,22 @@ public partial class VerificacionFormViewModel : ObservableObject, IQueryAttribu
             int.TryParse(valor?.ToString(), out int id) &&
             id > 0)
         {
-            Verificacion? verificacion =
+            var verificacion =
                 _servicio.ObtenerVerificacionPorId(id);
 
-            if (verificacion != null)
+            if (verificacion is not null)
             {
-                CargarVerificacion(verificacion);
+                CargarDesde(verificacion);
                 return;
             }
         }
 
-        LimpiarFormulario();
+        PrepararNuevo();
     }
 
-    public void CargarFormulario()
-    {
-        int? idDocumento =
-            DocumentoSeleccionado?.IdDocumento;
 
-        DocumentosDisponibles.Clear();
-
-        foreach (Documento documento in _servicio.Documentos)
-        {
-            DocumentosDisponibles.Add(documento);
-        }
-
-        if (idDocumento.HasValue)
-        {
-            DocumentoSeleccionado =
-                DocumentosDisponibles.FirstOrDefault(
-                    x => x.IdDocumento == idDocumento.Value);
-        }
-    }
-
-    private void CargarVerificacion(Verificacion verificacion)
+    
+    private void CargarDesde(Verificacion verificacion)
     {
         _idEditando = verificacion.IdVerificacion;
 
@@ -115,38 +150,45 @@ public partial class VerificacionFormViewModel : ObservableObject, IQueryAttribu
         LimpiarErrores();
     }
 
-    partial void OnDocumentoSeleccionadoChanged(
-        Documento? value)
+
+    
+    private void PrepararNuevo()
+    {
+        _idEditando = 0;
+        ModoEditar = false;
+
+        TituloPagina = "Registrar verificación";
+
+        DocumentoSeleccionado = null;
+        FechaVerificacion = DateTime.Today;
+        ResultadoSeleccionado = null;
+        Observacion = string.Empty;
+
+        LimpiarErrores();
+    }
+
+
+    
+    private void LimpiarErrores()
     {
         DocumentoError = string.Empty;
-    }
-
-    partial void OnFechaVerificacionChanged(
-        DateTime value)
-    {
         FechaVerificacionError = string.Empty;
-    }
-
-    partial void OnResultadoSeleccionadoChanged(
-        string? value)
-    {
         ResultadoError = string.Empty;
-    }
-
-    partial void OnObservacionChanged(
-        string value)
-    {
         ObservacionError = string.Empty;
     }
 
+
+    
     private bool ValidarFormulario()
     {
         LimpiarErrores();
 
-        if (DocumentoSeleccionado == null)
+        if (DocumentoSeleccionado is null ||
+            _servicio.ObtenerDocumentoPorId(
+                DocumentoSeleccionado.IdDocumento) is null)
         {
             DocumentoError =
-                "Debe seleccionar un documento.";
+                "Debe seleccionar un documento válido.";
         }
 
         if (FechaVerificacion.Date > DateTime.Today)
@@ -176,13 +218,26 @@ public partial class VerificacionFormViewModel : ObservableObject, IQueryAttribu
         }.All(string.IsNullOrEmpty);
     }
 
+
+    
     [RelayCommand]
     private async Task GuardarAsync()
     {
         if (!ValidarFormulario())
             return;
 
-        Verificacion verificacion = new()
+        if (ModoEditar &&
+            _servicio.ObtenerVerificacionPorId(_idEditando) is null)
+        {
+            await Shell.Current.DisplayAlertAsync(
+                "No encontrada",
+                "La verificación que intentas editar ya no existe.",
+                "Aceptar");
+
+            return;
+        }
+
+        Verificacion registro = new()
         {
             IdVerificacion = _idEditando,
             IdDocumento = DocumentoSeleccionado!.IdDocumento,
@@ -191,41 +246,33 @@ public partial class VerificacionFormViewModel : ObservableObject, IQueryAttribu
             Observacion = Observacion.Trim()
         };
 
-        bool actualizando = ModoEditar;
+        bool editar = ModoEditar;
 
-        if (actualizando)
+        if (editar)
         {
-            bool actualizado =
-                _servicio.ActualizarVerificacion(verificacion);
-
-            if (!actualizado)
-            {
-                await Shell.Current.DisplayAlertAsync(
-                    "Error",
-                    "No se encontró la verificación.",
-                    "Aceptar");
-
+            if (!_servicio.ActualizarVerificacion(registro))
                 return;
-            }
         }
         else
         {
-            _servicio.AgregarVerificacion(verificacion);
+            _servicio.AgregarVerificacion(registro);
         }
 
         await Shell.Current.DisplayAlertAsync(
             "Operación completada",
-            actualizando
-                ? "La verificación fue actualizada correctamente."
-                : "La verificación fue registrada correctamente.",
+            editar
+                ? "Verificación actualizada correctamente."
+                : "Verificación registrada correctamente.",
             "Aceptar");
 
-        LimpiarFormulario();
+        PrepararNuevo();
 
         await Shell.Current.GoToAsync(
             "//verificaciones/lista-verificaciones");
     }
 
+
+   
     [RelayCommand]
     private async Task EliminarAsync()
     {
@@ -241,59 +288,35 @@ public partial class VerificacionFormViewModel : ObservableObject, IQueryAttribu
         if (!confirmar)
             return;
 
-        bool eliminado =
-            _servicio.EliminarVerificacion(_idEditando);
-
-        if (!eliminado)
+        if (!_servicio.EliminarVerificacion(_idEditando))
         {
             await Shell.Current.DisplayAlertAsync(
-                "Error",
-                "No se encontró la verificación.",
+                "No encontrada",
+                "La verificación ya no existe.",
                 "Aceptar");
 
             return;
         }
 
-        LimpiarFormulario();
-
         await Shell.Current.DisplayAlertAsync(
-            "Verificación eliminada",
-            "La verificación fue eliminada correctamente.",
+            "Eliminada",
+            "Verificación eliminada correctamente.",
             "Aceptar");
+
+        PrepararNuevo();
 
         await Shell.Current.GoToAsync(
             "//verificaciones/lista-verificaciones");
     }
 
+
+    
     [RelayCommand]
     private async Task CancelarAsync()
     {
-        LimpiarFormulario();
+        PrepararNuevo();
 
         await Shell.Current.GoToAsync(
             "//verificaciones/lista-verificaciones");
-    }
-
-    private void LimpiarErrores()
-    {
-        DocumentoError = string.Empty;
-        FechaVerificacionError = string.Empty;
-        ResultadoError = string.Empty;
-        ObservacionError = string.Empty;
-    }
-
-    private void LimpiarFormulario()
-    {
-        _idEditando = 0;
-
-        ModoEditar = false;
-        TituloPagina = "Registrar verificación";
-
-        DocumentoSeleccionado = null;
-        FechaVerificacion = DateTime.Today;
-        ResultadoSeleccionado = null;
-        Observacion = string.Empty;
-
-        LimpiarErrores();
     }
 }

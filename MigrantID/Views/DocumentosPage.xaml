@@ -12,7 +12,7 @@
         RowDefinitions="Auto,*,Auto"
         RowSpacing="14">
 
-        <!-- ENCABEZADO -->
+        
 
         <VerticalStackLayout
             Grid.Row="0"

@@ -3,6 +3,7 @@
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:MigrantID.Models"
     x:Class="MigrantID.Views.VerificacionesPage"
     Title="Verificaciones"
     BackgroundColor="#F4F7FA">
@@ -11,6 +12,8 @@
         Padding="20"
         RowDefinitions="Auto,*,Auto"
         RowSpacing="14">
+
+        <!-- ENCABEZADO -->
 
         <VerticalStackLayout
             Grid.Row="0"
@@ -21,10 +24,12 @@
                 Style="{StaticResource ListTitle}" />
 
             <Label
-                Text="Consulta y administra las verificaciones realizadas."
+                Text="Consulta, edita o elimina verificaciones."
                 Style="{StaticResource SubheaderLabel}" />
 
         </VerticalStackLayout>
+
+        <!-- LISTADO -->
 
         <CollectionView
             x:Name="VerificacionesCollection"
@@ -56,7 +61,7 @@
 
             <CollectionView.ItemTemplate>
 
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Verificacion">
 
                     <Border
                         Style="{StaticResource Card}"
@@ -71,8 +76,7 @@
                                 TextColor="#66788A" />
 
                             <Label
-                                Text="{Binding IdDocumento,
-                                       StringFormat='ID del documento: {0}'}"
+                                Text="{Binding IdDocumento, StringFormat='ID del documento: {0}'}"
                                 FontSize="17"
                                 FontAttributes="Bold"
                                 TextColor="#173B57" />
@@ -83,8 +87,7 @@
                                 TextColor="#66788A" />
 
                             <Label
-                                Text="{Binding FechaVerificacion,
-                                       StringFormat='{0:dd/MM/yyyy}'}"
+                                Text="{Binding FechaVerificacion, StringFormat='{0:dd/MM/yyyy}'}"
                                 FontSize="14"
                                 TextColor="#26465F" />
 
@@ -110,35 +113,26 @@
                                 TextColor="#26465F"
                                 LineBreakMode="WordWrap" />
 
-                            <BoxView
-                                HeightRequest="1"
-                                Color="#DEE6ED"
-                                Margin="0,6" />
+                            <!-- BOTONES CRUD -->
 
                             <Grid
                                 ColumnDefinitions="*,*"
-                                ColumnSpacing="10">
+                                ColumnSpacing="10"
+                                Margin="0,8,0,0">
 
                                 <Button
                                     Grid.Column="0"
                                     Text="EDITAR"
-                                    Style="{StaticResource PrimaryButton}"
-                                    HeightRequest="44"
-                                    FontSize="13"
+                                    BackgroundColor="#673AB7"
+                                    TextColor="White"
                                     CommandParameter="{Binding .}"
                                     Clicked="OnEditarClicked" />
 
                                 <Button
                                     Grid.Column="1"
                                     Text="ELIMINAR"
-                                    BackgroundColor="#FFF1F1"
-                                    TextColor="#B42318"
-                                    BorderColor="#E8B8B8"
-                                    BorderWidth="1"
-                                    CornerRadius="10"
-                                    HeightRequest="44"
-                                    FontSize="13"
-                                    FontAttributes="Bold"
+                                    BackgroundColor="#B42318"
+                                    TextColor="White"
                                     CommandParameter="{Binding .}"
                                     Clicked="OnEliminarClicked" />
 
@@ -153,6 +147,8 @@
             </CollectionView.ItemTemplate>
 
         </CollectionView>
+
+        <!-- AGREGAR -->
 
         <Button
             Grid.Row="2"

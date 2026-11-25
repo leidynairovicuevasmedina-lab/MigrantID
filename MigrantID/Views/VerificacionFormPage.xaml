@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="MigrantID.Views.VerificacionFormPage"
-    Title="Registrar verificación"
+    Title="{Binding TituloPagina}"
     BackgroundColor="#F7F4FC">
 
     <ScrollView>
@@ -13,9 +13,8 @@
             Padding="20,20,20,28"
             Spacing="14">
 
-            
             <Label
-                Text="Registrar verificación"
+                Text="{Binding TituloPagina}"
                 Style="{StaticResource HeaderLabel}"
                 TextColor="#512478" />
 
@@ -23,13 +22,13 @@
                 Text="Completa los datos de la verificación."
                 Style="{StaticResource SubheaderLabel}" />
 
-         
-            <Border                Style="{StaticResource Card}"
+            <Border
+                Style="{StaticResource Card}"
                 Stroke="#DDD3EF">
 
                 <VerticalStackLayout Spacing="10">
 
-                    
+                    <!-- DOCUMENTO -->
 
                     <Label
                         Text="Documento a verificar"
@@ -64,7 +63,8 @@
 
                     </Label>
 
-                    
+                    <!-- FECHA -->
+
                     <Label
                         Text="Fecha de verificación"
                         Style="{StaticResource FormLabel}"
@@ -96,7 +96,7 @@
 
                     </Label>
 
-                   
+                    <!-- RESULTADO -->
 
                     <Label
                         Text="Resultado"
@@ -130,7 +130,8 @@
 
                     </Label>
 
-                    
+                    <!-- OBSERVACIÓN -->
+
                     <Label
                         Text="Observación"
                         Style="{StaticResource FormLabel}"
@@ -168,7 +169,8 @@
 
             </Border>
 
-         
+            <!-- GUARDAR -->
+
             <Button
                 Text="GUARDAR VERIFICACIÓN"
                 Style="{StaticResource PrimaryButton}"
@@ -176,7 +178,20 @@
                 TextColor="White"
                 Command="{Binding GuardarCommand}" />
 
-       
+            <!-- ELIMINAR -->
+
+            <Button
+                Text="ELIMINAR VERIFICACIÓN"
+                BackgroundColor="#B42318"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="10"
+                HeightRequest="48"
+                Command="{Binding EliminarCommand}"
+                IsVisible="{Binding ModoEditar}" />
+
+            <!-- CANCELAR -->
+
             <Button
                 Text="CANCELAR"
                 Style="{StaticResource SecondaryButton}"

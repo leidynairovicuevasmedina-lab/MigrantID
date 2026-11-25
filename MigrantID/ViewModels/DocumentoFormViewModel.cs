@@ -11,8 +11,7 @@ public partial class DocumentoFormViewModel : ObservableObject
     private readonly MigrantIDService _servicio =
         MigrantIDService.Instancia;
 
-    // Datos del formulario
-
+    
     [ObservableProperty]
     private string titulo = "Registrar documento";
 
@@ -35,7 +34,7 @@ public partial class DocumentoFormViewModel : ObservableObject
     [ObservableProperty]
     private string? estado = "En revisión";
 
-    // Mensajes de error
+    
 
     [ObservableProperty]
     private string tipoDocumentoError = string.Empty;
@@ -55,8 +54,7 @@ public partial class DocumentoFormViewModel : ObservableObject
     [ObservableProperty]
     private string estadoError = string.Empty;
 
-    // Opciones disponibles
-
+    
     public string[] TiposDocumento { get; } =
     {
         "Pasaporte",
@@ -94,8 +92,7 @@ public partial class DocumentoFormViewModel : ObservableObject
         "Vencido"
     };
 
-    // Quitar los errores cuando se modifica un campo
-
+   
     partial void OnTipoDocumentoChanged(string? value)
     {
         TipoDocumentoError = string.Empty;
@@ -127,8 +124,7 @@ public partial class DocumentoFormViewModel : ObservableObject
         EstadoError = string.Empty;
     }
 
-    // Cargar documento nuevo o existente
-
+    
     public void CargarDocumentoEnEdicion()
     {
         Documento? documento =
@@ -151,8 +147,7 @@ public partial class DocumentoFormViewModel : ObservableObject
         LimpiarErrores();
     }
 
-    // Validaciones individuales
-
+   
     private bool ValidarFormulario()
     {
         LimpiarErrores();
@@ -204,8 +199,7 @@ public partial class DocumentoFormViewModel : ObservableObject
         }.All(string.IsNullOrEmpty);
     }
 
-    // Guardar o actualizar
-
+    
     [RelayCommand]
     private async Task GuardarAsync()
     {
@@ -250,8 +244,7 @@ public partial class DocumentoFormViewModel : ObservableObject
             "//documentos/lista-documentos");
     }
 
-    // Cancelar
-
+ 
     [RelayCommand]
     private async Task CancelarAsync()
     {
@@ -263,8 +256,7 @@ public partial class DocumentoFormViewModel : ObservableObject
             "//documentos/lista-documentos");
     }
 
-    // Limpiar errores
-
+   
     private void LimpiarErrores()
     {
         TipoDocumentoError = string.Empty;
@@ -275,8 +267,7 @@ public partial class DocumentoFormViewModel : ObservableObject
         EstadoError = string.Empty;
     }
 
-    // Limpiar formulario
-
+   
     private void LimpiarFormulario()
     {
         Titulo = "Registrar documento";
