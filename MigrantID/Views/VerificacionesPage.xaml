@@ -13,7 +13,6 @@
         RowDefinitions="Auto,*,Auto"
         RowSpacing="14">
 
-      
         <VerticalStackLayout
             Grid.Row="0"
             Spacing="5">
@@ -23,16 +22,16 @@
                 Style="{StaticResource ListTitle}" />
 
             <Label
-                Text="Consulta, edita o elimina verificaciones."
+                Text="Toca una verificación para editarla."
                 Style="{StaticResource SubheaderLabel}" />
 
         </VerticalStackLayout>
 
-       
         <CollectionView
             x:Name="VerificacionesCollection"
             Grid.Row="1"
-            SelectionMode="None">
+            SelectionMode="Single"
+            SelectionChanged="OnVerificacionSeleccionada">
 
             <CollectionView.EmptyView>
 
@@ -74,7 +73,8 @@
                                 TextColor="#66788A" />
 
                             <Label
-                                Text="{Binding IdDocumento, StringFormat='ID del documento: {0}'}"
+                                Text="{Binding IdDocumento,
+                                       StringFormat='ID del documento: {0}'}"
                                 FontSize="17"
                                 FontAttributes="Bold"
                                 TextColor="#173B57" />
@@ -85,7 +85,8 @@
                                 TextColor="#66788A" />
 
                             <Label
-                                Text="{Binding FechaVerificacion, StringFormat='{0:dd/MM/yyyy}'}"
+                                Text="{Binding FechaVerificacion,
+                                       StringFormat='{0:dd/MM/yyyy}'}"
                                 FontSize="14"
                                 TextColor="#26465F" />
 
@@ -111,7 +112,6 @@
                                 TextColor="#26465F"
                                 LineBreakMode="WordWrap" />
 
-                            
                             <Grid
                                 ColumnDefinitions="*,*"
                                 ColumnSpacing="10"
@@ -135,17 +135,15 @@
 
                             </Grid>
 
-                  </VerticalStackLayout>
+                        </VerticalStackLayout>
 
-            </Border>
+                    </Border>
 
-           </DataTemplate>
+                </DataTemplate>
 
             </CollectionView.ItemTemplate>
 
         </CollectionView>
-
-      
 
         <Button
             Grid.Row="2"

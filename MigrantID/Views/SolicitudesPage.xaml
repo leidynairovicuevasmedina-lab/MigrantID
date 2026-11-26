@@ -13,27 +13,25 @@
         RowDefinitions="Auto,*,Auto"
         RowSpacing="14">
 
-      
-
-      <VerticalStackLayout
-          Grid.Row="0"
-          Spacing="5">
+        <VerticalStackLayout
+            Grid.Row="0"
+            Spacing="5">
 
             <Label
                 Text="Solicitudes de orientación"
                 Style="{StaticResource ListTitle}" />
 
             <Label
-                Text="Consulta, edita o elimina las solicitudes."
+                Text="Toca una solicitud para editarla."
                 Style="{StaticResource SubheaderLabel}" />
 
         </VerticalStackLayout>
 
-       
         <CollectionView
             x:Name="SolicitudesCollection"
             Grid.Row="1"
-            SelectionMode="None">
+            SelectionMode="Single"
+            SelectionChanged="OnSolicitudSeleccionada">
 
             <CollectionView.EmptyView>
 
@@ -69,38 +67,34 @@
 
                         <VerticalStackLayout Spacing="9">
 
-                          
-                    <Label
+                            <Label
                                 Text="{Binding Tema}"
                                 FontSize="18"
                                 FontAttributes="Bold"
                                 TextColor="#173B57" />
 
-                           
-
-                    <Label
+                            <Label
                                 Text="Descripción de la solicitud"
                                 FontSize="12"
                                 TextColor="#66788A" />
 
-                     <Label
+                            <Label
                                 Text="{Binding Descripcion}"
                                 FontSize="14"
                                 TextColor="#26465F"
                                 LineBreakMode="WordWrap" />
 
-                            
                             <Label
                                 Text="Fecha de solicitud"
                                 FontSize="12"
                                 TextColor="#66788A" />
 
                             <Label
-                                Text="{Binding FechaSolicitud, StringFormat='{0:dd/MM/yyyy}'}"
+                                Text="{Binding FechaSolicitud,
+                                       StringFormat='{0:dd/MM/yyyy}'}"
                                 FontSize="14"
                                 TextColor="#26465F" />
 
-                           
                             <Label
                                 Text="Estado"
                                 FontSize="12"
@@ -112,7 +106,6 @@
                                 FontAttributes="Bold"
                                 TextColor="#176B87" />
 
-                          
                             <Grid
                                 ColumnDefinitions="*,*"
                                 ColumnSpacing="10"
@@ -146,7 +139,6 @@
 
         </CollectionView>
 
-      
         <Button
             Grid.Row="2"
             Text="+ AGREGAR SOLICITUD"

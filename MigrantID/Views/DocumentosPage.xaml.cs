@@ -1,4 +1,6 @@
 
+using System;
+using System.Linq;
 using MigrantID.Models;
 using MigrantID.Services;
 
@@ -17,11 +19,9 @@ public partial class DocumentosPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-
         CargarDocumentos();
     }
 
-    
     private void CargarDocumentos()
     {
         var documentos = _servicio.ObtenerDocumentos();
@@ -30,9 +30,8 @@ public partial class DocumentosPage : ContentPage
         DocumentosCollection.ItemsSource = documentos;
     }
 
-    
     private async void OnAgregarClicked(
-        object sender, EventArgs e)
+        object? sender, EventArgs e)
     {
         _servicio.DocumentoEnEdicion = null;
 
@@ -40,15 +39,16 @@ public partial class DocumentosPage : ContentPage
             "//documento-form");
     }
 
-    
-    private async void OnEditarClicked(
-        object sender, EventArgs e)
+    private async void OnDocumentoSeleccionado(
+        object? sender, SelectionChangedEventArgs e)
     {
-        if (sender is not Button boton ||
-            boton.CommandParameter is not Documento documento)
+        if (e.CurrentSelection.FirstOrDefault()
+            is not Documento documento)
         {
             return;
         }
+
+        DocumentosCollection.SelectedItem = null;
 
         _servicio.DocumentoEnEdicion = documento;
 
@@ -56,15 +56,33 @@ public partial class DocumentosPage : ContentPage
             "//documento-form");
     }
 
-    
-    private async void OnEliminarClicked(
-        object sender, EventArgs e)
+    private async void OnEditarClicked(
+        object? sender, EventArgs e)
     {
         if (sender is not Button boton ||
             boton.CommandParameter is not Documento documento)
         {
             return;
         }
+
+        DocumentosCollection.SelectedItem = null;
+
+        _servicio.DocumentoEnEdicion = documento;
+
+        await Shell.Current.GoToAsync(
+            "//documento-form");
+    }
+
+    private async void OnEliminarClicked(
+        object? sender, EventArgs e)
+    {
+        if (sender is not Button boton ||
+            boton.CommandParameter is not Documento documento)
+        {
+            return;
+        }
+
+        DocumentosCollection.SelectedItem = null;
 
         bool confirmar = await DisplayAlertAsync(
             "Eliminar documento",
@@ -77,14 +95,24 @@ public partial class DocumentosPage : ContentPage
             return;
         }
 
-        _servicio.EliminarDocumento(
-            documento.IdDocumento);
+        bool eliminado =
+            _servicio.EliminarDocumento(documento.IdDocumento);
 
-        CargarDocumentos();
+        if (eliminado)
+        {
+            CargarDocumentos();
 
-        await DisplayAlertAsync(
-            "Documento eliminado",
-            "El documento se ha eliminado correctamente.",
-            "Aceptar");
+            await DisplayAlertAsync(
+                "Documento eliminado",
+                "El documento se ha eliminado correctamente.",
+                "Aceptar");
+        }
+        else
+        {
+            await DisplayAlertAsync(
+                "Error",
+                "No se encontró el documento seleccionado.",
+                "Aceptar");
+        }
     }
 }

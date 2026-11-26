@@ -12,8 +12,6 @@
         RowDefinitions="Auto,*,Auto"
         RowSpacing="14">
 
-        
-
         <VerticalStackLayout
             Grid.Row="0"
             Spacing="5">
@@ -23,19 +21,16 @@
                 Style="{StaticResource ListTitle}" />
 
             <Label
-                Text="Consulta y administra los documentos registrados."
+                Text="Toca un documento para editarlo."
                 Style="{StaticResource SubheaderLabel}" />
 
         </VerticalStackLayout>
 
-        
-
         <CollectionView
             x:Name="DocumentosCollection"
             Grid.Row="1"
-            SelectionMode="None">
-
-            
+            SelectionMode="Single"
+            SelectionChanged="OnDocumentoSeleccionado">
 
             <CollectionView.EmptyView>
 
@@ -49,7 +44,7 @@
                         Text="No hay documentos registrados"
                         FontSize="18"
                         FontAttributes="Bold"
-                        TextColor="red"
+                        TextColor="Red"
                         HorizontalTextAlignment="Center" />
 
                     <Label
@@ -59,8 +54,6 @@
                 </VerticalStackLayout>
 
             </CollectionView.EmptyView>
-
-            
 
             <CollectionView.ItemTemplate>
 
@@ -73,14 +66,11 @@
 
                         <VerticalStackLayout Spacing="9">
 
-                     
                             <Label
                                 Text="{Binding TipoDocumento}"
                                 FontSize="18"
                                 FontAttributes="Bold"
                                 TextColor="#173B57" />
-
-                            
 
                             <Label
                                 Text="Número de documento"
@@ -93,8 +83,6 @@
                                 FontAttributes="Bold"
                                 TextColor="#26465F" />
 
-                          
-
                             <Label
                                 Text="País de emisión"
                                 FontSize="12"
@@ -105,7 +93,6 @@
                                 FontSize="14"
                                 TextColor="#26465F" />
 
-                           
                             <Label
                                 Text="Fecha de vencimiento"
                                 FontSize="12"
@@ -117,7 +104,6 @@
                                 FontSize="14"
                                 TextColor="#26465F" />
 
-                            
                             <Label
                                 Text="Estado del documento"
                                 FontSize="12"
@@ -129,13 +115,11 @@
                                 FontAttributes="Bold"
                                 TextColor="#176B87" />
 
-                            
                             <BoxView
                                 HeightRequest="1"
                                 Color="#DEE6ED"
                                 Margin="0,6" />
 
-                            
                             <Grid
                                 ColumnDefinitions="*,*"
                                 ColumnSpacing="10">
@@ -175,7 +159,6 @@
 
         </CollectionView>
 
-        
         <Button
             Grid.Row="2"
             Text="+ AGREGAR DOCUMENTO"

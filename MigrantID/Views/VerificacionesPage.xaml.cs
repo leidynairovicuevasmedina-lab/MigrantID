@@ -1,5 +1,6 @@
 
 using System;
+using System.Linq;
 using MigrantID.Models;
 using MigrantID.Services;
 
@@ -18,8 +19,6 @@ public partial class VerificacionesPage : ContentPage
             _servicio.Verificaciones;
     }
 
-    // CARGAR VERIFICACIONES
-
     protected override void OnAppearing()
     {
         base.OnAppearing();
@@ -28,8 +27,6 @@ public partial class VerificacionesPage : ContentPage
             _servicio.Verificaciones;
     }
 
-    // AGREGAR
-
     private async void OnAgregarClicked(
         object? sender, EventArgs e)
     {
@@ -37,7 +34,20 @@ public partial class VerificacionesPage : ContentPage
             "//verificacion-form?id=0");
     }
 
-    // EDITAR
+    private async void OnVerificacionSeleccionada(
+        object? sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection.FirstOrDefault()
+            is not Verificacion verificacion)
+        {
+            return;
+        }
+
+        VerificacionesCollection.SelectedItem = null;
+
+        await Shell.Current.GoToAsync(
+            $"//verificacion-form?id={verificacion.IdVerificacion}");
+    }
 
     private async void OnEditarClicked(
         object? sender, EventArgs e)
@@ -48,11 +58,11 @@ public partial class VerificacionesPage : ContentPage
             return;
         }
 
+        VerificacionesCollection.SelectedItem = null;
+
         await Shell.Current.GoToAsync(
             $"//verificacion-form?id={verificacion.IdVerificacion}");
     }
-
-    // ELIMINAR
 
     private async void OnEliminarClicked(
         object? sender, EventArgs e)
@@ -62,6 +72,8 @@ public partial class VerificacionesPage : ContentPage
         {
             return;
         }
+
+        VerificacionesCollection.SelectedItem = null;
 
         bool confirmar = await DisplayAlertAsync(
             "Eliminar verificación",

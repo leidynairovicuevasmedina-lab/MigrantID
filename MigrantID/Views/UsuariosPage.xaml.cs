@@ -1,4 +1,6 @@
 
+using System;
+using System.Linq;
 using MigrantID.Models;
 using MigrantID.Services;
 
@@ -9,7 +11,6 @@ public partial class UsuariosPage : ContentPage
     private readonly MigrantIDService _servicio =
         MigrantIDService.Instancia;
 
-    
     public UsuariosPage()
     {
         InitializeComponent();
@@ -17,7 +18,6 @@ public partial class UsuariosPage : ContentPage
         UsuariosCollection.ItemsSource = _servicio.Usuarios;
     }
 
-    
     protected override void OnAppearing()
     {
         base.OnAppearing();
@@ -30,7 +30,6 @@ public partial class UsuariosPage : ContentPage
         UsuariosCollection.ItemsSource = _servicio.Usuarios;
     }
 
-    
     private async void OnAgregarClicked(
         object? sender, EventArgs e)
     {
@@ -38,7 +37,21 @@ public partial class UsuariosPage : ContentPage
             "//usuario-form?id=0");
     }
 
-    
+    private async void OnUsuarioSeleccionado(
+        object? sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection.FirstOrDefault()
+            is not Usuario usuario)
+        {
+            return;
+        }
+
+        UsuariosCollection.SelectedItem = null;
+
+        await Shell.Current.GoToAsync(
+            $"//usuario-form?id={usuario.IdUsuario}");
+    }
+
     private async void OnEditarClicked(
         object? sender, EventArgs e)
     {
@@ -48,12 +61,12 @@ public partial class UsuariosPage : ContentPage
             return;
         }
 
-        
+        UsuariosCollection.SelectedItem = null;
+
         await Shell.Current.GoToAsync(
             $"//usuario-form?id={usuario.IdUsuario}");
     }
 
-    
     private async void OnEliminarClicked(
         object? sender, EventArgs e)
     {
@@ -63,7 +76,8 @@ public partial class UsuariosPage : ContentPage
             return;
         }
 
-        
+        UsuariosCollection.SelectedItem = null;
+
         bool confirmar = await DisplayAlertAsync(
             "Eliminar usuario",
             $"¿Estás seguro de eliminar a {usuario.Nombre}?",
@@ -75,9 +89,8 @@ public partial class UsuariosPage : ContentPage
             return;
         }
 
-      
-        bool eliminado = _servicio.EliminarUsuario(
-            usuario.IdUsuario);
+        bool eliminado =
+            _servicio.EliminarUsuario(usuario.IdUsuario);
 
         if (eliminado)
         {

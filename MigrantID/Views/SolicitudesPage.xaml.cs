@@ -1,5 +1,6 @@
 
 using System;
+using System.Linq;
 using MigrantID.Models;
 using MigrantID.Services;
 
@@ -10,7 +11,6 @@ public partial class SolicitudesPage : ContentPage
     private readonly MigrantIDService _servicio =
         MigrantIDService.Instancia;
 
-   
     public SolicitudesPage()
     {
         InitializeComponent();
@@ -19,7 +19,6 @@ public partial class SolicitudesPage : ContentPage
             _servicio.Solicitudes;
     }
 
-    
     protected override void OnAppearing()
     {
         base.OnAppearing();
@@ -28,7 +27,6 @@ public partial class SolicitudesPage : ContentPage
             _servicio.Solicitudes;
     }
 
-    
     private async void OnAgregarClicked(
         object? sender, EventArgs e)
     {
@@ -36,7 +34,21 @@ public partial class SolicitudesPage : ContentPage
             "//solicitud-form?id=0");
     }
 
-  
+    private async void OnSolicitudSeleccionada(
+        object? sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection.FirstOrDefault()
+            is not SolicitudOrientacion solicitud)
+        {
+            return;
+        }
+
+        SolicitudesCollection.SelectedItem = null;
+
+        await Shell.Current.GoToAsync(
+            $"//solicitud-form?id={solicitud.IdSolicitud}");
+    }
+
     private async void OnEditarClicked(
         object? sender, EventArgs e)
     {
@@ -45,6 +57,8 @@ public partial class SolicitudesPage : ContentPage
         {
             return;
         }
+
+        SolicitudesCollection.SelectedItem = null;
 
         await Shell.Current.GoToAsync(
             $"//solicitud-form?id={solicitud.IdSolicitud}");
@@ -59,6 +73,8 @@ public partial class SolicitudesPage : ContentPage
             return;
         }
 
+        SolicitudesCollection.SelectedItem = null;
+
         bool confirmar = await DisplayAlertAsync(
             "Eliminar solicitud",
             "¿Deseas eliminar esta solicitud?",
@@ -70,7 +86,8 @@ public partial class SolicitudesPage : ContentPage
             return;
         }
 
-        if (_servicio.EliminarSolicitud(solicitud.IdSolicitud))
+        if (_servicio.EliminarSolicitud(
+            solicitud.IdSolicitud))
         {
             await DisplayAlertAsync(
                 "Solicitud eliminada",

@@ -12,10 +12,8 @@
         RowDefinitions="Auto,*,Auto"
         RowSpacing="14">
 
-  
-
-     <VerticalStackLayout
-           Grid.Row="0"
+        <VerticalStackLayout
+            Grid.Row="0"
             Spacing="5">
 
             <Label
@@ -23,19 +21,19 @@
                 Style="{StaticResource ListTitle}" />
 
             <Label
-                Text="Consulta los usuarios registrados en MigrantID."
+                Text="Toca un usuario para editarlo."
                 Style="{StaticResource SubheaderLabel}" />
 
         </VerticalStackLayout>
 
-     
-      <CollectionView
+        <CollectionView
             x:Name="UsuariosCollection"
             Grid.Row="1"
-            SelectionMode="None">
-
+            SelectionMode="Single"
+            SelectionChanged="OnUsuarioSeleccionado">
 
             <CollectionView.EmptyView>
+
                 <VerticalStackLayout
                     Padding="20,45"
                     Spacing="12"
@@ -46,7 +44,7 @@
                         Text="No hay usuarios registrados"
                         FontSize="18"
                         FontAttributes="Bold"
-                        TextColor="red"
+                        TextColor="Red"
                         HorizontalTextAlignment="Center" />
 
                     <Label
@@ -57,7 +55,6 @@
 
             </CollectionView.EmptyView>
 
-     
             <CollectionView.ItemTemplate>
 
                 <DataTemplate>
@@ -69,17 +66,13 @@
 
                         <VerticalStackLayout Spacing="10">
 
-                         
-
-               <Label
+                            <Label
                                 Text="{Binding Nombre}"
                                 FontSize="18"
                                 FontAttributes="Bold"
                                 TextColor="#173B57" />
 
-                     
-
-                <Label
+                            <Label
                                 Text="Correo electrónico"
                                 FontSize="12"
                                 TextColor="#66788A" />
@@ -90,7 +83,6 @@
                                 TextColor="#26465F"
                                 LineBreakMode="WordWrap" />
 
-                       
                             <Label
                                 Text="Rol asignado"
                                 FontSize="12"
@@ -102,13 +94,11 @@
                                 FontAttributes="Bold"
                                 TextColor="#176B87" />
 
-                        
                             <BoxView
                                 HeightRequest="1"
                                 Color="#DEE6ED"
                                 Margin="0,5" />
 
-                           
                             <Grid
                                 ColumnDefinitions="*,*"
                                 ColumnSpacing="10">
@@ -148,7 +138,6 @@
 
         </CollectionView>
 
-      
         <Button
             Grid.Row="2"
             Text="+ AGREGAR USUARIO"
